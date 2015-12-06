@@ -20,7 +20,7 @@ class AdminController extends Controller {
         return(var_dump($request->input()));
     }
 
-    public function insertQuery1($type) {
+    public function insertQuery($type) {
 
         if($type == "events") {
 
