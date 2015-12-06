@@ -11,14 +11,13 @@
 |
 */
 
-
-
-
-Route::get('/', ['as' => 'home', 'uses' => 'homeController@home'
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home'
 ]);
 
-Route::get('/admin', ['as' => 'admin', 'uses' => 'adminController@admin'
+Route::get('/admin', ['as' => 'admin', 'uses' => 'AdminController@admin'
 ]);
 
-Route::post('/adminfilter', ['as' => 'adminfilter', 'uses' => 'adminController@adminFilter'
+Route::post('/adminfilter', ['as' => 'adminfilter', 'uses' => 'AdminController@adminFilter'
 ]);
+
+Route::get('/',array('uses' => 'HomeController@showHomePage'));
