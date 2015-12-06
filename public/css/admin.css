@@ -1,0 +1,66 @@
+body{
+    font-family: 'myanmar text';
+    background: #373737;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #373737;
+}
+
+body *{
+    border-radius: 0 !important;
+}
+
+#nav-container{
+   background-color: white;
+    position: fixed;
+    top:20px;
+    padding: 0;
+}
+
+#nav-container .nav.nav-pills li{
+    margin-top: 0;
+}
+
+#nav-container .nav.nav-pills a{
+    padding: 12px 15px 10px;
+    transition: all 0.5s;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+#main-container{
+    float: right;
+    min-height: 1000px;
+    margin-top: 20px;
+    background-color: #ffffff;
+    margin-left: -1px;
+    border-left: solid 5px #337ab7;
+    border-top: solid 2px #337ab7;
+}
+
+#admin-filter{
+    margin: 20px 0;
+}
+.form-control{
+    display: inline-block;
+    vertical-align: middle;
+    width: 25%;
+    margin:0 20px 0 10px;
+}
+
+.btn-primary{
+    width: 10%;
+    line-height: 26px;
+    font-size: 16px;
+}
+
+label{
+    font-size: 30px;
+    line-height: 18px;
+    color: gray;
+    position: relative;
+    top: 4px;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
