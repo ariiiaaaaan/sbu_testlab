@@ -12,6 +12,16 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller {
 
+    public function admin()
+    {
+        return view('admin');
+    }
+
+    public function adminFilter(Request $request)
+    {
+        return(var_dump($request->input()));
+    }
+
     public function insertQuery($type) {
 
         if($type == "events") {

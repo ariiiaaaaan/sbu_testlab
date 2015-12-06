@@ -11,6 +11,11 @@ namespace App\Http\Controllers;
 
 class HomeController extends Controller {
 
+    public function home()
+    {
+        return view('welcome', ['salam' => "4" ]);
+    }
+
     public function showHomePage() {
         //blog and news
         $blog = Content::where('type','=','blog')->get();
