@@ -30,6 +30,13 @@ Homestead.yaml
 # .idea/dynamic.xml
 # .idea/uiDesigner.xml
 
+.idea/.name
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scope/scope_settings.xml
+.idea/vcs.xml
+
 # Gradle:
 # .idea/gradle.xml
 # .idea/libraries
