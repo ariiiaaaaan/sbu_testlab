@@ -15,7 +15,7 @@ class HomeController extends Controller {
     {
         return view('welcome', ['salam' => "4" ]);
     }
-    
+
     public function showHomePage() {
         //blog and news
         $blog = Content::where('type','=','blog')->get();
