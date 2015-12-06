@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+
+Route::get('/', ['as' => 'home', 'uses' => 'homeController@home'
+]);
+
+Route::get('/admin', ['as' => 'admin', 'uses' => 'adminController@admin'
+]);
+
+Route::post('/adminfilter', ['as' => 'adminfilter', 'uses' => 'adminController@adminFilter'
+]);
