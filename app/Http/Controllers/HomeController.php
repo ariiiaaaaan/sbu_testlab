@@ -4,17 +4,13 @@ namespace App\Http\Controllers;
 
     use App\User;
     use App\Content;
+    use App\Events;
     use App\Http\Controllers\Controller;
     use \Illuminate\Support\Facades\DB;
 
 
 
 class HomeController extends Controller {
-
-    public function home()
-    {
-        return view('welcome', ['salam' => "4" ]);
-    }
 
     public function showHomePage() {
         //blog and news
