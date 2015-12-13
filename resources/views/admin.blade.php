@@ -38,7 +38,7 @@
                             data : postData,
                             success:function(data)
                             {
-                                $('#tab1').html(data);
+                                $('.tab-pane.active').html(data);
                             },
                             error: function(jqXHR, textStatus, errorThrown)
                             {
@@ -59,11 +59,15 @@
     <div class="row">
         <div class="col-sm-3" id="nav-container" data-spy="affix" data-offset-top="8">
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a data-toggle="pill" href="#tab1">Home</a></li>
-                <li><a data-toggle="pill" href="#tab2">Menu 1</a></li>
-                <li><a data-toggle="pill" href="#tab3">Menu 2</a></li>
-                <li><a data-toggle="pill" href="#tab4">Menu 3</a></li>
-                <li><a data-toggle="pill" href="#tab5">Menu 4</a></li>
+                <li class="active"><a data-toggle="pill" href="#tab1">Services</a></li>
+                <li><a data-toggle="pill" href="#tab2">Blogs</a></li>
+                <li><a data-toggle="pill" href="#tab3">News</a></li>
+                <li><a data-toggle="pill" href="#tab4">Events</a></li>
+                <li><a data-toggle="pill" href="#tab5">Researches</a></li>
+                <li><a data-toggle="pill" href="#tab6">Contact</a></li>
+                <li><a data-toggle="pill" href="#tab7">Galleries</a></li>
+                <li><a data-toggle="pill" href="#tab8">Members</a></li>
+                <li><a data-toggle="pill" href="#tab9">Newsletter</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3" id="main-container">
@@ -87,23 +91,39 @@
             </div>
             <hr>
             <div class="tab-content">
-                <div id="tab1" class="tab-pane fade in active" data="events">
+                <div id="tab1" class="tab-pane fade in active" data="services">
                     <h3>HOME</h3>
                     <p>Some content.</p>
                 </div>
-                <div id="tab2" class="tab-pane fade" data="services">
+                <div id="tab2" class="tab-pane fade" data="blogs">
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab3" class="tab-pane fade" data="blogs">
+                <div id="tab3" class="tab-pane fade" data="news">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab4" class="tab-pane fade" data="news">
+                <div id="tab4" class="tab-pane fade" data="events">
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab5" class="tab-pane fade" data="tutorials">
+                <div id="tab5" class="tab-pane fade" data="researches">
+                    <h3>Menu 2</h3>
+                    <p>Some content in menu 2.</p>
+                </div>
+                <div id="tab6" class="tab-pane fade" data="contacts">
+                    <h3>Menu 2</h3>
+                    <p>Some content in menu 2.</p>
+                </div>
+                <div id="tab7" class="tab-pane fade" data="galleries">
+                    <h3>Menu 2</h3>
+                    <p>Some content in menu 2.</p>
+                </div>
+                <div id="tab8" class="tab-pane fade" data="members">
+                    <h3>Menu 2</h3>
+                    <p>Some content in menu 2.</p>
+                </div>
+                <div id="tab9" class="tab-pane fade" data="newsletter">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
