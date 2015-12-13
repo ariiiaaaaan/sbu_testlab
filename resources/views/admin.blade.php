@@ -25,9 +25,14 @@
             {
                 e.preventDefault(); //STOP default action
                 var postData = $(this).serializeArray();
+//                var mytype = {};
+//                mytype["type"] = $('.tab-pane.active').attr('data');
+                postData.push ({name:'type',value:$('.tab-pane.active').attr('data')});
+                alert(postData.toString());
                 var formURL = $(this).attr("action");
                 $.ajax(
                         {
+
                             url : formURL,
                             type: "POST",
                             data : postData,
@@ -82,23 +87,23 @@
             </div>
             <hr>
             <div class="tab-content">
-                <div id="tab1" class="tab-pane fade in active">
+                <div id="tab1" class="tab-pane fade in active" data="events">
                     <h3>HOME</h3>
                     <p>Some content.</p>
                 </div>
-                <div id="tab2" class="tab-pane fade">
+                <div id="tab2" class="tab-pane fade" data="services">
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab3" class="tab-pane fade">
+                <div id="tab3" class="tab-pane fade" data="blogs">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab4" class="tab-pane fade">
+                <div id="tab4" class="tab-pane fade" data="news">
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab5" class="tab-pane fade">
+                <div id="tab5" class="tab-pane fade" data="tutorials">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
