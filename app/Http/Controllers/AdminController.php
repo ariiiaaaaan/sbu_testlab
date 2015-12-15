@@ -7,6 +7,8 @@ use App\Events;
 use App\Http\Controllers\Controller;
 use \Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 
 
@@ -20,26 +22,57 @@ class AdminController extends Controller {
         return(var_dump($request->input()));
     }
 
-    public function insertQuery($type) {
+    public function insertQuery($type,Request $request)
+    {
 
-        if($type == "events") {
+        if ($type == "events") {
 
-            $content = new Events;
-            $content->title = Input::get('title');
-            $content->address = Input::get('address');
-            $date = '"' . Input::get('year') . '-' . Input::get('month') . '-' . Input::get('day') . '"';
-            $content->date = $date;
-            $content->body = Input::get('body');
-            $content->start = Input::get('start');
-            $content->end = Input::get('end');
-            $content->highlight = Input::get('highlight');
-            $content->save();
+            $validator = Validator::make($request->all(), [
+                'title' => 'required',
+                'address' => 'required',
+                'year' => 'required',
+                'month' => 'required',
+                'day' => 'required',
+                'body' => 'required',
+                'start' => 'required',
+                'end' => 'required',
+                'highlight' => 'required'
+            ]);
+
+                if ($validator->fails()) {
+                    return redirect('admin')->withErrors($validator)->withInput();
+                } else {
+                    $content = new Events;
+                    $content->title = $request->input('title');
+                    $content->address = $request->input('address');
+                    $content->body = $request->input('body');
+                    $start = $request->input('sday') . "|" . $request->input('smonth') . "|" . $request->input('syear') . "|" . $request->input('shour') . ":" . $request->input('sminute');
+                    $end = $request->input('eday') . "|" . $request->input('emonth') . "|" . $request->input('eyear') . "|" . $request->input('ehour') . ":" . $request->input('eminute');
+                    $content->start = $start;
+                    $content->end = $end;
+                    $content->highlight = $request->input('highlight');
+                    $content->save();
+                    return redirect('admin');
+                }
+        } elseif ($type = "content") {
+
+            $validator = Validator::make($request->all(), [
+                'title' => 'required',
+                'body' => 'required',
+                'type' => 'required'
+            ]);
+
+            if ($validator->fails()) {
+                return redirect('admin')->withErrors($validator)->withInput();
+            } else {
+                $content = new Content;
+                $content->title = $request->input('title');
+                $content->body = $request->input('body');
+                $content->type = $type;
+                $content->save();
+                return redirect('admin');
+            }
         }
-
-        $content = new Content;
-        $content->title = Input::get('title');
-        $content->body = Input::get('body');
-        $content->type = $type;
-        $content->save();
     }
+
 }
