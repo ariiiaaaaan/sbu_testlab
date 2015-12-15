@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Content;
 use App\Events;
+use App\Research;
+use App\Member;
 use App\Http\Controllers\Controller;
 use \Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -14,8 +16,34 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller {
 
+    public function selectFrom($table,$type = null) {
+        $result = null;
+        if($table == 'content') {
+            $result = Content::where('type','=',$type)->get();
+        } elseif ($table == 'event') {
+            $result = Events::all();
+        } elseif ($table == 'research') {
+            $result = Research::all();
+        } elseif ($table == 'member') {
+            $result = Member::all();
+        }
+        return $result;
+    }
+
     public function admin() {
-        return view('admin');
+        /*if(Auth::check()) {
+            return view('admin');
+        } else {
+            return view('adminlogin');
+        }*/
+        $services = $this->selectFrom('content','services');
+        $blogs = $this->selectFrom('content','blogs');
+        $news = $this->selectFrom('content','news');
+        $companies = $this->selectFrom('content','companies');
+        $members = $this->selectFrom('member');
+        $researches = $this->selectFrom('research');
+        $events = $this->selectFrom('event');
+        return view('admin',array('services' => $services,'blogs' => $blogs,'news' => $news,'companies'=>$companies,'members' => $members,'researches' => $researches, 'events' => $events));
     }
 
     public function adminFilter(Request $request) {
@@ -25,7 +53,7 @@ class AdminController extends Controller {
     public function insertQuery($type,Request $request)
     {
 
-        if ($type == "events") {
+        if ($type == 'events') {
 
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
@@ -54,7 +82,7 @@ class AdminController extends Controller {
                     $content->save();
                     return redirect('admin');
                 }
-        } elseif ($type = "content") {
+        } elseif ($type = 'content') {
 
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
