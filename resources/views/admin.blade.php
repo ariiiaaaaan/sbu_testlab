@@ -47,7 +47,35 @@
                         });
                // e.unbind(); //unbind. to stop multiple form submit.
             });
+
+            $("#admin-add-button").click('show.bs.tab',function(e)
+            {
+                var postData = {type:$('.tab-pane.active').attr('data-type'),entity:$('.tab-pane.active').attr('data-entity')};
+                alert($('.tab-pane.active').attr('data-type')+"-"+$('.tab-pane.active').attr('data-entity'));
+                var formURL ="getinsertform";
+                $.ajax(
+                        {
+                            url : formURL,
+                            type: "GET",
+                            data : postData,
+                            success:function(data)
+                            {
+                                $('#insert-modal').modal();
+                                $('#insert-modal .modal-body').html(data);
+                                $('#insert-modal').modal("show");
+
+                            },
+                            error: function(jqXHR, textStatus, errorThrown)
+                            {
+                                alert("error"); //if fails
+                            }
+                        });
+                // e.unbind(); //unbind. to stop multiple form submit.
+            });
+
         });
+
+
 
 
     </script>
@@ -89,43 +117,62 @@
                     {{ csrf_field() }}
                 </form>
             </div>
+            <input type="button" class="btn btn-primary" id="admin-add-button" value="Add New Content">
             <hr>
             <div class="tab-content">
-                <div id="tab1" class="tab-pane fade in active" data="services">
+                <div id="tab1" class="tab-pane fade in active" data-entity="contents" data-type="services">
                     <h3>HOME</h3>
                     <p>Some content.</p>
                 </div>
-                <div id="tab2" class="tab-pane fade" data="blogs">
+                <div id="tab2" class="tab-pane fade" data-entity="contents" data-type=="blogs">
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab3" class="tab-pane fade" data="news">
+                <div id="tab3" class="tab-pane fade" data-entity="contents" data-type="news">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab4" class="tab-pane fade" data="events">
+                <div id="tab4" class="tab-pane fade" data-entity="events">
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab5" class="tab-pane fade" data="researches">
+                <div id="tab5" class="tab-pane fade" data-entity="researches">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab6" class="tab-pane fade" data="contacts">
+                <div id="tab6" class="tab-pane fade" data-entity="contacts">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab7" class="tab-pane fade" data="galleries">
+                <div id="tab7" class="tab-pane fade" data-entity="content" data-type="galleries">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab8" class="tab-pane fade" data="members">
+                <div id="tab8" class="tab-pane fade" data-entity="members">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab9" class="tab-pane fade" data="newsletter">
+                <div id="tab9" class="tab-pane fade" data-entity="newsletter">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="insert-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New </h4>
+                </div>
+                <div class="modal-body">
+
+
                 </div>
             </div>
 

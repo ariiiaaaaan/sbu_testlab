@@ -17,6 +17,12 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home'
 Route::get('/admin', ['as' => 'admin', 'uses' => 'AdminController@admin'
 ]);
 
+Route::post('/getinsertform', ['as' => 'getinsertform', 'uses' => 'AdminController@getInsertForm'
+]);
+
+Route::get('/getinsertform', ['as' => 'getinsertform', 'uses' => 'AdminController@getInsertForm'
+]);
+
 Route::post('/adminfilter', ['as' => 'adminfilter', 'uses' => 'AdminController@adminFilter'
 ]);
 
