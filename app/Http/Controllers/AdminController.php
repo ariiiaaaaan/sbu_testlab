@@ -30,24 +30,31 @@ class AdminController extends Controller {
         return $result;
     }
 
+    public function getInsertForm(Request $r){
+//       return "salam";
+//        return $r->input('entity')."".$r->input('type');
+        return view('newcontentmodal',['entity'=>$r->input('entity'),'type'=>$r->input('type')]);
+    }
+
     public function admin() {
         /*if(Auth::check()) {
             return view('admin');
         } else {
             return view('adminlogin');
         }*/
-        $services = $this->selectFrom('content','services');
-        $blogs = $this->selectFrom('content','blogs');
-        $news = $this->selectFrom('content','news');
-        $companies = $this->selectFrom('content','companies');
-        $members = $this->selectFrom('member');
-        $researches = $this->selectFrom('research');
-        $events = $this->selectFrom('event');
-        return view('admin',array('services' => $services,'blogs' => $blogs,'news' => $news,'companies'=>$companies,'members' => $members,'researches' => $researches, 'events' => $events));
+        return view('admin');
+//        $services = $this->selectFrom('content','services');
+//        $blogs = $this->selectFrom('content','blogs');
+//        $news = $this->selectFrom('content','news');
+//        $companies = $this->selectFrom('content','companies');
+//        $members = $this->selectFrom('member');
+//        $researches = $this->selectFrom('research');
+//        $events = $this->selectFrom('event');
+//        return view('admin',array('services' => $services,'blogs' => $blogs,'news' => $news,'companies'=>$companies,'members' => $members,'researches' => $researches, 'events' => $events));
     }
 
     public function adminFilter(Request $request) {
-        return(var_dump($request->input()));
+        return view('dateinput',['prefix'=>"salam"]);
     }
 
     public function insertQuery($type,Request $request)

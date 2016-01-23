@@ -48,10 +48,15 @@ body *{
     margin:0 20px 0 10px;
 }
 
-.btn-primary{
+.btn-primary,.btn-default{
     width: 10%;
-    line-height: 26px;
+    height: 36px;
+    line-height: 30px;
     font-size: 16px;
+}
+
+#admin-add-button{
+    width: 100%;
 }
 
 label{
@@ -63,4 +68,91 @@ label{
     margin-bottom: 0;
     font-weight: normal;
 }
+
+#insert-modal .modal-dialog{
+    width: 80%;
+}
+
+#insert-modal label{
+    width:20%;
+    font-size: 24px;
+    text-align: right;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+#insert-modal input[type="text"],input[type="email"],input[type="file"],input[type="number"],textarea{
+    width: 67% !important;
+    vertical-align: top !important;
+    color: #444 !important;
+    font-size: 18px !important;
+    line-height: 24px !important;
+    display: inline-block!important;
+}
+
+#insert-modal textarea{
+    min-height:85px;
+    resize: none;
+}
+
+.form-group input[type="checkbox"]{
+    margin-left: 10px !important;
+    bottom: 5px;
+}
+.form-group.dateinput{
+    width: 15%;
+    display: inline-block;
+}
+
+.form-group.dateinput select{
+    margin: 0 5px !important;
+}
+
+.form-group.dateinput label{
+    width: auto !important;
+    font-size: 16px !important;
+}
+
+.form-group.dateinput .form-control{
+    width: auto !important;
+}
+
+.form-group.dateinput.time{
+    width: 25%;
+}
+
+.form-group.dateinput.year{
+    margin-left: 10px;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    cursor: pointer;
+    padding: 0!important;
+}
+
+.fileUpload input.myupload {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.fileUpload span{
+    position: relative;
+    cursor: pointer;
+    z-index: 100;
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin-top: 5px;
+}
+
 
