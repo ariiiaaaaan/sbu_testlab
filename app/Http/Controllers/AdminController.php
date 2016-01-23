@@ -79,7 +79,17 @@ class AdminController extends Controller {
                     $content->start = $start;
                     $content->end = $end;
                     $content->highlight = $request->input('highlight');
+                    $photo = new Photo;
+                    if($request->file('photo')->isValid()) {
+                        $file = $request->file('photo');
+                        $name = $file->getClientOriginalName() ."--". date("1");
+                        $destination = 'upload';
+                        $file->move($destination,$name);
+                        $photo->title = $request->input('photoTitle');
+                        $photo->path = $destination."/".$name;
+                    }
                     $content->save();
+                    $content->photos()->save($photo);
                     return redirect('admin');
                 }
         } elseif ($type = 'content') {
