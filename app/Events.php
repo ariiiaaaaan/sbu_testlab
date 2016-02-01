@@ -13,4 +13,9 @@ class Events extends Model {
         return $this->hasMany('App\Photo');
     }
 
+    public function tag() {
+
+        return $this->hasMany('App\Tag');
+    }
+
 }

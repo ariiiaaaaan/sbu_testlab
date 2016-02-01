@@ -16,8 +16,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller {
 
-    public function selectFrom($table,$type = null) {
-        $result = null;
+    public function selectFrom($table = 'content', $type = 'news', $tag = null, $offset = null , $limit=null) {
         if($table == 'content') {
             $result = Content::where('type','=',$type)->get();
         } elseif ($table == 'event') {
@@ -27,7 +26,6 @@ class AdminController extends Controller {
         } elseif ($table == 'member') {
             $result = Member::all();
         }
-        return $result;
     }
 
     public function getInsertForm(Request $r){
@@ -119,5 +117,4 @@ class AdminController extends Controller {
             }
         }
     }
-
 }

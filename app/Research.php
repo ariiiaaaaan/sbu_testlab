@@ -10,4 +10,9 @@ class Research extends Model {
         return $this->hasMany('App\Photo');
     }
 
+    public function tag() {
+
+        return $this->hasMany('App\Tag');
+    }
+
 }

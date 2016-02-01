@@ -27,3 +27,6 @@ Route::post('/adminfilter', ['as' => 'adminfilter', 'uses' => 'AdminController@a
 ]);
 
 Route::get('/',array('uses' => 'HomeController@showHomePage'));
+
+Route::get('/test', ['as' => 'adminfilter', 'uses' => 'AdminController@selectFrom'
+]);
