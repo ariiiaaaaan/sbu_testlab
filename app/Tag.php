@@ -5,24 +5,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model {
 
-    public function content() {
+    public function contents() {
 
-        return $this->belongsTo('App\Content');
+        return $this->belongsToMany('App\Content');
     }
 
     public function events() {
 
-        return $this->belongsTo('App\Events');
+        return $this->belongsToMany('App\Events');
     }
 
     public function member () {
 
-        return $this->belongsTo('App\Member');
+        return $this->belongsToMany('App\Member');
     }
 
     public function research () {
 
-        return $this->belongsTo('App\Research');
+        return $this->belongsToMany('App\Research');
     }
 
 }

@@ -10,7 +10,7 @@ class Content extends Model {
         return $this->hasMany('App\Photo');
     }
 
-    public function tag() {
+    public function tags() {
 
         return $this->hasMany('App\Tag');
     }

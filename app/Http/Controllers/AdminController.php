@@ -6,6 +6,7 @@ use App\Content;
 use App\Events;
 use App\Research;
 use App\Member;
+use App\Tag;
 use App\Http\Controllers\Controller;
 use \Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -16,16 +17,52 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller {
 
-    public function selectFrom($table = 'content', $type = 'news', $tag = null, $offset = null , $limit=null) {
+    public function selectFrom($table, $type, $tag = NULL, $offset = NULL, $limit = NULL) {
+
+        $result = NULL;
+
         if($table == 'content') {
-            $result = Content::where('type','=',$type)->get();
-        } elseif ($table == 'event') {
-            $result = Events::all();
-        } elseif ($table == 'research') {
-            $result = Research::all();
-        } elseif ($table == 'member') {
-            $result = Member::all();
+            if($tag != NULL) {
+                $result = DB::table('tags')
+                    ->join('tag_content','tags.id','=','tag_content.tag_id')
+                    ->join('contents','tag_content.id','=','contents.content_id')
+                    ->select('contents.*')
+                    ->where('tags.title','=',$tag)
+                    ->where('contents.type','=',$type)
+                    ->get();
+            } else {
+                $result = DB::table('contents')
+                            ->where('type','=',$type)
+                            ->get();
+            }
+        } elseif($table = 'events') {
+            if($tag != NULL) {
+                $result = DB::table('tags')
+                    ->join('tag_event','tags.id','=','tag_event.tag_id')
+                    ->join('events','tag_event.event_id','=','events.id')
+                    ->select('events.*')
+                    ->where('tags.title','=',$tag)
+                    ->get();
+            } else {
+                $result = DB::table('events')
+                    ->select('events.*')
+                    ->get();
+            }
+        } elseif($table = 'researchs') {
+            if($tag != NULL) {
+                $result = DB::table('researchs')
+                    ->join('tag_event','tags.id','=','tag_research.tag_id')
+                    ->join('researchs','tag_research.research_id','=','researchs.id')
+                    ->select('research.*')
+                    ->where('tags.title','=',$tag)
+                    ->get();
+            } else {
+                $result = DB::table('researchs')
+                    ->select('researchs.*')
+                    ->get();
+            }
         }
+        return $result;
     }
 
     public function getInsertForm(Request $r){
