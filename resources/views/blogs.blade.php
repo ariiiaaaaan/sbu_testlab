@@ -2,6 +2,10 @@
 
 @section('outsource')
     <link rel="stylesheet" type="text/css" href="{{asset('css/blog.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/dropdown.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('js/scrollbar.js')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('js/dropdown.js')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('js/core.js')}}"/>
     <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
     <script type="text/javascript">
         $( window ).load( function()
@@ -20,6 +24,9 @@
     <section id="blogs-header" class="page-header">
         <img src="images/header-logo.png" class="header-logo">
         <p class="logo-caption">Blogs And News</p>
+    </section>
+    <section id="filters" class="filter-section">
+        <a href="#filters" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
     </section>
     <section id="blogs-section">
     <div class="grid">

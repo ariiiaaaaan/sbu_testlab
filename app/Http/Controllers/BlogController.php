@@ -6,7 +6,7 @@ use App\Content;
 
 class BlogController extends Controller {
 
-    public function blogsPage() {
+    public function showBlogs() {
         return view('blogs');
     }
 }

@@ -1,6 +1,35 @@
+.section-down-btn{
+    color: white;
+    display: inline-block;
+    text-align: center;
+    width: 4em;
+    height: 2em;
+    margin-left: -2em;
+    position: absolute;
+    top: -2em;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+    background-color: #0098bf;
+}
+
+.section-down-btn span{
+    transition: all 0.5s;
+    line-height: 0.8em;
+    font-size: 3em !important;
+}
+
+.filter-section{
+    margin-top: -1px;
+    text-align: center;
+    position: relative;
+    background-color: #0098bf;
+    height: 15vh;
+}
+
 #blogs-section{
     background-color: #dddddd;
 }
+
 .blog{
     position: relative;
     display: inline-block;
