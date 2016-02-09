@@ -1,0 +1,116 @@
+#blogs-section{
+    background-color: #dddddd;
+}
+.blog{
+    position: relative;
+    display: inline-block;
+    background-color: #373737;
+    width: 25vw;
+    margin: 1vw;
+    box-shadow: 0 0 4px black;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.blog h4{
+    color: #ffffff;
+    margin: 3vh 0 1vh;
+    width: 100%;
+    padding: 0 2em;
+    font-size: 18px;
+    line-height: 7vh;
+    text-align: center;
+}
+
+.blog .blog-date{
+    color: #ffffff;
+    background-color: #000000;
+    font-size: 12px;
+    line-height: 9vh;
+    height: 8vh;
+    width: 100%;
+    text-align: left;
+}
+.blog .blog-date .fa{
+    margin:0 10px 0 20px ;
+}
+
+.blog .blog-body{
+    padding-top:1vw ;
+    position: relative;
+}
+
+.blog img{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    opacity: 0.95;
+    transition: all 1s;
+}
+
+.blog:hover img{
+    opacity: 0;
+    top: 50vh;
+}
+
+.blog p{
+    font-size: 12px;
+    color: white;
+    padding: 2vh 4vh 2vh;
+    text-align: justify;
+    line-height: 16px;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 1s;
+}
+
+.blog:hover p{
+    opacity: 1;
+}
+
+.blog .blog-btn{
+    text-align: center;
+    width: 15vw;
+    display: block;
+    position: relative;
+    z-index: 10;
+    height: 6vh;
+    line-height: 7vh;
+    font-size: 12px;
+    margin: 1vh auto;
+    padding: 0 10px;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.blog-btn-all,.blog-btn-more{
+    display: inline-block;
+    width: 25vw;
+    height: 8vh;
+    line-height: 9vh;
+    font-size: 16px;
+    margin: 0vh auto 0;
+    padding: 0 10px;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    background-color: rgba(0,0,0,0.7);
+    box-shadow: 0 0 4px black;
+    transition: all 1s;
+}
+
+.grid {
+    width: 82vw;
+    margin: auto;
+    display: block;
+}
+
+.item {
+    min-height: 100px;
+    display: inline-block;
+}
+
+.grid-item--width2 { width: 400px; }
