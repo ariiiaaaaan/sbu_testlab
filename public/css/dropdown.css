@@ -159,7 +159,6 @@
   top: 100%;
   left: 0;
   border: 1px solid #ccc;
-  border-width: 0 1px 1px;
   border-radius: 0 0 3px 3px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
   background-color: #fff;
@@ -350,3 +349,21 @@
 .fs-dropdown-options.fs-scrollbar .fs-scrollbar-track {
   border-radius: 0 3px 3px 0;
 }
+
+.fs-dropdown,.fs-dropdown-selected{
+  width: 10vw;
+  top: 1vw;
+  height: 3vw;
+  text-align: center;
+  padding: 0;
+  margin: auto;
+  border-radius: 0;
+  z-index: 100;
+}
+
+.fs-dropdown-item{
+  border: none;
+  text-align: center;
+}
+
+

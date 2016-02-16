@@ -1,33 +1,44 @@
-.section-down-btn{
-    color: white;
-    display: inline-block;
-    text-align: center;
-    width: 4em;
-    height: 2em;
-    margin-left: -2em;
-    position: absolute;
-    top: -2em;
-    border-radius: 4px 4px 0 0;
-    cursor: pointer;
-    background-color: #0098bf;
-}
-
-.section-down-btn span{
-    transition: all 0.5s;
-    line-height: 0.8em;
-    font-size: 3em !important;
-}
-
 .filter-section{
-    margin-top: -1px;
     text-align: center;
     position: relative;
+    z-index: 2;
     background-color: #0098bf;
-    height: 15vh;
+    height: 6vw;
+    box-shadow: 0 0 8px #000;
+}
+
+.filter-section .section-down-btn{
+    background-color: #0098bf;
+}
+
+.filter-section .section-down-btn:hover{
+    color: #373737;
+}
+
+.fs-dropdown-selected:after{
+    display: none;
+}
+.fs-dropdown-options{
+ top: 4vw;
+}
+
+.fs-scrollbar-bar{
+    display: none;
+}
+
+.fs-dropdown-selected{
+    color: white !important;
+    background-color: #373737 !important;
+    border: none !important;
+    box-shadow: 0 0 4px #555 !important;
+    outline: none !important;
+    border-radius: 0 !important;
 }
 
 #blogs-section{
+    position: relative;
     background-color: #dddddd;
+    padding: 10vh 0 20vh;
 }
 
 .blog{
@@ -36,7 +47,7 @@
     background-color: #373737;
     width: 25vw;
     margin: 1vw;
-    box-shadow: 0 0 4px black;
+    box-shadow: 0 0 5px black;
     cursor: pointer;
     overflow: hidden;
 }
@@ -143,3 +154,23 @@
 }
 
 .grid-item--width2 { width: 400px; }
+
+.blog-btn-more{
+    display: inline-block;
+    width: 25vw;
+    height: 8vh;
+    line-height: 9vh;
+    font-size: 1.5em;
+    margin: 0 auto 0;
+    padding: 0 1vw;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    background-color: rgba(0,0,0,0.7);
+    box-shadow: 0 0 4px black;
+    transition: all 1s;
+    position: absolute;
+    bottom: 3em;
+    left: 37.5vw;
+    border: none;
+    outline: none !important;
+}

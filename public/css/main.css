@@ -116,6 +116,19 @@ ul.nav li a{
 
 .navbar-search-wrapper{
     display: inline-block;
+    float: left;
+}
+
+#nav-container .social{
+    transition: all 1s !important;
+    overflow: hidden;
+    width: 2.8em;
+}
+
+#nav-container.affix .social{
+    width: 0px;
+    opacity: 0.1;
+    transition: all 1s !important;
 }
 
 .navbar-form .submit{
@@ -161,9 +174,10 @@ ul.nav li a{
     cursor: pointer;
 }
 
-.navbar-form a{
+.navbar-form a,.navbar-search-wrapper{
     display: inline-block;
     text-decoration: none;
+    overflow: hidden;
 }
 
 .navbar-form form{
@@ -216,19 +230,20 @@ ul.nav li a{
     height: 100vh;
     text-align: center;
     color: #ffffff;
+    border-bottom: none;
 }
 
 .page-header h2{
     color: #ffffff;
-    font-size: 36px;
-    font-weight: bolder;
+    font-size: 2em;
+    font-weight: normal;
     margin-top: 0px;
-    padding-top: 90px;
+    padding-top: 20px;
 }
 
 .page-header h3{
     font-size: 14px;
-    margin-top: 10px;
+    margin-top: 20px;
     color: #ffffff;
 }
 
@@ -256,6 +271,118 @@ ul.nav li a{
     font-weight: bold;
 }
 
+.section-down-btn{
+    color: white;
+    display: inline-block;
+    text-align: center;
+    width: 4em;
+    height: 2.4em;
+    margin-left: -2em;
+    position: absolute;
+    top: -2.3em;
+    border-radius: 1px 1px 0 0;
+    cursor: pointer;
+    background-color: #373737;
+}
+
+.section-down-btn:hover{
+    color: #373737;
+}
+
+.section-down-btn span{
+    transition: all 0.5s;
+    line-height: 0.8em;
+    font-size: 3em !important;
+}
+
+.footer-section{
+    margin-top: -1px;
+    text-align: center;
+    position: relative;
+    background-color: #373737;
+    height: 20vh;
+    color: #ffffff;
+    padding-top: 2vh;
+}
+
+.footer-section .section-down-btn{
+    background-color: #373737;
+}
+
+.footer-section .section-down-btn:hover{
+    color: #0098bf;
+}
+
+.footer-info{
+    clear: both;
+    width: 22vw;
+    height: 8vh;
+    margin: 5vh 2vw 2vh 2vw;
+    overflow: hidden;
+}
+
+.footer-info p{
+    font-size: .8em;
+    text-align: left;
+    margin: 0px 5px 5px 0px ;
+}
+
+.footer-info p.solo{
+    margin-top: 1em ;
+}
+
+.footer-info span.fa{
+    font-size: 2.5em;
+    height: 8vh;
+    margin-left: 5px;
+}
+
+.footer-section .footer-center{
+    position: relative;
+    width: 50vw;
+    text-align: center;
+    margin: auto;
+}
 
 
+.footer-section .footer-center .footer-socials a{
+    overflow: hidden;
+    border-radius: 1000px;
+    display: inline-block;
+    margin: 2vh 1em 4vh;
+    width: 3.5em;
+    height: 3.5em;
+    text-align: center;
+}
 
+.footer-section .footer-center .footer-socials a span.fa{
+    margin-top: 0.4em;
+    color: white;
+    transition: all 1s;
+}
+
+.footer-section .footer-center .footer-socials a:hover span.fa {
+    color: #373737;
+}
+
+.footer-socials .fb{
+    background-color:#4b69a8;
+}
+
+.footer-socials .tw{
+    background-color:#10bcfd;
+}
+
+.footer-socials .gp{
+    background-color:#ed5b49;
+}
+
+.footer-socials .ld{
+    background-color:#238cc8 ;
+}
+
+.footer-section .footer-center .footer-text p{
+    line-height: 2em;
+    font-size: 1em;
+    font-weight: bold;
+}

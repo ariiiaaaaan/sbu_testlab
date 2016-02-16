@@ -34,3 +34,5 @@ Route::get('/test', ['as' => 'adminfilter', 'uses' => 'AdminController@selectFro
 Route::get('/blogs', ['as' => 'blogs', 'uses' => 'BlogController@showBlogs'
 ]);
 
+Route::get('/moreblogs', ['as' => 'moreblogs', 'uses' => 'BlogController@moreBlogs'
+]);

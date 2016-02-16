@@ -10,7 +10,7 @@
 
 @section('content')
     <section id="home" class="home-section">
-        <img src="images/header-logo.png" class="header-logo">
+        <img src="images/header-logo-prev.png" class="header-logo">
         <p class="logo-caption">Shahid Beheshti University Of Tehran Laboratories</p>
     </section>
     <section id="services" class="home-section">
