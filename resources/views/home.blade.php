@@ -2,6 +2,9 @@
 
 @section('outsource')
     <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}"/>
+    <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+    <script src=""></script>
+    <script src=""></script>
 @endsection
 
 @section('menu')
@@ -56,6 +59,168 @@
         <a href="#events" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>Events</h2>
         <h3>Seminars and Presentations we want to provide</h3>
+        <div class="hider">
+            <div id="event-wrapper">
+                    <div class="event">
+                <div class="overlay">
+                <p class="day">25</p>
+                <p class="month">July</p>
+                </div>
+                <h3 class="title">The London Test Automation</h3>
+                <p class="location">Shahid Beheshti University</p>
+                <p class="time">15:00 - 18:30</p>
+                <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                </div>
+                    <div class="event highlight">
+                <div class="overlay">
+                <p class="day">25</p>
+                <p class="month">July</p>
+                </div>
+                <h3 class="title">The London Test Automation</h3>
+                <p class="location">Shahid Beheshti University</p>
+                <p class="time">15:00 - 18:30</p>
+                <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                </div>
+                    <div class="event">
+                <div class="overlay">
+                <p class="day">25</p>
+                <p class="month">July</p>
+                </div>
+                <h3 class="title">The London Test Automation</h3>
+                <p class="location">Shahid Beheshti University</p>
+                <p class="time">15:00 - 18:30</p>
+                <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                </div>
+                    <div class="event">
+                <div class="overlay">
+                <p class="day">25</p>
+                <p class="month">July</p>
+                </div>
+                <h3 class="title">The London Test Automation</h3>
+                <p class="location">Shahid Beheshti University</p>
+                <p class="time">15:00 - 18:30</p>
+                <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                </div>
+            </div>
+        </div>
+        <span class="fa fa-angle-right fa-4x" id="events-next"></span>
+        <span class="fa fa-angle-left fa-4x" id="events-prev"></span>
+        {{--<div id="event-carousel" class="carousel slide" data-ride="carousel">--}}
+            {{--<!-- Indicators -->--}}
+
+            {{--<!-- Wrapper for slides -->--}}
+            {{--<div class="carousel-inner" role="listbox">--}}
+                {{--<div class="item active">--}}
+                    {{--<div class="grid">--}}
+                        {{--<div class="event highlight">--}}
+                            {{--<div class="overlay">--}}
+                                {{--<p class="day">25</p>--}}
+                                {{--<p class="month">July</p>--}}
+                            {{--</div>--}}
+                            {{--<h3 class="title">The London Test Automation</h3>--}}
+                            {{--<p class="location">Shahid Beheshti University</p>--}}
+                            {{--<p class="time">15:00 - 18:30</p>--}}
+                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
+                        {{--</div>--}}
+                        {{--<div class="event highlight">--}}
+                            {{--<div class="overlay">--}}
+                                {{--<p class="day">25</p>--}}
+                                {{--<p class="month">July</p>--}}
+                            {{--</div>--}}
+                            {{--<h3 class="title">The London Test Automation</h3>--}}
+                            {{--<p class="location">Shahid Beheshti University</p>--}}
+                            {{--<p class="time">15:00 - 18:30</p>--}}
+                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
+                        {{--</div>--}}
+                        {{--<div class="event">--}}
+                            {{--<div class="overlay">--}}
+                                {{--<p class="day">25</p>--}}
+                                {{--<p class="month">July</p>--}}
+                            {{--</div>--}}
+                            {{--<h3 class="title">The London Test Automation</h3>--}}
+                            {{--<p class="location">Shahid Beheshti University</p>--}}
+                            {{--<p class="time">15:00 - 18:30</p>--}}
+                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
+                        {{--</div>--}}
+                        {{--<div class="event highlight">--}}
+                            {{--<div class="overlay">--}}
+                                {{--<p class="day">25</p>--}}
+                                {{--<p class="month">July</p>--}}
+                            {{--</div>--}}
+                            {{--<h3 class="title">The London Test Automation</h3>--}}
+                            {{--<p class="location">Shahid Beheshti University</p>--}}
+                            {{--<p class="time">15:00 - 18:30</p>--}}
+                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+
+                {{--<div class="item">--}}
+                    {{--<div class="grid">--}}
+                        {{--<div class="event">--}}
+                            {{--<div class="overlay">--}}
+                                {{--<p class="day">25</p>--}}
+                                {{--<p class="month">July</p>--}}
+                            {{--</div>--}}
+                            {{--<h3 class="title">The London Test Automation</h3>--}}
+                            {{--<p class="location">Shahid Beheshti University</p>--}}
+                            {{--<p class="time">15:00 - 18:30</p>--}}
+                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
+                        {{--</div>--}}
+                        {{--<div class="event highlight">--}}
+                            {{--<div class="overlay">--}}
+                                {{--<p class="day">25</p>--}}
+                                {{--<p class="month">July</p>--}}
+                            {{--</div>--}}
+                            {{--<h3 class="title">The London Test Automation</h3>--}}
+                            {{--<p class="location">Shahid Beheshti University</p>--}}
+                            {{--<p class="time">15:00 - 18:30</p>--}}
+                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
+                        {{--</div>--}}
+                        {{--<div class="event">--}}
+                            {{--<div class="overlay">--}}
+                                {{--<p class="day">25</p>--}}
+                                {{--<p class="month">July</p>--}}
+                            {{--</div>--}}
+                            {{--<h3 class="title">The London Test Automation</h3>--}}
+                            {{--<p class="location">Shahid Beheshti University</p>--}}
+                            {{--<p class="time">15:00 - 18:30</p>--}}
+                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
+                        {{--</div>--}}
+                        {{--<div class="event">--}}
+                            {{--<div class="overlay">--}}
+                                {{--<p class="day">25</p>--}}
+                                {{--<p class="month">July</p>--}}
+                            {{--</div>--}}
+                            {{--<h3 class="title">The London Test Automation</h3>--}}
+                            {{--<p class="location">Shahid Beheshti University</p>--}}
+                            {{--<p class="time">15:00 - 18:30</p>--}}
+                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+
+                {{--<div class="item">--}}
+                    {{--<div class="grid">--}}
+
+                    {{--</div>--}}
+                {{--</div>--}}
+
+                {{--<div class="item">--}}
+                    {{--<div class="grid">--}}
+
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+
+            {{--<!-- Left and right controls -->--}}
+            {{--<a class="left carousel-control" href="#event-carousel" role="button" data-slide="prev">--}}
+                {{--<span class="fa fa-angle-left fa-4x"></span>--}}
+            {{--</a>--}}
+            {{--<a class="right carousel-control" href="#event-carousel" role="button" data-slide="next">--}}
+                {{--<span class="fa fa-angle-right fa-4x"></span>--}}
+            {{--</a>--}}
+        {{--</div>--}}
     </section>
     <section id="researches" class="home-section">
         <a href="#researches" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>

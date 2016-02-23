@@ -283,6 +283,23 @@ position: absolute;
     transition: all 1s;
 }
 
+.event{
+    position: relative;
+    display: inline-block;
+    background-color: #373737;
+    width: 25vw;
+    margin: 5vh 2.5vw 0vw;
+    height: 10vw;
+    box-shadow: 0 0 4px black;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: #2ca02c;
+}
+
+.event.highlight{
+    height: 25vw;
+}
+
 .research{
     text-align: left;
     background-color: #373737;
@@ -373,5 +390,7 @@ position: absolute;
     width: 50%;
     float: left;
 }
+
+
 
 
