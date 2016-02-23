@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}"/>
     <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
     <script src=""></script>
-    <script src=""></script>
+    <script src="masonry-horizontal.js"></script>
 @endsection
 
 @section('menu')
