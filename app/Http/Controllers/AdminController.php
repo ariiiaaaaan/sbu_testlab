@@ -89,7 +89,8 @@ class AdminController extends Controller {
     }
 
     public function adminFilter(Request $request) {
-        return view('dateinput',['prefix'=>"salam"]);
+        //return view('dateinput',['prefix'=>"salam"]);
+        $this->insertQuery($request->input('type'),$request);
     }
 
     public function insertQuery($type,Request $request)

@@ -27,8 +27,7 @@
                 var postData = $(this).serializeArray();
 //                var mytype = {};
 //                mytype["type"] = $('.tab-pane.active').attr('data');
-                postData.push ({name:'type',value:$('.tab-pane.active').attr('data')});
-                alert(postData.toString());
+                postData.push ({name:'type',value:$('.tab-pane.active').attr('data-type')});
                 var formURL = $(this).attr("action");
                 $.ajax(
                         {
@@ -144,7 +143,7 @@
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab7" class="tab-pane fade" data-entity="content" data-type="galleries">
+                <div id="tab7" class="tab-pane fade" data-entity="contents" data-type="galleries">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
