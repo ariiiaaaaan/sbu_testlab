@@ -1,5 +1,5 @@
 <form id="new-content-form" >
-    @if($entity == 'contents')
+    @if($entity == 'contents' && $type != 'events' && type !='researchs' )
         <div class="form-group">
             <label for="title">title:</label>
             <input type="text" class="form-control" id="title" name="title">
@@ -17,7 +17,7 @@
                 <option value="audi">Audi</option>
             </select>
         </div>
-    @elseif($entity == 'events' )
+    @elseif($type == 'events' )
         <div class="form-group">
             <label for="title">Title:</label>
             <input type="text" class="form-control" id="title" name="title">
@@ -55,7 +55,7 @@
                 <option value="audi">Audi</option>
             </select>
         </div>
-    @elseif($entity == 'researches' )
+    @elseif($type == 'researchs' )
         <div class="form-group">
             <label for="title">Title:</label>
             <input type="text" class="form-control" id="title" name="title">
