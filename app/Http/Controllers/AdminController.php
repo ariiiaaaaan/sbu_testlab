@@ -91,10 +91,10 @@ class AdminController extends Controller {
 
     public function adminFilter(Request $request) {
         //return view('dateinput',['prefix'=>"salam"]);
-        $this->insertQuery($request->input('type'),$request);
+        $this->insertQuery($request->input('type'),$request->input('tag'),$request);
     }
 
-    public function insertQuery($type,Request $request)
+    public function insertQuery($type,$tag,Request $request)
     {
 
         if ($type == 'events') {

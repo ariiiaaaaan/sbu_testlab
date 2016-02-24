@@ -15,4 +15,8 @@ class Research extends Model {
         return $this->hasMany('App\Tag');
     }
 
+    public function content() {
+        return $this->belongsTo('App\Content');
+    }
+
 }

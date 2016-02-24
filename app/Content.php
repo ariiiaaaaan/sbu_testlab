@@ -15,4 +15,12 @@ class Content extends Model {
         return $this->hasMany('App\Tag');
     }
 
+    public function events() {
+        return $this->hasMany('App\Events');
+    }
+
+    public function researches() {
+        return $this->hasMany('App\Research');
+    }
+
 }
