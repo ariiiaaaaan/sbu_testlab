@@ -8,6 +8,15 @@
             <label for="body">body:</label>
             <textarea class="form-control" id="body" name="body"></textarea>
         </div>
+        <div class="form-group">
+            <label>Tags:</label>
+            <select name="cars" multiple>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+            </select>
+        </div>
     @elseif($entity == 'events' )
         <div class="form-group">
             <label for="title">Title:</label>
@@ -36,6 +45,15 @@
         <div class="form-group">
             <label>End:</label>
             @include('dateinput',['prefix'=>"end"])
+        </div>
+        <div class="form-group">
+            <label>Tags:</label>
+            <select name="cars" multiple>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+            </select>
         </div>
     @elseif($entity == 'researches' )
         <div class="form-group">
@@ -76,6 +94,15 @@
         <div class="form-group">
             <label for="keywords">Keywords:</label>
             <textarea class="form-control" id="keywords" name="keywords"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Tags:</label>
+            <select name="cars" multiple>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+            </select>
         </div>
     @elseif($entity == 'members' )
         <div class="form-group">
@@ -125,6 +152,15 @@
         <div class="form-group">
             <label for="facebook">Facebook:</label>
             <input type="text" class="form-control" id="facebook" name="facebook">
+        </div>
+        <div class="form-group">
+            <label>Tags:</label>
+            <select name="cars" multiple>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+            </select>
         </div>
     @endif
     <input type="hidden" name="entity" value="{{$entity}}">

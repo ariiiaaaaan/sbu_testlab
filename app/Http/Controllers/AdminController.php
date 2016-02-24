@@ -68,7 +68,8 @@ class AdminController extends Controller {
     public function getInsertForm(Request $r){
 //       return "salam";
 //        return $r->input('entity')."".$r->input('type');
-        return view('newcontentmodal',['entity'=>$r->input('entity'),'type'=>$r->input('type')]);
+        $tags = Tag::all();
+        return view('newcontentmodal',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'tags'=>$tags]);
     }
 
     public function admin() {

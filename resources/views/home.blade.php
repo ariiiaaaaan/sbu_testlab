@@ -3,8 +3,18 @@
 @section('outsource')
     <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}"/>
     <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
-    <script src=""></script>
-    <script src="masonry-horizontal.js"></script>
+    <script src="js/isotope.pkgd.js"></script>
+    <script src="js/masonry-horizontal.js"></script>
+    <script>
+        $( window ).load( function() {
+            $('#event-wrapper').isotope({
+                layoutMode: 'masonryHorizontal',
+                itemSelector: '.event',
+                masonryHorizontal: {
+                    rowHeight: 80
+                }});
+        });
+    </script>
 @endsection
 
 @section('menu')

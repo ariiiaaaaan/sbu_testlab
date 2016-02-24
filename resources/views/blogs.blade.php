@@ -13,7 +13,6 @@
         {
             $( '.grid' ).masonry( { itemSelector: '.item', columWidth: $(window).width()*0.8/3 } );
             $('.select').dropdown();
-
             $('.blog-btn-more').click(function() {
                 var id = $(this).attr('offset');
                 $.ajax({

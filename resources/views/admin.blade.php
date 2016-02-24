@@ -27,6 +27,7 @@
                 var postData = $(this).serializeArray();
 //                var mytype = {};
 //                mytype["type"] = $('.tab-pane.active').attr('data');
+                postData.push ({name:'entity',value:$('.tab-pane.active').attr('data-entity')});
                 postData.push ({name:'type',value:$('.tab-pane.active').attr('data-type')});
                 var formURL = $(this).attr("action");
                 $.ajax(
@@ -49,6 +50,7 @@
 
             $("#admin-add-button").click('show.bs.tab',function(e)
             {
+
                 var postData = {type:$('.tab-pane.active').attr('data-type'),entity:$('.tab-pane.active').attr('data-entity')};
                 alert($('.tab-pane.active').attr('data-type')+"-"+$('.tab-pane.active').attr('data-entity'));
                 var formURL ="getinsertform";
@@ -94,7 +96,8 @@
                 <li><a data-toggle="pill" href="#tab6">Contact</a></li>
                 <li><a data-toggle="pill" href="#tab7">Galleries</a></li>
                 <li><a data-toggle="pill" href="#tab8">Members</a></li>
-                <li><a data-toggle="pill" href="#tab9">Newsletter</a></li>
+                <li><a data-toggle="pill" href="#tab9">Company</a></li>
+                <li><a data-toggle="pill" href="#tab10">Newsletter</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3" id="main-container">
@@ -131,11 +134,11 @@
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab4" class="tab-pane fade" data-entity="events">
+                <div id="tab4" class="tab-pane fade" data-entity="contents" data-type="events">
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab5" class="tab-pane fade" data-entity="researches">
+                <div id="tab5" class="tab-pane fade" data-entity="content" data-type="researchs">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
@@ -143,7 +146,7 @@
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab7" class="tab-pane fade" data-entity="contents" data-type="galleries">
+                <div id="tab7" class="tab-pane fade" data-entity="contents" data-type="gallery">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
@@ -151,7 +154,11 @@
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab9" class="tab-pane fade" data-entity="newsletter">
+                <div id="tab9" class="tab-pane fade" data-entity="contents" data-type="companies">
+                    <h3>Menu 2</h3>
+                    <p>Some content in menu 2.</p>
+                </div>
+                <div id="tab10" class="tab-pane fade" data-entity="newsletter">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>

@@ -284,10 +284,11 @@ position: absolute;
 }
 
 .event{
+    float: left;
     position: relative;
     display: inline-block;
     background-color: #373737;
-    width: 25vw;
+    width: 10vw;
     margin: 5vh 2.5vw 0vw;
     height: 10vw;
     box-shadow: 0 0 4px black;
@@ -297,7 +298,14 @@ position: absolute;
 }
 
 .event.highlight{
-    height: 25vw;
+    width: 25vw;
+}
+
+#events .hider{
+    min-height: 90vh;
+}
+#events #event-wrapper{
+    min-height: 90vh;
 }
 
 .research{
