@@ -108,7 +108,8 @@ class AdminController extends Controller {
                 'body' => 'required',
                 'start' => 'required',
                 'end' => 'required',
-                'highlight' => 'required'
+                'highlight' => 'required',
+                'tag' => 'required'
             ]);
 
                 if ($validator->fails()) {
