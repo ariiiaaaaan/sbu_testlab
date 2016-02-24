@@ -1,5 +1,5 @@
 <form id="new-content-form" >
-    @if($entity == 'contents' && $type != 'events' && type !='researchs' )
+    @if($entity == 'contents' && $type != 'events' && $type != 'researchs' )
         <div class="form-group">
             <label for="title">title:</label>
             <input type="text" class="form-control" id="title" name="title">
