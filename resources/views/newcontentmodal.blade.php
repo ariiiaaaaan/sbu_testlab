@@ -9,6 +9,10 @@
             <textarea class="form-control" id="body" name="body"></textarea>
         </div>
         <div class="form-group">
+            <label>Select Images:</label>
+            <input type="file" name="img" multiple>
+        </div>
+        <div class="form-group">
             <label>Tags:</label>
             <select name="cars" multiple>
                 <option value="volvo">Volvo</option>
@@ -45,6 +49,10 @@
         <div class="form-group">
             <label>End:</label>
             @include('dateinput',['prefix'=>"end"])
+        </div>
+        <div class="form-group">
+            <label>Select Images:</label>
+            <input type="file" name="img" multiple>
         </div>
         <div class="form-group">
             <label>Tags:</label>
@@ -94,6 +102,10 @@
         <div class="form-group">
             <label for="keywords">Keywords:</label>
             <textarea class="form-control" id="keywords" name="keywords"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Select Images:</label>
+            <input type="file" name="img" multiple>
         </div>
         <div class="form-group">
             <label>Tags:</label>
@@ -154,7 +166,11 @@
             <input type="text" class="form-control" id="facebook" name="facebook">
         </div>
         <div class="form-group">
-            <label>Tags:</label>
+            <label>Select Images:</label>
+                <input type="file" name="img" multiple>
+        </div>
+        <div class="form-group">
+            <label>Tags: </label>
             <select name="cars" multiple>
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
