@@ -115,7 +115,7 @@ position: absolute;
     overflow: hidden;
 }
 
-#services-next{
+#services-next,#company-next{
     position: absolute;
     right: 10px;
     top:45vh;
@@ -124,7 +124,7 @@ position: absolute;
     transition: all .5s;
 }
 
-#services-prev{
+#services-prev,#company-prev{
     position: absolute;
     left: 10px;
     top:45vh;
@@ -133,10 +133,10 @@ position: absolute;
     transition: all .5s;
 }
 
-#services-next:hover,#services-prev:hover{
+#services-next:hover,#services-prev:hover,#company-next:hover,#company-prev:hover{
     color: #ffffff;
 }
-#service-wrapper{
+#service-wrapper,#company-wrapper{
     display: inline-block;
     position: relative;
     left: 0vw;
@@ -146,28 +146,46 @@ position: absolute;
     text-align: center;
 }
 
-#service-wrapper .service{
+#company-wrapper{
+    margin-top: 5vh;
+    height: 50vh;
+}
+
+#service-wrapper .service,#company-wrapper .company{
     display: inline-block;
     float: left;
     width: 20vw;
     height: 50vh;
     margin: 10px 2vw;
     position: relative;
+    cursor: pointer;
 }
 
-#service-wrapper .service img{
+#service-wrapper .service img,#company-wrapper .company img{
     width: 10vw;
     height: 10vw;
+    transition: all 0.5s;
 }
 
-#service-wrapper .service h4{
+#company-wrapper .company img{
+    margin-bottom: 2vh;
+    -webkit-filter: grayscale(100%) contrast(180%);
+    filter: grayscale(100%) contrast(180%);
+}
+
+.company:hover img{
+    -webkit-filter: grayscale(0%) !important;
+    filter: grayscale(0%);
+}
+
+#service-wrapper .service h4,#company-wrapper .company h4{
     font-size: 16px;
     margin-top: 5px;
     width: 100%;
     text-align: center;
 }
 
-#service-wrapper .service p{
+#service-wrapper .service p,#company-wrapper .company p{
     font-size: 12px;
     max-height: 100px;
     line-height: 16px;
@@ -283,29 +301,89 @@ position: absolute;
     transition: all 1s;
 }
 
+#events-next{
+    position: absolute;
+    right: 10px;
+    top:45vh;
+    cursor: pointer;
+    color: #aaaaaa;
+    transition: all .5s;
+}
+
+#events-prev{
+    position: absolute;
+    left: 10px;
+    top:45vh;
+    cursor: pointer;
+    color: #aaaaaa;
+    transition: all .5s;
+}
+
+#events-next:hover,#events-prev:hover{
+    color: #ffffff;
+}
+
 .event{
     float: left;
     position: relative;
     display: inline-block;
     background-color: #373737;
-    width: 10vw;
-    margin: 5vh 2.5vw 0vw;
-    height: 10vw;
+    width: 25vh;
+    margin: 2.5vh 0 0 2.5vh;
+    height: 25vh;
     box-shadow: 0 0 4px black;
     cursor: pointer;
     overflow: hidden;
     background-color: #2ca02c;
 }
 
+.event:hover{
+    transition: all 0.5s;
+    transition-delay: 0.5s;
+    z-index: 100;
+    width: 52.5vh;
+}
+
+.event.highlight:hover{
+    height: 52.5vh;
+    top: 0 !important;
+}
+
+.event .overlay{
+    width: 25vh;
+    height: 25vh;
+    overflow: hidden;
+}
+
+.event:hover .overlay{
+    height: 0px;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.event .content{
+    opacity: 0;
+    transition: all 0.5s;
+    transition-delay: 1s;
+}
+
+.event:hover .content{
+    opacity: 1;
+}
+
 .event.highlight{
-    width: 25vw;
+    width: 52.5vh;
 }
 
 #events .hider{
-    min-height: 90vh;
+    height: 56vh;
+    width: 92%;
+    margin: 2vh 4% 0;
 }
 #events #event-wrapper{
-    min-height: 90vh;
+    height: 56vh;
+    left: 0px;
+    transition: all 0.5s;
 }
 
 .research{
@@ -340,47 +418,55 @@ position: absolute;
 
 .form-wrapper{
     width: 50%;
-    float: right;
     position: relative;
 }
 
-#contact-form{
-    margin-left: 5%;
-}
 
 #contact-form .email,#contact-form .name,#contact-form .body{
     margin: 2%;
-    border: solid 2px #888888;
-    border-radius: 2px;
-    font-size: 20px;
-    line-height: 43px;
+    border: none;
+    border-radius: 0px;
+    font-size: 3vh;
+    line-height: 3vh;
     float: left;
-    box-shadow: 0 0 4px #888;
-    padding: 0px 10px;
+    box-shadow:inset 0 0 10px #888;
+    padding: 10px 2vh;
     color: #373737;
+    outline: none;
 }
 
-#contact-form .email:hover,#contact-form .name:hover,#contact-form .body:hover{
-    border:solid 2px #888888;
-}
-
-#contact-form .email:hover#contact-form .name:hover,#contact-form .body:hover{
+#contact-form .email:focus,#contact-form .name:focus,#contact-form .body:focus{
     border:solid 2px #888888;
 }
 
 #contact-form .email,#contact-form .name{
     width: 40%;
-    height: 40px;
+    height: 6vh;
     display: inline-block;
+}
+
+#contact-form .email::-webkit-input-placeholder,#contact-form .name::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    line-height: 7vh;
+}
+#contact-form .email::-moz-placeholder,#contact-form .name::-moz-placeholder {
+    line-height: 7vh;
+}
+#contact-form .email:-ms-input-placeholder,#contact-form .name:-ms-input-placeholder {
+    line-height: 7vh;
+}
+#contact-form .email:-moz-placeholder,#contact-form .name:-moz-placeholder {
+    line-height: 7vh;
 }
 
 #contact-form .body{
     width: 84%;
-    height: 150px;
+    height: 30vh;
 }
 
 #contact-form .send{
-    padding: 20px 10px;
+    padding: 4vh 10px 3vh;
+    font-size: 3vh;
+    line-height: 2vh;
     width: 25%;
     color: white;
     transition: all 0.5s;
@@ -394,9 +480,77 @@ position: absolute;
     color: #0098bf;
 }
 
-#contact-info{
-    width: 50%;
-    float: left;
+.links-wrapper{
+    width: 39%;
+    margin-left: 10%;
+    position: relative;
+}
+
+#contact .footer-info{
+    clear: both;
+    width: 22vw;
+    height: 8vh;
+    margin: 3vh 2vw 2vh 2vw;
+    overflow: hidden;
+}
+
+#contact .footer-info p{
+    font-size: .8em;
+    text-align: left;
+    margin: 0px 5px 5px 0px ;
+}
+
+#contact .footer-info p.solo{
+    margin-top: 1em ;
+}
+
+#contact .footer-info span.fa{
+    font-size: 2.5em;
+    height: 8vh;
+    margin-left: 5px;
+}
+
+#contact .socials{
+    text-align: left;
+    padding-left: 3vh;
+}
+
+#contact .socials a{
+    overflow: hidden;
+    border-radius: 1000px;
+    display: inline-block;
+    margin: 2vh 2vh 4vh;
+    width: 3em;
+    height: 3em;
+    text-align: center;
+}
+
+#contact .socials a span.fa{
+    margin-top: 0.4em;
+    color: white;
+    transition: all 1s;
+    font-size: 1.5em;
+    line-height: 1.2em;
+}
+
+#contact .socials a:hover span.fa {
+    color: #373737;
+}
+
+#contact .socials .fb{
+    background-color:#4b69a8;
+}
+
+#contact .socials .tw{
+    background-color:#10bcfd;
+}
+
+#contact .socials .gp{
+    background-color:#ed5b49;
+}
+
+#contact .socials .ld{
+    background-color:#238cc8 ;
 }
 
 

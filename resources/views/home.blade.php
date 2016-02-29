@@ -11,7 +11,7 @@
                 layoutMode: 'masonryHorizontal',
                 itemSelector: '.event',
                 masonryHorizontal: {
-                    rowHeight: 80
+                    rowHeight: $(window).height()*0.55/2
                 }});
         });
     </script>
@@ -76,40 +76,192 @@
                 <p class="day">25</p>
                 <p class="month">July</p>
                 </div>
+                <div class="content">
                 <h3 class="title">The London Test Automation</h3>
                 <p class="location">Shahid Beheshti University</p>
                 <p class="time">15:00 - 18:30</p>
                 <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                </div>
                 </div>
                     <div class="event highlight">
                 <div class="overlay">
                 <p class="day">25</p>
                 <p class="month">July</p>
                 </div>
+                <div class="content">
                 <h3 class="title">The London Test Automation</h3>
                 <p class="location">Shahid Beheshti University</p>
                 <p class="time">15:00 - 18:30</p>
                 <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                </div>
                 </div>
                     <div class="event">
                 <div class="overlay">
                 <p class="day">25</p>
                 <p class="month">July</p>
                 </div>
-                <h3 class="title">The London Test Automation</h3>
-                <p class="location">Shahid Beheshti University</p>
-                <p class="time">15:00 - 18:30</p>
-                <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                <div class="content">
+                    <h3 class="title">The London Test Automation</h3>
+                    <p class="location">Shahid Beheshti University</p>
+                    <p class="time">15:00 - 18:30</p>
+                    <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                </div>
                 </div>
                     <div class="event">
                 <div class="overlay">
                 <p class="day">25</p>
                 <p class="month">July</p>
                 </div>
-                <h3 class="title">The London Test Automation</h3>
-                <p class="location">Shahid Beheshti University</p>
-                <p class="time">15:00 - 18:30</p>
-                <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                <div class="content">
+                    <h3 class="title">The London Test Automation</h3>
+                    <p class="location">Shahid Beheshti University</p>
+                    <p class="time">15:00 - 18:30</p>
+                    <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                </div>
+                </div>
+                <div class="event">
+                    <div class="overlay">
+                        <p class="day">25</p>
+                        <p class="month">July</p>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">The London Test Automation</h3>
+                        <p class="location">Shahid Beheshti University</p>
+                        <p class="time">15:00 - 18:30</p>
+                        <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="overlay">
+                        <p class="day">25</p>
+                        <p class="month">July</p>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">The London Test Automation</h3>
+                        <p class="location">Shahid Beheshti University</p>
+                        <p class="time">15:00 - 18:30</p>
+                        <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                    </div>
+                </div>
+                <div class="event highlight">
+                    <div class="overlay">
+                        <p class="day">25</p>
+                        <p class="month">July</p>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">The London Test Automation</h3>
+                        <p class="location">Shahid Beheshti University</p>
+                        <p class="time">15:00 - 18:30</p>
+                        <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="overlay">
+                        <p class="day">25</p>
+                        <p class="month">July</p>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">The London Test Automation</h3>
+                        <p class="location">Shahid Beheshti University</p>
+                        <p class="time">15:00 - 18:30</p>
+                        <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="overlay">
+                        <p class="day">25</p>
+                        <p class="month">July</p>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">The London Test Automation</h3>
+                        <p class="location">Shahid Beheshti University</p>
+                        <p class="time">15:00 - 18:30</p>
+                        <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                    </div>
+                </div>
+                <div class="event highlight">
+                    <div class="overlay">
+                        <p class="day">25</p>
+                        <p class="month">July</p>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">The London Test Automation</h3>
+                        <p class="location">Shahid Beheshti University</p>
+                        <p class="time">15:00 - 18:30</p>
+                        <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="overlay">
+                        <p class="day">25</p>
+                        <p class="month">July</p>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">The London Test Automation</h3>
+                        <p class="location">Shahid Beheshti University</p>
+                        <p class="time">15:00 - 18:30</p>
+                        <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="overlay">
+                        <p class="day">25</p>
+                        <p class="month">July</p>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">The London Test Automation</h3>
+                        <p class="location">Shahid Beheshti University</p>
+                        <p class="time">15:00 - 18:30</p>
+                        <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="overlay">
+                        <p class="day">25</p>
+                        <p class="month">July</p>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">The London Test Automation</h3>
+                        <p class="location">Shahid Beheshti University</p>
+                        <p class="time">15:00 - 18:30</p>
+                        <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                    </div>
+                </div>
+                <div class="event highlight">
+                    <div class="overlay">
+                        <p class="day">25</p>
+                        <p class="month">July</p>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">The London Test Automation</h3>
+                        <p class="location">Shahid Beheshti University</p>
+                        <p class="time">15:00 - 18:30</p>
+                        <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="overlay">
+                        <p class="day">25</p>
+                        <p class="month">July</p>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">The London Test Automation</h3>
+                        <p class="location">Shahid Beheshti University</p>
+                        <p class="time">15:00 - 18:30</p>
+                        <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="overlay">
+                        <p class="day">25</p>
+                        <p class="month">July</p>
+                    </div>
+                    <div class="content">
+                        <h3 class="title">The London Test Automation</h3>
+                        <p class="location">Shahid Beheshti University</p>
+                        <p class="time">15:00 - 18:30</p>
+                        <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -250,17 +402,69 @@
         </div>
         <a href="#" class="research-btn-all">CLICK TO VIEW MORE POST</a>
     </section>
+    <section id="companies" class="home-section">
+        <a href="#companies" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
+        <h2>Researches and Papers </h2>
+        <h3>Our Researches and Papers</h3>
+        <div class="hider">
+            <div id="company-wrapper">
+                @for($i =0; $i<9; $i++)
+                    <div class="company">
+                        <img src="images/company.png">
+                        <h4>Hewlett Packard</h4>
+                        <p>
+                            Educators and parents expressed satisfaction with the Obama administration's.
+                        </p>
+                    </div>
+                @endfor
+            </div>
+        </div>
+        <span class="fa fa-angle-right fa-4x" id="company-next"></span>
+        <span class="fa fa-angle-left fa-4x" id="company-prev"></span>
+    </section>
+    <section id="gallery" class="home-section">
+        <a href="#gallery" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
+        <h2>Researches and Papers </h2>
+        <h3>Our Researches and Papers</h3>
+        <div class="research">
+            <h4>Co-Evolutionary automatic prograing for software development</h4>
+            <h5>Andrea Arcuri,xin Yao</h5>
+            <p>Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.</p>
+            <a href="#" class="research-btn">CLICK TO VIEW POST</a>
+        </div>
+        <div class="research">
+            <h4>Co-Evolutionary automatic prograing for software development</h4>
+            <h5>Andrea Arcuri,xin Yao</h5>
+            <p>Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.</p>
+            <a href="#" class="research-btn">CLICK TO VIEW POST</a>
+        </div>
+        <a href="#" class="research-btn-all">CLICK TO VIEW MORE POST</a>
+    </section>
     <section id="contact" class="home-section">
         <a href="#contact" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>Contact Us</h2>
         <h3>The means to contact us</h3>
-        <div class="form-wrapper">
+        <div class="form-wrapper pull-right">
             <form id="contact-form">
                 <input type="text" class="name" placeholder="Name">
                 <input type="email" class="email" placeholder="Email">
                 <textarea class="body" placeholder="Message"></textarea>
                 <input type="submit" class="send" value="SEND">
             </form>
+        </div>
+        <div class="links-wrapper pull-left">
+            <div class="info">
+                <div class="footer-info"><span class="fa fa-clock-o fa-2x pull-left"></span><p>Office Hours</p><p>Saturday to Thursday 8:00-21:00</p></div>
+                <div class="footer-info"><span class="fa fa-phone fa-2x pull-left"></span><p class="solo">+9821-22 90 4196</p></div>
+                <div class="footer-info"><span class="fa fa-map-marker fa-2x pull-left"></span><P>Shahid Beheshti University, Daneshjou Boulevard</P><p>Velenjak, Tehran, Iran</p></div>
+                <div class="footer-info"><span class="fa fa-envelope fa-2x pull-left"></span><p class="solo">info@ticksoft.sbu.ac.ir</p></div>
+            </div>
+            <div class="socials">
+                <a class="fb" href="#"><span class="fa fa-facebook fa-2x"></span></a>
+                <a class="tw" href="#"><span class="fa fa-twitter fa-2x"></span></a>
+                <a class="gp" href="#"><span class="fa fa-google-plus fa-2x"></span></a>
+                <a class="ld" href="#"><span class="fa fa-linkedin fa-2x"></span></a>
+            </div>
         </div>
     </section>
     <section id="footer" class="home-section">

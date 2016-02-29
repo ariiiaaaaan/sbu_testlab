@@ -52,4 +52,47 @@ $(document).ready(function(){
     $("#service-wrapper").animate({"left" : animateto.toString() + "px"} , 1500,"easeInOutQuart");
   });
 
-})
+  var vh = $(window).height()/100;
+  $("#events-next").click(function(){
+    var current = parseInt( $("#event-wrapper").css("left"),10);
+    var max = $("#event-wrapper").width();
+    var animateto = current - 28 * vh;
+    if(animateto < -max + 28 * vh)
+      animateto = -max + 28 * vh;
+    $("#event-wrapper").css("left",animateto.toString() + "px");
+  });
+
+
+  $("#events-prev").click(function(){
+    var current = parseInt( $("#event-wrapper").css("left"),10);
+    var max = $("#event-wrapper").width();
+    var animateto = current + 28 * vh;
+    if(animateto > 0)
+      animateto = 0;
+    $("#event-wrapper").css("left",animateto.toString() + "px")
+  });
+
+
+  var company_num = $(".company").length;
+  $("#company-wrapper").css("width",(company_num * 24 * vw + 5*vw).toString()+"px");
+  $("#company-next").click(function(){
+    var current = parseInt( $("#company-wrapper").css("left"),10);
+    var max = company_num * 24 * vw + 5;
+    var animateto = current - 72 * vw;
+    if(animateto < -max + 96 * vw)
+      animateto = -max + 96 * vw;
+    $("#company-wrapper").animate({"left" : animateto.toString() + "px"} , 1500,"easeInOutQuart");
+  });
+  $("#company-prev").click(function(){
+    var current = parseInt( $("#company-wrapper").css("left"),10);
+    var max = company_num * 24 * vw + 5;
+    var animateto = current + 72 * vw;
+    if(animateto > 0)
+      animateto = 0;
+    $("#company-wrapper").animate({"left" : animateto.toString() + "px"} , 1500,"easeInOutQuart");
+  });
+
+
+
+});
+
