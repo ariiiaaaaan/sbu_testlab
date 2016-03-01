@@ -7,6 +7,7 @@ use App\Events;
 use App\Research;
 use App\Member;
 use App\Tag;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use \Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -102,14 +103,18 @@ class AdminController extends Controller {
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
                 'address' => 'required',
-                'year' => 'required',
-                'month' => 'required',
-                'day' => 'required',
+                'start-year' => 'required',
+                'start-month' => 'required',
+                'start-day' => 'required',
+                'end-year' => 'required',
+                'end-month' => 'required',
+                'end-day' => 'required',
                 'body' => 'required',
                 'start' => 'required',
                 'end' => 'required',
                 'highlight' => 'required',
-                'tag' => 'required'
+                'tag' => 'required',
+                'img' => 'required'
             ]);
 
                 if ($validator->fails()) {
@@ -119,22 +124,40 @@ class AdminController extends Controller {
                     $content->title = $request->input('title');
                     $content->address = $request->input('address');
                     $content->body = $request->input('body');
-                    $start = $request->input('sday') . "|" . $request->input('smonth') . "|" . $request->input('syear') . "|" . $request->input('shour') . ":" . $request->input('sminute');
-                    $end = $request->input('eday') . "|" . $request->input('emonth') . "|" . $request->input('eyear') . "|" . $request->input('ehour') . ":" . $request->input('eminute');
+                    $start = $request->input('start-day') . "|" . $request->input('start-month') . "|" . $request->input('start-year') . "|" . $request->input('start-hour') . ":" . $request->input('start-minute');
+                    $end = $request->input('end-day') . "|" . $request->input('end-month') . "|" . $request->input('end-year') . "|" . $request->input('end-hour') . ":" . $request->input('end-minute');
                     $content->start = $start;
                     $content->end = $end;
                     $content->highlight = $request->input('highlight');
-                    $photo = new Photo;
-                    if($request->file('photo')->isValid()) {
-                        $file = $request->file('photo');
-                        $name = $file->getClientOriginalName() ."--". date("1");
-                        $destination = 'upload';
-                        $file->move($destination,$name);
-                        $photo->title = $request->input('photoTitle');
-                        $photo->path = $destination."/".$name;
+                    $uploadCount = 0;
+                    $filesCount = 0;
+
+                    if($request->file('img')->isValid()) {
+                        $files = $request->file('img');
+                        $filesCount = count($files);
+
+                        foreach($files as $file) {
+                            if($file->isValid()) {
+                                $photo = new Photo;
+                                $name = $file->getClientOriginalName() ."--". date("1");
+                                $destination = 'upload';
+                                $file->move($destination,$name);
+                                $uploadCount++;
+                                $photo->title = $request->input('photoTitle');
+                                $photo->path = $destination."/".$name;
+                                $content->photos()->save($photo);
+                            }
+                        }
+                    }
+                    foreach ($tag as $insertTag) {
+                        $row = Tag::where('title','=',$insertTag)->get();
+                        $content->tags()->save($row);
                     }
                     $content->save();
-                    $content->photos()->save($photo);
+                    if($uploadCount == $filesCount) {
+                        $request->session()->flash('success', 'Upload successfully');
+                    }
+
                     return redirect('admin');
                 }
         } elseif ($type = 'content') {
