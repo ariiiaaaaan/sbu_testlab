@@ -267,122 +267,6 @@
         </div>
         <span class="fa fa-angle-right fa-4x" id="events-next"></span>
         <span class="fa fa-angle-left fa-4x" id="events-prev"></span>
-        {{--<div id="event-carousel" class="carousel slide" data-ride="carousel">--}}
-            {{--<!-- Indicators -->--}}
-
-            {{--<!-- Wrapper for slides -->--}}
-            {{--<div class="carousel-inner" role="listbox">--}}
-                {{--<div class="item active">--}}
-                    {{--<div class="grid">--}}
-                        {{--<div class="event highlight">--}}
-                            {{--<div class="overlay">--}}
-                                {{--<p class="day">25</p>--}}
-                                {{--<p class="month">July</p>--}}
-                            {{--</div>--}}
-                            {{--<h3 class="title">The London Test Automation</h3>--}}
-                            {{--<p class="location">Shahid Beheshti University</p>--}}
-                            {{--<p class="time">15:00 - 18:30</p>--}}
-                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
-                        {{--</div>--}}
-                        {{--<div class="event highlight">--}}
-                            {{--<div class="overlay">--}}
-                                {{--<p class="day">25</p>--}}
-                                {{--<p class="month">July</p>--}}
-                            {{--</div>--}}
-                            {{--<h3 class="title">The London Test Automation</h3>--}}
-                            {{--<p class="location">Shahid Beheshti University</p>--}}
-                            {{--<p class="time">15:00 - 18:30</p>--}}
-                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
-                        {{--</div>--}}
-                        {{--<div class="event">--}}
-                            {{--<div class="overlay">--}}
-                                {{--<p class="day">25</p>--}}
-                                {{--<p class="month">July</p>--}}
-                            {{--</div>--}}
-                            {{--<h3 class="title">The London Test Automation</h3>--}}
-                            {{--<p class="location">Shahid Beheshti University</p>--}}
-                            {{--<p class="time">15:00 - 18:30</p>--}}
-                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
-                        {{--</div>--}}
-                        {{--<div class="event highlight">--}}
-                            {{--<div class="overlay">--}}
-                                {{--<p class="day">25</p>--}}
-                                {{--<p class="month">July</p>--}}
-                            {{--</div>--}}
-                            {{--<h3 class="title">The London Test Automation</h3>--}}
-                            {{--<p class="location">Shahid Beheshti University</p>--}}
-                            {{--<p class="time">15:00 - 18:30</p>--}}
-                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-
-                {{--<div class="item">--}}
-                    {{--<div class="grid">--}}
-                        {{--<div class="event">--}}
-                            {{--<div class="overlay">--}}
-                                {{--<p class="day">25</p>--}}
-                                {{--<p class="month">July</p>--}}
-                            {{--</div>--}}
-                            {{--<h3 class="title">The London Test Automation</h3>--}}
-                            {{--<p class="location">Shahid Beheshti University</p>--}}
-                            {{--<p class="time">15:00 - 18:30</p>--}}
-                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
-                        {{--</div>--}}
-                        {{--<div class="event highlight">--}}
-                            {{--<div class="overlay">--}}
-                                {{--<p class="day">25</p>--}}
-                                {{--<p class="month">July</p>--}}
-                            {{--</div>--}}
-                            {{--<h3 class="title">The London Test Automation</h3>--}}
-                            {{--<p class="location">Shahid Beheshti University</p>--}}
-                            {{--<p class="time">15:00 - 18:30</p>--}}
-                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
-                        {{--</div>--}}
-                        {{--<div class="event">--}}
-                            {{--<div class="overlay">--}}
-                                {{--<p class="day">25</p>--}}
-                                {{--<p class="month">July</p>--}}
-                            {{--</div>--}}
-                            {{--<h3 class="title">The London Test Automation</h3>--}}
-                            {{--<p class="location">Shahid Beheshti University</p>--}}
-                            {{--<p class="time">15:00 - 18:30</p>--}}
-                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
-                        {{--</div>--}}
-                        {{--<div class="event">--}}
-                            {{--<div class="overlay">--}}
-                                {{--<p class="day">25</p>--}}
-                                {{--<p class="month">July</p>--}}
-                            {{--</div>--}}
-                            {{--<h3 class="title">The London Test Automation</h3>--}}
-                            {{--<p class="location">Shahid Beheshti University</p>--}}
-                            {{--<p class="time">15:00 - 18:30</p>--}}
-                            {{--<p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-
-                {{--<div class="item">--}}
-                    {{--<div class="grid">--}}
-
-                    {{--</div>--}}
-                {{--</div>--}}
-
-                {{--<div class="item">--}}
-                    {{--<div class="grid">--}}
-
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-
-            {{--<!-- Left and right controls -->--}}
-            {{--<a class="left carousel-control" href="#event-carousel" role="button" data-slide="prev">--}}
-                {{--<span class="fa fa-angle-left fa-4x"></span>--}}
-            {{--</a>--}}
-            {{--<a class="right carousel-control" href="#event-carousel" role="button" data-slide="next">--}}
-                {{--<span class="fa fa-angle-right fa-4x"></span>--}}
-            {{--</a>--}}
-        {{--</div>--}}
     </section>
     <section id="researches" class="home-section">
         <a href="#researches" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
@@ -424,21 +308,17 @@
     </section>
     <section id="gallery" class="home-section">
         <a href="#gallery" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
-        <h2>Researches and Papers </h2>
-        <h3>Our Researches and Papers</h3>
-        <div class="research">
-            <h4>Co-Evolutionary automatic prograing for software development</h4>
-            <h5>Andrea Arcuri,xin Yao</h5>
-            <p>Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.</p>
-            <a href="#" class="research-btn">CLICK TO VIEW POST</a>
+        <h2>Gallery </h2>
+        <h3>Galleries of events and etc</h3>
+        <a href="#" class="research-btn-all">CLICK TO VIEW MORE POSTS</a>
+        <div id="gallery-wrapper">
+            <div class="gallery">
+                <div class="overlay">
+                    <p class="title">25</p>
+                </div>
+                <img class="cover" src="gallerysample.jpg">
+            </div>
         </div>
-        <div class="research">
-            <h4>Co-Evolutionary automatic prograing for software development</h4>
-            <h5>Andrea Arcuri,xin Yao</h5>
-            <p>Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.</p>
-            <a href="#" class="research-btn">CLICK TO VIEW POST</a>
-        </div>
-        <a href="#" class="research-btn-all">CLICK TO VIEW MORE POST</a>
     </section>
     <section id="contact" class="home-section">
         <a href="#contact" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>

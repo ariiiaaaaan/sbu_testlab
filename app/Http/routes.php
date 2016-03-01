@@ -36,3 +36,6 @@ Route::get('/blogs', ['as' => 'blogs', 'uses' => 'BlogController@showBlogs'
 
 Route::get('/moreblogs', ['as' => 'moreblogs', 'uses' => 'BlogController@moreBlogs'
 ]);
+
+Route::get('/galleries', ['as' => 'galleries', 'uses' => 'GalleryController@showGalleries'
+]);
