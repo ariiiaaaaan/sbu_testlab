@@ -39,3 +39,6 @@ Route::get('/moreblogs', ['as' => 'moreblogs', 'uses' => 'BlogController@moreBlo
 
 Route::get('/galleries', ['as' => 'galleries', 'uses' => 'GalleryController@showGalleries'
 ]);
+
+Route::post('/admin/insert', ['as' => 'insert', 'uses' => 'AdminController@insertQuery'
+]);

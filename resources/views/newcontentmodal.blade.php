@@ -1,4 +1,4 @@
-<form id="new-content-form" >
+<form id="new-content-form" action="/admin/insert" >
     @if($entity == 'contents' && $type != 'events' && $type != 'researchs' )
         <div class="form-group">
             <label for="title">title:</label>
