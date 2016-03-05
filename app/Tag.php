@@ -4,25 +4,17 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model {
+    public $timestamps = false;
+
 
     public function contents() {
 
-        return $this->belongsToMany('App\Content');
-    }
-
-    public function events() {
-
-        return $this->belongsToMany('App\Events');
+        return $this->belongsToMany('App\Content','tag_content','tag_id','content_id');
     }
 
     public function member () {
 
         return $this->belongsToMany('App\Member');
-    }
-
-    public function research () {
-
-        return $this->belongsToMany('App\Research');
     }
 
 }

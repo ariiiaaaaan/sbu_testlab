@@ -6,16 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Events extends Model {
 
+    public $timestamps = false;
     protected $table = 'events';
 
     public function photo() {
-
         return $this->hasMany('App\Photo');
-    }
-
-    public function tag() {
-
-        return $this->hasMany('App\Tag');
     }
 
     public function content() {

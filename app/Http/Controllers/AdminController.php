@@ -13,9 +13,6 @@ use \Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-
-
-
 class AdminController extends Controller {
 
     public function selectFrom($table, $type, $tag = NULL, $offset = NULL, $limit = NULL) {
@@ -95,72 +92,68 @@ class AdminController extends Controller {
         $this->insertQuery($request->input('type'),$request->input('tag'),$request);
     }
 
-    public function insertQuery($type,$tag,Request $request)
+    public function insertQuery(Request $request)
     {
-
+        $type = $request->input('type');
+        $tag = $request->input('tag');
         if ($type == 'events') {
 
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
                 'address' => 'required',
-                'start-year' => 'required',
-                'start-month' => 'required',
-                'start-day' => 'required',
-                'end-year' => 'required',
-                'end-month' => 'required',
-                'end-day' => 'required',
                 'body' => 'required',
-                'start' => 'required',
-                'end' => 'required',
-                'highlight' => 'required',
                 'tag' => 'required',
                 'img' => 'required'
             ]);
 
                 if ($validator->fails()) {
-                    return redirect('admin')->withErrors($validator)->withInput();
+                    return redirect()->back()->withErrors($validator)->withInput()->with('errorcode','events');
                 } else {
-                    $content = new Events;
+                    $event = new Events;
+                    $content = new Content;
                     $content->title = $request->input('title');
-                    $content->address = $request->input('address');
+                    $event->address = $request->input('address');
                     $content->body = $request->input('body');
+                    $content->type = $type;
+                    $content->save();
                     $start = $request->input('start-day') . "|" . $request->input('start-month') . "|" . $request->input('start-year') . "|" . $request->input('start-hour') . ":" . $request->input('start-minute');
                     $end = $request->input('end-day') . "|" . $request->input('end-month') . "|" . $request->input('end-year') . "|" . $request->input('end-hour') . ":" . $request->input('end-minute');
-                    $content->start = $start;
-                    $content->end = $end;
-                    $content->highlight = $request->input('highlight');
+                    $event->start = $start;
+                    $event->end = $end;
+                    $event->highlight = $request->input('hightlight') == NULL ? 0 : 1;
                     $uploadCount = 0;
                     $filesCount = 0;
 
-                    if($request->file('img')->isValid()) {
+                    if ($request->file('img')->isValid()) {
                         $files = $request->file('img');
                         $filesCount = count($files);
 
-                        foreach($files as $file) {
-                            if($file->isValid()) {
+                        foreach ($files as $file) {
+                            if ($file->isValid()) {
                                 $photo = new Photo;
-                                $name = $file->getClientOriginalName() ."--". date("1");
+                                $name = $file->getClientOriginalName() . "--" . date("1");
                                 $destination = 'upload';
-                                $file->move($destination,$name);
+                                $file->move($destination, $name);
                                 $uploadCount++;
                                 $photo->title = $request->input('photoTitle');
-                                $photo->path = $destination."/".$name;
+                                $photo->path = $destination . "/" . $name;
                                 $content->photos()->save($photo);
                             }
                         }
                     }
                     foreach ($tag as $insertTag) {
-                        $row = Tag::where('title','=',$insertTag)->get();
+                        $row = Tag::where('title', '=', $insertTag)->first();
                         $content->tags()->save($row);
                     }
-                    $content->save();
-                    if($uploadCount == $filesCount) {
+                    $event->content()->associate($content);
+                    if ($uploadCount == $filesCount) {
                         $request->session()->flash('success', 'Upload successfully');
                     }
-
+                    $event->save();
                     return redirect('admin');
                 }
-        } elseif ($type = 'content') {
+        }
+         elseif ($type = 'services') {
 
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
@@ -171,11 +164,11 @@ class AdminController extends Controller {
             if ($validator->fails()) {
                 return redirect('admin')->withErrors($validator)->withInput();
             } else {
-                $content = new Content;
-                $content->title = $request->input('title');
-                $content->body = $request->input('body');
-                $content->type = $type;
-                $content->save();
+                $event = new Content;
+                $event->title = $request->input('title');
+                $event->body = $request->input('body');
+                $event->type = $type;
+                $event->save();
                 return redirect('admin');
             }
         }

@@ -74,8 +74,16 @@
                 // e.unbind(); //unbind. to stop multiple form submit.
             });
 
-        });
 
+            @if(session('errorcode'))
+            alert('ss');
+            $('#insert-modal').modal();
+            $('#insert-modal').modal("show");
+            {{dd(\Illuminate\Support\Facades\Input::old())}}
+            @endif
+
+
+            });
 
 
 
@@ -84,8 +92,7 @@
 </head>
 <body data-spy="scroll" data-target=".navbar-main" data-offset="60">
 <div class="container">
-
-    <div class="row">
+        <div class="row">
         <div class="col-sm-3" id="nav-container" data-spy="affix" data-offset-top="8">
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a data-toggle="pill" href="#tab1">Services</a></li>
@@ -176,9 +183,17 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">New </h4>
                 </div>
+                @if ($errors->has())
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            {{ $error }}<br>
+                        @endforeach
+                    </div>
+                @endif
                 <div class="modal-body">
-
-
+                    @if(session('errorcode'))
+                        @include('newcontentmodal',['type' => session('errorcode')])
+                    @endif
                 </div>
             </div>
 

@@ -1,5 +1,5 @@
-<form id="new-content-form" action="/admin/insert" >
-    @if($entity == 'contents' && $type != 'events' && $type != 'researchs' )
+<form id="new-content-form" method = "POST" action="insert" enctype="multipart/form-data">
+    @if($type != 'events' && $type != 'researchs' && $type != 'member')
         <div class="form-group">
             <label for="title">title:</label>
             <input type="text" class="form-control" id="title" name="title">
@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
             <label>Tags:</label>
-            <select name="cars" multiple>
+            <select name="tag" multiple>
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="opel">Opel</option>
@@ -56,14 +56,14 @@
         </div>
         <div class="form-group">
             <label>Tags:</label>
-            <select name="cars" multiple>
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
+            <select name="tag[]" multiple>
+                <option value="tag1">tag1</option>
+                <option value="tag2">tag2</option>
+                <option value="tag3">tag3</option>
+                <option value="tag4">tag4</option>
             </select>
         </div>
-    @elseif($type == 'researchs' )
+    @elseif($type == 'researches' )
         <div class="form-group">
             <label for="title">Title:</label>
             <input type="text" class="form-control" id="title" name="title">
@@ -116,7 +116,7 @@
                 <option value="audi">Audi</option>
             </select>
         </div>
-    @elseif($entity == 'members' )
+    @elseif($type == 'members' )
         <div class="form-group">
             <label for="firstname">Firstname:</label>
             <input type="text" class="form-control" id="firstname" name="firstname">
@@ -179,8 +179,8 @@
             </select>
         </div>
     @endif
-    <input type="hidden" name="entity" value="{{$entity}}">
     <input type="hidden" name="type" value="{{$type}}">
-    <input type="submit" value="Add" class="btn btn-primary" >
+        {{ csrf_field() }}
+        <input type="submit" value="Add" class="btn btn-primary" >
     <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
 </form>

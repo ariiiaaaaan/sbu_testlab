@@ -4,6 +4,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Content extends Model {
+    public $timestamps = false;
+
 
     public function photo() {
 
@@ -12,15 +14,15 @@ class Content extends Model {
 
     public function tags() {
 
-        return $this->hasMany('App\Tag');
+        return $this->belongsToMany('App\Tag','tag_content','content_id','tag_id');
     }
 
     public function events() {
-        return $this->hasMany('App\Events');
+        return $this->hasOne('App\Events');
     }
 
     public function researches() {
-        return $this->hasMany('App\Research');
+        return $this->hasOne('App\Research');
     }
 
 }
