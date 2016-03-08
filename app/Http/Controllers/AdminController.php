@@ -7,6 +7,7 @@ use App\Events;
 use App\Research;
 use App\Member;
 use App\Tag;
+use App\Photo;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use \Illuminate\Support\Facades\DB;
@@ -122,23 +123,21 @@ class AdminController extends Controller {
                     $event->end = $end;
                     $event->highlight = $request->input('hightlight') == NULL ? 0 : 1;
                     $uploadCount = 0;
-                    $filesCount = 0;
+                    $files = $request->file('img');
+                    $filesCount = count($files);
 
-                    if ($request->file('img')->isValid()) {
-                        $files = $request->file('img');
-                        $filesCount = count($files);
-
-                        foreach ($files as $file) {
-                            if ($file->isValid()) {
-                                $photo = new Photo;
-                                $name = $file->getClientOriginalName() . "--" . date("1");
-                                $destination = 'upload';
-                                $file->move($destination, $name);
-                                $uploadCount++;
-                                $photo->title = $request->input('photoTitle');
-                                $photo->path = $destination . "/" . $name;
-                                $content->photos()->save($photo);
-                            }
+                    foreach ($files as $file) {
+                        if ($file->isValid()) {
+                            $photo = new Photo;
+                            $tempName = $file->getClientOriginalName();
+                            $extension = explode(".",$tempName);
+                            $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
+                            $destination = 'upload';
+                            $file->move($destination, $name);
+                            $uploadCount++;
+                            //$photo->title = $request->input('photoTitle');
+                            $photo->path = $destination . "/" . $name;
+                            $content->photos()->save($photo);
                         }
                     }
                     foreach ($tag as $insertTag) {

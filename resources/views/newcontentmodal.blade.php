@@ -52,7 +52,7 @@
         </div>
         <div class="form-group">
             <label>Select Images:</label>
-            <input type="file" name="img" multiple>
+            <input type="file" name="img[]" multiple>
         </div>
         <div class="form-group">
             <label>Tags:</label>

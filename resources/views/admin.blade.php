@@ -52,7 +52,6 @@
             {
 
                 var postData = {type:$('.tab-pane.active').attr('data-type'),entity:$('.tab-pane.active').attr('data-entity')};
-                alert($('.tab-pane.active').attr('data-type')+"-"+$('.tab-pane.active').attr('data-entity'));
                 var formURL ="getinsertform";
                 $.ajax(
                         {

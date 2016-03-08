@@ -7,7 +7,7 @@ class Content extends Model {
     public $timestamps = false;
 
 
-    public function photo() {
+    public function photos() {
 
         return $this->hasMany('App\Photo');
     }
