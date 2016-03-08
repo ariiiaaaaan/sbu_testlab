@@ -1,5 +1,5 @@
-<form id="new-content-form" method = "POST" action="insert" enctype="multipart/form-data">
-    @if($type != 'events' && $type != 'researchs' && $type != 'member')
+<form id="new-content-form" action="/admin/insert" >
+    @if($entity == 'contents' && $type != 'events' && $type != 'researchs' )
         <div class="form-group">
             <label for="title">title:</label>
             <input type="text" class="form-control" id="title" name="title">
