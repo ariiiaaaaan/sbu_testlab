@@ -53,6 +53,7 @@
 
                 var postData = {type:$('.tab-pane.active').attr('data-type'),entity:$('.tab-pane.active').attr('data-entity')};
                 var formURL ="getinsertform";
+                alert($('.tab-pane.active').attr('data-type'))
                 $.ajax(
                         {
                             url : formURL,
@@ -75,15 +76,17 @@
 
 
             @if(session('errorcode'))
-            alert('ss');
             $('#insert-modal').modal();
             $('#insert-modal').modal("show");
             {{dd(\Illuminate\Support\Facades\Input::old())}}
             @endif
 
-
+              $("body").on("click",".add-img-input",function(){
+                        $form = '<input type="file" name="img[]"><lable>Title:</lable><input type="text" name="imgtitle[]">';
+                        alert ($form);
+                        $(".form-group.img").append($form);
+                    });
             });
-
 
 
     </script>
@@ -148,15 +151,15 @@
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab6" class="tab-pane fade" data-entity="contacts">
+                <div id="tab6" class="tab-pane fade" data-entity="contacts" data-type="contacts">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab7" class="tab-pane fade" data-entity="contents" data-type="gallery">
+                <div id="tab7" class="tab-pane fade" data-entity="contents" data-type="galleries">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab8" class="tab-pane fade" data-entity="members">
+                <div id="tab8" class="tab-pane fade" data-entity="members" data-type="members">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>

@@ -91,4 +91,57 @@
             </div>
         </div>
     </section>
+
+    <div class="modal-dialog">
+        <div id="album-modal" class="modal fade" role="dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h3 class="modal-title">Image description</h3>
+                </div>
+                <div class="modal-body">
+                    <div id="album-slider" class="carousel slide"  data-ride="carousel" data-interval="false">
+                        <!-- Indicators -->
+                        <div id="the-image-wrapper">
+                            <img id="the-image" class="wide" src="images/@if(isset($works[0])){{$works[0]->path}}@endif">
+                        </div>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <?php $counter = 0; ?>
+                            @foreach($works as $work)
+                                <div class="item @if(!$counter++){{'active'}}@endif">
+                                    <div class="addr" data="images/{{$work->path}}" ></div>
+                                    <div class="slide-caption" > {{$work->title}}
+                                        @if($work->title != "" && $work->text != ""){{" - "}}@endif
+                                        {{$work->text}}</div>
+                                    <a class="download" href="images/{{$work->path}}" download><span class="fa fa-2x fa-download"></span></a>
+                                </div>
+                            @endforeach
+
+                        </div>
+                        <a class="left carousel-control" href="#album-slider" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        </a>
+                        <ol class="carousel-indicators">
+                            <?php $counter = 0; ?>
+                            @foreach($works as $work)
+                                <li data-target="#album-slider" data-slide-to="{{$counter}}" class="@if(!$counter++){{"active"}}@endif"></li>
+                            @endforeach
+                        </ol>
+                        <a class="right carousel-control" href="#album-slider" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        </a>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default matabbtn" data-dismiss="modal">close</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 @endsection

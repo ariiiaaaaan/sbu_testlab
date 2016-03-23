@@ -9,18 +9,34 @@
             <textarea class="form-control" id="body" name="body"></textarea>
         </div>
         <div class="form-group">
-            <label>Select Images:</label>
-            <input type="file" name="img" multiple>
-        </div>
-        <div class="form-group">
             <label>Tags:</label>
-            <select name="tag" multiple>
+            <select name="tag[]" multiple>
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="opel">Opel</option>
                 <option value="audi">Audi</option>
             </select>
         </div>
+        <div class="form-group">
+            <label>Category: </label>
+            <select name="category">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+            </select>
+        </div>
+        @if($type ==  "galleries")
+            <div class="form-group img">
+                <label>Select Images:</label>
+                <input type="file" name="img[]">
+                <lable>Title:</lable>
+                <input type="text" name="imgtitle[]">
+            </div>
+            <div  class="add-img-input">add</div>
+
+        @endif
+
     @elseif($type == 'events' )
         <div class="form-group">
             <label for="title">Title:</label>
@@ -55,12 +71,21 @@
             <input type="file" name="img[]" multiple>
         </div>
         <div class="form-group">
-            <label>Tags:</label>
-            <select name="tag[]" multiple>
-                <option value="tag1">tag1</option>
-                <option value="tag2">tag2</option>
-                <option value="tag3">tag3</option>
-                <option value="tag4">tag4</option>
+            <label>Tags: </label>
+            <select name="tags[]" multiple>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Category: </label>
+            <select name="category">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
             </select>
         </div>
     @elseif($type == 'researches' )
@@ -108,8 +133,17 @@
             <input type="file" name="img" multiple>
         </div>
         <div class="form-group">
-            <label>Tags:</label>
-            <select name="cars" multiple>
+            <label>Tags: </label>
+            <select name="tags[]" multiple>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Category: </label>
+            <select name="category">
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="opel">Opel</option>
@@ -171,7 +205,16 @@
         </div>
         <div class="form-group">
             <label>Tags: </label>
-            <select name="cars" multiple>
+            <select name="tags[]" multiple>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Category: </label>
+            <select name="category">
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="opel">Opel</option>
