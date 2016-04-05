@@ -92,7 +92,9 @@ $(document).ready(function(){
     $("#company-wrapper").animate({"left" : animateto.toString() + "px"} , 1500,"easeInOutQuart");
   });
 
-
-
+  var catnavdepth = 0;
+  $(".cat-nav-close").click(function(){
+    $(this).toggleClass('cat-nav-')
+  });
 });
 

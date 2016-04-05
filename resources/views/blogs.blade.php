@@ -45,10 +45,14 @@
     <section id="filters" class="filter-section">
         <a href="#filters" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <select class="select">
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            @foreach($cats as $cat)
+                <option value="{{$cat->id}}" @if($caat->title == "All")selected="selected"@endif>{{$cat->title}}</option>
+            @endforeach
         </select>
+        <div class="current-cat">All</div>
+        <div class="catnav-holder">
+            @include('category',['level' => 1,'nodes' => $catnav,'root' => 1]);
+        </div>
     </section>
     <section id="blogs-section">
     <div class="grid">

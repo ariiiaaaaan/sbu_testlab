@@ -43,6 +43,6 @@ Route::get('/galleries', ['as' => 'galleries', 'uses' => 'GalleryController@show
 Route::get('/gallery', ['as' => 'gallery', 'uses' => 'GalleryController@showGallery'
 ]);
 
-Route::post('/admin/insert', ['as' => 'insert', 'uses' => 'AdminController@insertQuery']);
+Route::get('/cat', ['as' => 'cat', 'uses' => 'CategoryController@getTree']);
 Route::post('/insert', ['as' => 'insert', 'uses' => 'AdminController@insertQuery'
 ]);
