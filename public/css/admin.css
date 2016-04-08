@@ -81,8 +81,11 @@ label{
     margin-top: 5px;
 }
 
+.form-group.img input{
+    width: 35% !important;
+}
 #insert-modal input[type="text"],input[type="email"],input[type="file"],input[type="number"],textarea{
-    width: 67% !important;
+    width: 67% ;
     vertical-align: top !important;
     color: #444 !important;
     font-size: 18px !important;
@@ -155,6 +158,33 @@ label{
     width: 100%;
     display: block;
     margin-top: 5px;
+}
+
+.form-group.img {
+    position: relative;
+    overflow: hidden;
+}
+.form-group.img input{
+    width: 37% !important;
+    margin-left: 10px;
+    float: right;
+    margin-bottom: 10px;
+}
+
+.form-group.img input[type="text"]{
+    border: solid 1px #aaa;
+    padding: 5px 5px 0;
+}
+
+.add-img-input{
+    color: #204d74;
+    border: solid 1px #204d74;
+    padding: 5px 5px 0px;
+    margin-left: 5%;
+    width: 15%;
+    margin-bottom: 30px;
+    text-align: center;
+    cursor: pointer;
 }
 
 

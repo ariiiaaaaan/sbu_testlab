@@ -65,10 +65,26 @@ class AdminController extends Controller {
     }
 
     public function getInsertForm(Request $r){
-//       return "salam";
-//        return $r->input('entity')."".$r->input('type');
         $tags = Tag::all();
         return view('newcontentmodal',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'tags'=>$tags]);
+    }
+
+    public function getAdminTable(Request $r){
+        $items = array();
+        switch ($r->input("entity")){
+            case "contents":
+                $items = Content::where("type",$r->input("type"))->simplePaginate(10);
+                break;
+            case "members":
+                $items = Member::where("type",$r->input("type"))->simplePaginate(10);
+                break;
+            case "contacts":
+                echo "contacts";
+                break;
+            default:
+                echo "unknown type";
+        }
+        return view('admintable',['type' => "events",'entity' => "contents", 'items' => $items]);
     }
 
     public function admin() {

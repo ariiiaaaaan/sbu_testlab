@@ -23,6 +23,9 @@ Route::post('/getinsertform', ['as' => 'getinsertform', 'uses' => 'AdminControll
 Route::get('/getinsertform', ['as' => 'getinsertform', 'uses' => 'AdminController@getInsertForm'
 ]);
 
+Route::get('/getadmintable', ['as' => 'getadmintable', 'uses' => 'AdminController@getAdminTable'
+]);
+
 Route::post('/adminfilter', ['as' => 'adminfilter', 'uses' => 'AdminController@adminFilter'
 ]);
 

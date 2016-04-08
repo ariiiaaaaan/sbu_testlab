@@ -1,5 +1,5 @@
 <form id="new-content-form" action="/admin/insert" >
-    @if($entity == 'contents' && $type != 'events' && $type != 'researchs' )
+    @if($entity == 'contents' && $type != 'events' && $type != 'researches' )
         <div class="form-group">
             <label for="title">title:</label>
             <input type="text" class="form-control" id="title" name="title">
@@ -10,7 +10,7 @@
         </div>
         <div class="form-group">
             <label>Tags:</label>
-            <select name="tag[]" multiple>
+            <select name="tag[]" multiple class="tag-select">
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="opel">Opel</option>
@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
             <label>Category: </label>
-            <select name="category">
+            <select name="category" class="cat-select">
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="opel">Opel</option>
@@ -30,10 +30,10 @@
             <div class="form-group img">
                 <label>Select Images:</label>
                 <input type="file" name="img[]">
-                <lable>Title:</lable>
-                <input type="text" name="imgtitle[]">
+
+                <input type="text" placeholder="Title" name="imgtitle[]">
             </div>
-            <div  class="add-img-input">add</div>
+            <div  class="add-img-input">Add More Images</div>
 
         @endif
 
@@ -72,7 +72,7 @@
         </div>
         <div class="form-group">
             <label>Tags: </label>
-            <select name="tags[]" multiple>
+            <select name="tags[]" multiple class="tag-select">
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="opel">Opel</option>
@@ -134,7 +134,7 @@
         </div>
         <div class="form-group">
             <label>Tags: </label>
-            <select name="tags[]" multiple>
+            <select name="tags[]" multiple class="tag-select">
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="opel">Opel</option>
@@ -205,7 +205,7 @@
         </div>
         <div class="form-group">
             <label>Tags: </label>
-            <select name="tags[]" multiple>
+            <select name="tags[]" multiple class="tag-select">
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="opel">Opel</option>

@@ -6,10 +6,15 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/admin.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/dropdown.css')}}"/>
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="js/actions.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/touch.js"></script>
+    <script src="js/scrollbar.js"></script>
+    <script src="js/dropdown.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="js/bootstrap.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +25,7 @@
             $('#sub').click(function(){
                $("#admin-filter").submit();
             });
+
 
             $("#admin-filter").submit(function(e)
             {
@@ -64,7 +70,7 @@
                                 $('#insert-modal').modal();
                                 $('#insert-modal .modal-body').html(data);
                                 $('#insert-modal').modal("show");
-
+                                $(".cat-select").dropdown();
                             },
                             error: function(jqXHR, textStatus, errorThrown)
                             {
@@ -74,6 +80,45 @@
                 // e.unbind(); //unbind. to stop multiple form submit.
             });
 
+            $('.nav-pills a').on('shown.bs.tab',function(e) {
+                var postData = {type:$('.tab-pane.active').attr('data-type'),entity:$('.tab-pane.active').attr('data-entity')};
+                var formURL = "getadmintable";
+                $.ajax(
+                        {
+                            url : formURL,
+                            type: "GET",
+                            data : postData,
+                            success:function(data)
+                            {
+                                $('.tab-pane.active').html(data);
+                            },
+                            error: function(jqXHR, textStatus, errorThrown)
+                            {
+                                alert("error loading table"); //if fails
+                            }
+                        });
+            });
+
+            $(document).on('click','.pager a',function(e) {
+                e.preventDefault();
+                var postData = {type:$('.tab-pane.active').attr('data-type'),entity:$('.tab-pane.active').attr('data-entity')};
+                var formURL = "getadmintable";
+                formURL =$(this).attr('href');
+                $.ajax(
+                        {
+                            url : formURL,
+                            type: "GET",
+                            data : postData,
+                            success:function(data)
+                            {
+                                $('.tab-pane.active').html(data);
+                            },
+                            error: function(jqXHR, textStatus, errorThrown)
+                            {
+                                alert("error loading table"); //if fails
+                            }
+                        });
+            });
 
             @if(session('errorcode'))
             $('#insert-modal').modal();
@@ -82,8 +127,7 @@
             @endif
 
               $("body").on("click",".add-img-input",function(){
-                        $form = '<input type="file" name="img[]"><lable>Title:</lable><input type="text" name="imgtitle[]">';
-                        alert ($form);
+                        $form = '<input type="file" name="img[]"><input type="text" placeholder="Title" name="imgtitle[]">';
                         $(".form-group.img").append($form);
                     });
             });
@@ -147,7 +191,7 @@
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab5" class="tab-pane fade" data-entity="content" data-type="researchs">
+                <div id="tab5" class="tab-pane fade" data-entity="contents" data-type="researchs">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>

@@ -46,7 +46,7 @@
         <a href="#filters" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <select class="select">
             @foreach($cats as $cat)
-                <option value="{{$cat->id}}" @if($caat->title == "All")selected="selected"@endif>{{$cat->title}}</option>
+                <option value="{{$cat->id}}" @if($cat->title == "All")selected="selected"@endif>{{$cat->title}}</option>
             @endforeach
         </select>
         <div class="current-cat">All</div>
