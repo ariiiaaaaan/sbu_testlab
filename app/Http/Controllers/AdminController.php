@@ -270,6 +270,51 @@ class AdminController extends Controller {
                 $research->save();
                 return redirect('admin');
             }
+        } elseif ($type == 'galleries') {
+
+            $validator = Validator::make($request->all(), [
+                'title' => 'required',
+                'img' => 'required'
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput()->with('errorcode','galleries');
+            } else {
+                $content = new Content;
+                $content->title = $request->input('title');
+                $content->body = $request->input('body');
+                $content->type = $type;
+                $content->save();
+                $files = $request->file('img');
+                $path = $request->file('path');
+                if ($path->isValid()) {
+                    $tempName = $path->getClientOriginalName();
+                    $extension = explode(".",$tempName);
+                    $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
+                    $destination = 'upload';
+                    $path->move($destination, $name);
+                }
+                foreach ($files as $file) {
+                    if ($file->isValid()) {
+                        $photo = new Photo;
+                        $tempName = $file->getClientOriginalName();
+                        $extension = explode(".",$tempName);
+                        $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
+                        $destination = 'upload';
+                        $file->move($destination, $name);
+                        $photo->title = $request->input('imgtitle');
+                        $photo->path = $destination . "/" . $name;
+                        $content->photos()->save($photo);
+                    }
+                }
+                foreach ($tag as $insertTag) {
+                    $row = Tag::where('title', '=', $insertTag)->first();
+                    $content->tags()->save($row);
+                }
+                $cat = Category::where('title', '=', $request->input('category'))->first();
+                $content->categories()->save($cat);
+                return redirect('admin');
+            }
         } else {
 
             $validator = Validator::make($request->all(), [
