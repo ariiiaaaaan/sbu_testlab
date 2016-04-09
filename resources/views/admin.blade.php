@@ -59,7 +59,7 @@
 
                 var postData = {type:$('.tab-pane.active').attr('data-type'),entity:$('.tab-pane.active').attr('data-entity')};
                 var formURL ="getinsertform";
-                alert($('.tab-pane.active').attr('data-type'))
+                alert($('.tab-pane.active').attr('data-type'));
                 $.ajax(
                         {
                             url : formURL,
@@ -191,7 +191,7 @@
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab5" class="tab-pane fade" data-entity="contents" data-type="researchs">
+                <div id="tab5" class="tab-pane fade" data-entity="contents" data-type="researches">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
