@@ -238,6 +238,9 @@ class AdminController extends Controller {
                 $date = $request->input('date-year')."-".$request->input('date-month')."-".$request->input('date-day')."-".$request->input('date-hour').":".$request->input('date-minute');
                 $research->date = $date;
                 $research->pages = $request->input('pages') == NULL ? NULL : $request->input('pages');
+                $research->abstract = $request->input('abstract') == NULL ? NULL : $request->input('abstract');
+                $research->keywords = $request->input('keywords') == NULL ? NULL : $request->input('keywords');
+                $research->refrences = $request->input('refrences') == NULL ? NULL : $request->input('refrences');
                 $files = $request->file('img');
                 $path = $request->file('path');
                 if ($path->isValid()) {
