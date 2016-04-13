@@ -38,7 +38,7 @@
 #blogs-section{
     position: relative;
     background-color: #dddddd;
-    padding: 10vh 0 20vh;
+    padding: 0vh 0 20vh;
 }
 
 .blog{
@@ -143,8 +143,10 @@
 }
 
 .grid {
-    width: 82vw;
-    margin: auto;
+    width: 92vw;
+    padding: 10vh 3vw;
+    margin: 0 auto 2vh;
+    background-color: #ffffff;
     display: block;
 }
 
@@ -161,7 +163,7 @@
     height: 8vh;
     line-height: 9vh;
     font-size: 1.5em;
-    margin: 0 auto 0;
+    margin: 0vh auto 0;
     padding: 0 1vw;
     color: #ffffff !important;
     text-decoration: none !important;
@@ -176,3 +178,43 @@
 }
 
 
+#related{
+    position: relative;
+    height: 100vh;
+    text-align: center;
+    color: #ffffff;
+    background-color: #0098bf;
+    top:5vh;
+    margin-top: -30px;
+}
+
+#related h2{
+    font-size: 36px;
+    font-weight: bolder;
+    margin-top: 0px;
+    padding-top: 90px;
+}
+
+#related .blog{
+    height: 50vh !important;
+}
+
+#related .blog-btn{
+    position: absolute;
+    bottom: 3vh !important;
+    left: 5vw;
+}
+
+#related .section-down-btn{
+    background-color: #0098bf;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    width: 4em;
+    height: 2em;
+    margin-left: -2em;
+    position: absolute;
+    top: -2em;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+}

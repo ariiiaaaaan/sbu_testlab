@@ -28,6 +28,11 @@
                     filter: filterValue
                 });
             });
+//            $("#image-modal").modal();
+            $(".grid").on('click','.img.item',function(e){
+                $("#image-modal #the-image").attr("src",$(this).find("img").attr("src"));
+                $("#image-modal").modal("show");
+            });
         });
     </script>
 
@@ -70,7 +75,7 @@
         </div>
     </section>
     <section id="global-footer" class="footer-section">
-        <a href="#blogs-section" class="section-down-btn"><span class="fa fa-angle-up fa-4x"></span></a>
+        <a href="#gallery-body" class="section-down-btn"><span class="fa fa-angle-up fa-4x"></span></a>
         <div class="pull-left">
             <div class="footer-info"><span class="fa fa-clock-o fa-2x pull-left"></span><p>Office Hours</p><p>Saturday to Thursday 8:00-21:00</p></div>
             <div class="footer-info"><span class="fa fa-phone fa-2x pull-left"></span><p class="solo">+9821-22 90 4196</p></div>
@@ -93,53 +98,19 @@
     </section>
 
     <div class="modal-dialog">
-        <div id="album-modal" class="modal fade" role="dialog">
+        <div id="image-modal" class="modal fade" role="dialog">
             <!-- Modal content-->
             <div class="modal-content">
 
                 <div class="modal-header">
                     <h3 class="modal-title">Image description</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <div id="album-slider" class="carousel slide"  data-ride="carousel" data-interval="false">
-                        <!-- Indicators -->
-                        <div id="the-image-wrapper">
-                            <img id="the-image" class="wide" src="images/@if(isset($works[0])){{$works[0]->path}}@endif">
-                        </div>
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner" role="listbox">
-                            <?php $counter = 0; ?>
-                            @foreach($works as $work)
-                                <div class="item @if(!$counter++){{'active'}}@endif">
-                                    <div class="addr" data="images/{{$work->path}}" ></div>
-                                    <div class="slide-caption" > {{$work->title}}
-                                        @if($work->title != "" && $work->text != ""){{" - "}}@endif
-                                        {{$work->text}}</div>
-                                    <a class="download" href="images/{{$work->path}}" download><span class="fa fa-2x fa-download"></span></a>
-                                </div>
-                            @endforeach
 
-                        </div>
-                        <a class="left carousel-control" href="#album-slider" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        </a>
-                        <ol class="carousel-indicators">
-                            <?php $counter = 0; ?>
-                            @foreach($works as $work)
-                                <li data-target="#album-slider" data-slide-to="{{$counter}}" class="@if(!$counter++){{"active"}}@endif"></li>
-                            @endforeach
-                        </ol>
-                        <a class="right carousel-control" href="#album-slider" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        </a>
-
-                    </div>
+                            <img id="the-image"  src="">
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default matabbtn" data-dismiss="modal">close</button>
-                </div>
-
             </div>
 
         </div>

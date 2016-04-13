@@ -13,7 +13,11 @@ class Member extends Model {
 
     public function tag() {
 
-        return $this->hasMany('App\Tag');
+        return $this->belongsToMany('App\Tag');
+    }
+
+    public function records(){
+        return $this->hasMany('App\Record');
     }
 
 }

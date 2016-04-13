@@ -46,6 +46,11 @@ Route::get('/galleries', ['as' => 'galleries', 'uses' => 'GalleryController@show
 Route::get('/gallery', ['as' => 'gallery', 'uses' => 'GalleryController@showGallery'
 ]);
 
-Route::get('/cat', ['as' => 'cat', 'uses' => 'CategoryController@getTree']);
+Route::get('/member', ['as' => 'member', 'uses' => 'MemberController@showMember'
+]);
+
+Route::get('/cat', ['as' => 'cat', 'uses' => 'CategoryController@getTree'
+]);
+
 Route::post('/insert', ['as' => 'insert', 'uses' => 'AdminController@insertQuery'
 ]);
