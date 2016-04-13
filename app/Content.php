@@ -25,4 +25,9 @@ class Content extends Model {
         return $this->hasOne('App\Research');
     }
 
+    public function categories() {
+
+        return $this->belongsToMany('App\Category','tag_content','content_id','tag_id');
+    }
+
 }
