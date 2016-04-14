@@ -47,5 +47,5 @@ Route::get('/gallery', ['as' => 'gallery', 'uses' => 'GalleryController@showGall
 ]);
 
 Route::get('/cat', ['as' => 'cat', 'uses' => 'CategoryController@getTree']);
-Route::post('/insert', ['as' => 'insert', 'uses' => 'AdminController@insertQuery'
-]);
+
+Route::post('/insert', ['as' => 'insert', 'uses' => 'AdminController@insertQuery']);

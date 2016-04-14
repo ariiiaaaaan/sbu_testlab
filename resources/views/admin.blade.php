@@ -123,7 +123,6 @@
             @if(session('errorcode'))
             $('#insert-modal').modal();
             $('#insert-modal').modal("show");
-            {{dd(\Illuminate\Support\Facades\Input::old())}}
             @endif
 
               $("body").on("click",".add-img-input",function(){

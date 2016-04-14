@@ -27,7 +27,7 @@ class Content extends Model {
 
     public function categories() {
 
-        return $this->belongsToMany('App\Category','tag_content','content_id','tag_id');
+        return $this->belongsToMany('App\Category','category_content','content_id','category_id');
     }
 
 }

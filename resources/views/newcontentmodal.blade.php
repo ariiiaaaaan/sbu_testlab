@@ -1,5 +1,5 @@
-<form id="new-content-form" action="/admin/insert" >
-    @if($entity == 'contents' && $type != 'events' && $type != 'researches' )
+<form id="new-content-form" action="insert" method="post" enctype="multipart/form-data">
+    @if($type != 'events' && $type != 'researches' && $type != 'members')
         <div class="form-group">
             <label for="title">title:</label>
             <input type="text" class="form-control" id="title" name="title" value="{{ empty(old('title')) ? "" : old('title') }}">
@@ -10,12 +10,7 @@
         </div>
         <div class="form-group">
             <label>Tags:</label>
-            <select name="tag[]" multiple class="tag-select">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
+            @include('tags',['tags'=>$tags])
         </div>
         <div class="form-group">
             <label>Category: </label>
@@ -34,7 +29,11 @@
                 <input type="text" placeholder="Title" name="imgtitle[]" value="{{ empty(old('imgtitle')) ? "" : old('imgtitle') }}">
             </div>
             <div  class="add-img-input">Add More Images</div>
-
+        @else
+            <div class="form-group img">
+                <label>Select Images:</label>
+                <input type="file" name="img">
+            </div>
         @endif
 
     @elseif($type == 'events' )
@@ -69,12 +68,7 @@
         </div>
         <div class="form-group">
             <label>Tags: </label>
-            <select name="tags[]" multiple class="tag-select">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
+            @include('tags',['tags'=>$tags])
         </div>
         <div class="form-group">
             <label>Category: </label>
@@ -127,16 +121,11 @@
         </div>
         <div class="form-group">
             <label>Select Images:</label>
-            <input type="file" name="img" multiple>
+            <input type="file" name="img[]" multiple>
         </div>
         <div class="form-group">
             <label>Tags: </label>
-            <select name="tags[]" multiple class="tag-select">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
+            @include('tags',['tags'=>$tags])
         </div>
         <div class="form-group">
             <label>Category: </label>
@@ -197,17 +186,12 @@
             <input type="text" class="form-control" id="facebook" name="facebook" value="{{ empty(old('facebook')) ? "" : old('facebook') }}">
         </div>
         <div class="form-group">
-            <label>Select Images:</label>
-                <input type="file" name="img" multiple>
+            <label>Select ONE Image:</label>
+                <input type="file" name="img">
         </div>
         <div class="form-group">
             <label>Tags: </label>
-            <select name="tags[]" multiple class="tag-select">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
+            @include('tags',['tags'=>$tags])
         </div>
         <div class="form-group">
             <label>Category: </label>

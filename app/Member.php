@@ -6,14 +6,8 @@ class Member extends Model {
     public $timestamps = false;
 
 
-    public function photo() {
+    public function photos() {
 
-        return $this->hasMany('App\Photo');
+        return $this->hasOne('App\Photo');
     }
-
-    public function tag() {
-
-        return $this->hasMany('App\Tag');
-    }
-
 }

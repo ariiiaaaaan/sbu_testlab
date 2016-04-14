@@ -11,10 +11,4 @@ class Tag extends Model {
 
         return $this->belongsToMany('App\Content','tag_content','tag_id','content_id');
     }
-
-    public function member () {
-
-        return $this->belongsToMany('App\Member');
-    }
-
 }

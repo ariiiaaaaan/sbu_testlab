@@ -9,11 +9,11 @@ class Events extends Model {
     public $timestamps = false;
     protected $table = 'events';
 
-    public function photo() {
+    public function photos() {
         return $this->hasMany('App\Photo');
     }
 
-    public function content() {
+    public function contents() {
         return $this->belongsTo('App\Content');
     }
 

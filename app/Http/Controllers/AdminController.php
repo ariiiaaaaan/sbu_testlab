@@ -72,12 +72,14 @@ class AdminController extends Controller {
 
     public function getAdminTable(Request $r){
         $items = array();
+        $member = false;
         switch ($r->input("entity")){
             case "contents":
                 $items = Content::where("type",$r->input("type"))->simplePaginate(10);
                 break;
             case "members":
-                $items = Member::where("type",$r->input("type"))->simplePaginate(10);
+                $items = Member::simplePaginate(10);
+                $member = true;
                 break;
             case "contacts":
                 echo "contacts";
@@ -85,7 +87,12 @@ class AdminController extends Controller {
             default:
                 echo "unknown type";
         }
-        return view('admintable',['type' => "events",'entity' => "contents", 'items' => $items]);
+        return view('admintable',['type' => "events",'entity' => "contents", 'items' => $items,'member' => $member]);
+    }
+
+    public function returnTags() {
+        $tags = Tag::all();
+        return $tags;
     }
 
     public function admin() {
@@ -94,7 +101,7 @@ class AdminController extends Controller {
         } else {
             return view('adminlogin');
         }*/
-        return view('admin');
+        return view('admin')->with(array('tags' => $this->returnTags()));
 //        $services = $this->selectFrom('content','services');
 //        $blogs = $this->selectFrom('content','blogs');
 //        $news = $this->selectFrom('content','news');
@@ -113,19 +120,18 @@ class AdminController extends Controller {
     public function insertQuery(Request $request)
     {
         $type = $request->input('type');
-        $tag = $request->input('tag');
+        $tag = $request->input('tags');
         if ($type == 'events') {
-
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
                 'address' => 'required',
                 'body' => 'required',
-                'tag' => 'required',
-                'img' => 'required'
+                'tags' => 'required|array',
+                'img' => 'image|array'
             ]);
 
                 if ($validator->fails()) {
-                    return redirect()->back()->withErrors($validator)->withInput()->with('errorcode','events');
+                    return redirect()->back()->withErrors($validator)->withInput()->with(array('errorcode' => 'events' , 'tags' => $this->returnTags()));
                 } else {
                     $event = new Events;
                     $content = new Content;
@@ -139,9 +145,7 @@ class AdminController extends Controller {
                     $event->start = $start;
                     $event->end = $end;
                     $event->highlight = $request->input('hightlight') == NULL ? 0 : 1;
-                    $uploadCount = 0;
                     $files = $request->file('img');
-                    $filesCount = count($files);
 
                     foreach ($files as $file) {
                         if ($file->isValid()) {
@@ -151,8 +155,6 @@ class AdminController extends Controller {
                             $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
                             $destination = 'upload';
                             $file->move($destination, $name);
-                            $uploadCount++;
-                            //$photo->title = $request->input('photoTitle');
                             $photo->path = $destination . "/" . $name;
                             $content->photos()->save($photo);
                         }
@@ -161,15 +163,13 @@ class AdminController extends Controller {
                         $row = Tag::where('title', '=', $insertTag)->first();
                         $content->tags()->save($row);
                     }
-                    $event->content()->associate($content);
-                    if ($uploadCount == $filesCount) {
-                        $request->session()->flash('success', 'Upload successfully');
-                    }
-                    $event->save();
+                    //$cat = Category::where('title', '=', $request->input('category'))->first();
+                    //$content->categories()->save($cat);
+
+                    $content->events()->save($event);
                     return redirect('admin');
                 }
         } elseif ($type == 'members') {
-
             $validator = Validator::make($request->all(), [
                 'firstname' => 'required',
                 'lastname' => 'required',
@@ -177,7 +177,7 @@ class AdminController extends Controller {
             ]);
 
             if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput()->with('errorcode','members');
+                return redirect()->back()->withErrors($validator)->withInput()->with(array('errorcode' => 'members' , 'tags' => $this->returnTags()));
             } else {
                 $member = new Member;
                 $member->firstname = $request->input('firstname');
@@ -195,26 +195,22 @@ class AdminController extends Controller {
                 $member->instagram = $request->input('instagram') == NULL ? NULL : $request->input('instagram');
                 $member->linkedin = $request->input('linkedin') == NULL ? NULL : $request->input('linkedin');
                 $member->save();
-                if($request->has('img')) {
-                    $files = $request->file('img');
-                    foreach ($files as $file) {
-                        if ($file->isValid()) {
-                            $photo = new Photo;
-                            $tempName = $file->getClientOriginalName();
-                            $extension = explode(".",$tempName);
-                            $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
-                            $destination = 'upload';
-                            $file->move($destination, $name);
-                            //$photo->title = $request->input('photoTitle');
-                            $photo->path = $destination . "/" . $name;
-                            $member->photos()->save($photo);
-                        }
+
+                if($request->hasFile('img')) {
+                    $file = $request->file('img');
+                    if ($file->isValid()) {
+                        $photo = new Photo;
+                        $tempName = $file->getClientOriginalName();
+                        $extension = explode(".",$tempName);
+                        $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
+                        $destination = 'upload';
+                        $file->move($destination, $name);
+                        //$photo->title = $request->input('photoTitle');
+                        $photo->path = $destination . "/" . $name;
+                        $member->photos()->save($photo);
                     }
                 }
-                foreach ($tag as $insertTag) {
-                    $row = Tag::where('title', '=', $insertTag)->first();
-                    $member->tags()->save($row);
-                }
+               // $cat = Category::where('title', '=', $request->input('category'))->first();
                 return redirect('admin');
             }
         } elseif ($type == 'researches') {
@@ -225,7 +221,7 @@ class AdminController extends Controller {
             ]);
 
             if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput()->with('errorcode','researches');
+                return redirect()->back()->withErrors($validator)->withInput()->with(array('errorcode' => 'researches' , 'tags' => $this->returnTags()));
             } else {
                 $research = new Research;
                 $content = new Content;
@@ -249,6 +245,7 @@ class AdminController extends Controller {
                     $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
                     $destination = 'upload';
                     $path->move($destination, $name);
+                    $research->path = $destination . "/" .$name;
                 }
                 foreach ($files as $file) {
                     if ($file->isValid()) {
@@ -267,8 +264,8 @@ class AdminController extends Controller {
                     $row = Tag::where('title', '=', $insertTag)->first();
                     $content->tags()->save($row);
                 }
-                $cat = Category::where('title', '=', $request->input('category'))->first();
-                $content->categories()->save($cat);
+                //$cat = Category::where('title', '=', $request->input('category'))->first();
+                //$content->categories()->save($cat);
                 $research->content()->associate($content);
                 $research->save();
                 return redirect('admin');
@@ -277,35 +274,27 @@ class AdminController extends Controller {
 
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
-                'img' => 'required'
+                'body' => 'required'
             ]);
 
             if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput()->with('errorcode','galleries');
+                return redirect()->back()->withErrors($validator)->withInput()->with(array('errorcode' => 'galleries' , 'tags' => $this->returnTags()));
             } else {
                 $content = new Content;
                 $content->title = $request->input('title');
                 $content->body = $request->input('body');
                 $content->type = $type;
                 $content->save();
-                $files = $request->file('img');
-                $path = $request->file('path');
-                if ($path->isValid()) {
-                    $tempName = $path->getClientOriginalName();
-                    $extension = explode(".",$tempName);
-                    $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
-                    $destination = 'upload';
-                    $path->move($destination, $name);
-                }
-                foreach ($files as $file) {
-                    if ($file->isValid()) {
+                $file = $request->file('img');
+                for ($i=0;$i<count($file);$i++) {
+                    if ($file[$i]->isValid()) {
                         $photo = new Photo;
-                        $tempName = $file->getClientOriginalName();
+                        $tempName = $file[$i]->getClientOriginalName();
                         $extension = explode(".",$tempName);
                         $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
                         $destination = 'upload';
-                        $file->move($destination, $name);
-                        $photo->title = $request->input('imgtitle');
+                        $file[$i]->move($destination, $name);
+                        $photo->title = $request->input('imgtitle')[$i];
                         $photo->path = $destination . "/" . $name;
                         $content->photos()->save($photo);
                     }
@@ -314,11 +303,12 @@ class AdminController extends Controller {
                     $row = Tag::where('title', '=', $insertTag)->first();
                     $content->tags()->save($row);
                 }
-                $cat = Category::where('title', '=', $request->input('category'))->first();
-                $content->categories()->save($cat);
+                //$cat = Category::where('title', '=', $request->input('category'))->first();
+                //$content->categories()->save($cat);
                 return redirect('admin');
             }
-        } else {
+        }
+        else {
 
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
@@ -327,8 +317,9 @@ class AdminController extends Controller {
             ]);
 
             if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput()->with('errorcode','news');
-            } else {
+                return redirect()->back()->withErrors($validator)->withInput()->with(array('errorcode' => 'news' , 'tags' => $this->returnTags()));
+            }
+            else {
                 $news = new Content;
                 $news->title = $request->input('title');
                 $news->body = $request->input('body');
