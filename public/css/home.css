@@ -327,13 +327,34 @@ position: absolute;
     float: left;
     position: relative;
     display: inline-block;
-    background-color: #373737;
     width: 25vh;
     margin: 2.5vh 0 0 2.5vh;
     height: 25vh;
     box-shadow: 0 0 4px black;
     cursor: pointer;
     overflow: hidden;
+    text-align: center;
+    background-color: #2ca02c;
+    transition: opacity, 0.5s;
+}
+
+.color1{
+    background-color: #2980b9;
+}
+
+.color2{
+    background-color: #e67e22;
+}
+
+.color3{
+    background-color: #1abc9c;
+}
+
+.color5{
+    background-color: #e74c3c;
+}
+
+.color6{
     background-color: #2ca02c;
 }
 
@@ -353,16 +374,25 @@ position: absolute;
     width: 25vh;
     height: 25vh;
     overflow: hidden;
+    padding: 7vh 0;
+    margin: auto;
 }
 
 .event:hover .overlay{
     height: 0px;
+    padding: 0 !important;
     opacity: 0;
+    text-align: center;
     transition: all 0.5s;
+}
+
+.event.highlight .overlay{
+    padding: 5vh 0;
 }
 
 .event .content{
     opacity: 0;
+    padding: 2.5vh;
     transition: all 0.5s;
     transition-delay: 1s;
 }
@@ -373,6 +403,7 @@ position: absolute;
 
 .event.highlight{
     width: 52.5vh;
+    font-size: 22px;
 }
 
 #events .hider{
@@ -384,6 +415,10 @@ position: absolute;
     height: 56vh;
     left: 0px;
     transition: all 0.5s;
+}
+
+.event.fade{
+    opacity: 0.4;
 }
 
 .research{
@@ -414,6 +449,88 @@ position: absolute;
     line-height: 18px;
     margin-top: 15px;
     overflow: hidden;
+}
+
+.gallery{
+    position: relative;
+    display: inline-block;
+    background-color: #373737;
+    width: 25vw;
+    height: 46vh;
+    margin: 1vw;
+    box-shadow: 0 0 5px black;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.gallery h4{
+    color: #ffffff;
+    margin: 3vh 0 1vh;
+    width: 100%;
+    padding: 0 2em;
+    font-size: 18px;
+    line-height: 7vh;
+    text-align: center;
+}
+
+
+.gallery .gallery-body p{
+    padding-top:1vw ;
+    max-width: 25vw;
+    position: absolute;
+    opacity: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+.gallery img{
+    width: 100%;
+    height: 25vh;
+    position: relative;
+    z-index: 5;
+    opacity: 1;
+    transition: all 1s;
+}
+
+.gallery:hover img{
+    opacity: .5;
+    -webkit-filter: grayscale(80%) contrast(180%);
+    filter: grayscale(80%) contrast(180%);
+}
+
+.gallery:hover .gallery-body{
+    opacity: 1;
+}
+
+.gallery p{
+    font-size: 12px;
+    color: white;
+    padding: 2vh 4vh 2vh;
+    text-align: justify;
+    line-height: 16px;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 1s;
+}
+
+.gallery:hover p{
+    opacity: 1;
+}
+
+.gallery .gallery-btn{
+    text-align: center;
+    width: 15vw;
+    display: block;
+    position: relative;
+    z-index: 10;
+    height: 6vh;
+    line-height: 7vh;
+    font-size: 12px;
+    margin: 1vh auto;
+    padding: 0 10px;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: rgba(0,0,0,0.7);
 }
 
 .form-wrapper{

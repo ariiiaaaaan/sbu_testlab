@@ -38,7 +38,7 @@
 #galleries-section{
     position: relative;
     background-color: #dddddd;
-    padding: 10vh 0 10vh;
+    padding: 0vh 0 10vh;
 }
 
 .gallery{
@@ -249,7 +249,7 @@
     opacity: 0;
     transition: all 1s;
     width: 100%;
-    bottom: -100vh;
+    top: 100vh;
 }
 
 .img:hover h4{
@@ -258,7 +258,44 @@
 
 .img:hover p{
     opacity: 1;
-    bottom: 5vh;
+    top: 12vh;
+}
+
+.img.highlight:hover p{
+    opacity: 1;
+    top: 28vh;
+}
+
+#image-modal .modal-content{
+    background-color: #373737;
+    border-radius: 0;
+    max-width: 85vw;
+    margin:20vh auto;
+}
+
+#image-modal #the-image{
+    max-width: 80vw;
+    margin: auto;
+    height: auto;
+}
+
+#image-modal .modal-header{
+    background-color: #0098bf;
+    color: white;
+}
+
+#image-modal .modal-header .close {
+    margin-top: -30px;
+    color: white;
+    opacity: 1;
+}
+
+.grid {
+    width: 92vw;
+    padding: 10vh 3vw;
+    margin: 0 auto 2vh;
+    background-color: #ffffff;
+    display: block;
 }
 
 
