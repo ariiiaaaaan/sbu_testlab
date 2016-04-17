@@ -67,7 +67,8 @@ class AdminController extends Controller {
 
     public function getInsertForm(Request $r){
         $tags = Tag::all();
-        return view('newcontentmodal',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'tags'=>$tags]);
+        $cats =  Category::all();
+        return view('newcontentmodal',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'tags'=>$tags,'cats'=>$cats]);
     }
 
     public function getAdminTable(Request $r){
@@ -152,7 +153,7 @@ class AdminController extends Controller {
                             $photo = new Photo;
                             $tempName = $file->getClientOriginalName();
                             $extension = explode(".",$tempName);
-                            $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
+                            $name = $extension[0]."-".time().".".$extension[1];
                             $destination = 'upload';
                             $file->move($destination, $name);
                             $photo->path = $destination . "/" . $name;
@@ -202,7 +203,7 @@ class AdminController extends Controller {
                         $photo = new Photo;
                         $tempName = $file->getClientOriginalName();
                         $extension = explode(".",$tempName);
-                        $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
+                        $name = $extension[0]."-".time().".".$extension[1];
                         $destination = 'upload';
                         $file->move($destination, $name);
                         //$photo->title = $request->input('photoTitle');
@@ -252,7 +253,7 @@ class AdminController extends Controller {
                         $photo = new Photo;
                         $tempName = $file->getClientOriginalName();
                         $extension = explode(".",$tempName);
-                        $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
+                        $name = $extension[0]."-".time().".".$extension[1];
                         $destination = 'upload';
                         $file->move($destination, $name);
                         //$photo->title = $request->input('photoTitle');
@@ -291,7 +292,7 @@ class AdminController extends Controller {
                         $photo = new Photo;
                         $tempName = $file[$i]->getClientOriginalName();
                         $extension = explode(".",$tempName);
-                        $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
+                        $name = $extension[0]."-".time().".".$extension[1];
                         $destination = 'upload';
                         $file[$i]->move($destination, $name);
                         $photo->title = $request->input('imgtitle')[$i];
@@ -313,7 +314,7 @@ class AdminController extends Controller {
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
                 'body' => 'required',
-                'tag' => 'required'
+                'tags' => 'required|array'
             ]);
 
             if ($validator->fails()) {
@@ -325,14 +326,15 @@ class AdminController extends Controller {
                 $news->body = $request->input('body');
                 $news->type = $type;
                 $news->save();
-                if($request->has('img')) {
+                if($request->hasFile('img')) {
                     $files = $request->file('img');
+
                     foreach ($files as $file) {
                         if ($file->isValid()) {
                             $photo = new Photo;
                             $tempName = $file->getClientOriginalName();
                             $extension = explode(".",$tempName);
-                            $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
+                            $name = $extension[0]."-".time().".".$extension[1];
                             $destination = 'upload';
                             $file->move($destination, $name);
                             //$photo->title = $request->input('photoTitle');

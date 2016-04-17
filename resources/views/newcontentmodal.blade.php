@@ -6,7 +6,12 @@
         </div>
         <div class="form-group">
             <label for="body">body:</label>
-            <textarea class="form-control" id="body" name="body" value="{{ empty(old('body')) ? "" : old('body') }}"></textarea>
+            <textarea class="form-control" id="body" name="body" rows="10" cols="50" value="{{ empty(old('body')) ? "" : old('body') }}"></textarea>
+            <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'body' );
+            </script>
         </div>
         <div class="form-group">
             <label>Tags:</label>
@@ -14,25 +19,20 @@
         </div>
         <div class="form-group">
             <label>Category: </label>
-            <select name="category" class="cat-select">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
+            @include('categorysimple',['catss'=>$cats])
         </div>
         @if($type ==  "galleries")
             <div class="form-group img">
                 <label>Select Images:</label>
                 <input type="file" name="img[]">
 
-                <input type="text" placeholder="Title" name="imgtitle[]" value="{{ empty(old('imgtitle')) ? "" : old('imgtitle') }}">
+                <input type="text" class="small" placeholder="Title" name="imgtitle[]" value="{{ empty(old('imgtitle')) ? "" : old('imgtitle') }}">
             </div>
             <div  class="add-img-input">Add More Images</div>
         @else
             <div class="form-group img">
                 <label>Select Images:</label>
-                <input type="file" name="img">
+                <input type="file" name="img[]">
             </div>
         @endif
 
@@ -72,12 +72,7 @@
         </div>
         <div class="form-group">
             <label>Category: </label>
-            <select name="category">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
+            @include('categorysimple',['cats'=>$cats])
         </div>
     @elseif($type == 'researches' )
         <div class="form-group">
@@ -129,12 +124,7 @@
         </div>
         <div class="form-group">
             <label>Category: </label>
-            <select name="category">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
+            @include('categorysimple',['cats'=>$cats])
         </div>
     @elseif($type == 'members' )
         <div class="form-group">
@@ -189,19 +179,31 @@
             <label>Select ONE Image:</label>
                 <input type="file" name="img">
         </div>
-        <div class="form-group">
-            <label>Tags: </label>
-            @include('tags',['tags'=>$tags])
+        <div class="form-group rec">
+            <label>Record:</label>
+            <div class="record-form">
+                <div class="form-group">
+                   <span>institute:</span><input type="text" class="small" name="rec[0][institute]">
+                </div>
+                <div class="form-group">
+                    <span>position:</span><input type="text" class="small" name="rec[0][position]">
+                </div>
+                <div class="form-group">
+                    <span>start:</span><input type="text" class="small" name="rec[0][start]">
+                </div>
+                <div class="form-group">
+                    <span>end:</span><input type="text" class="small" name="rec[0][end]">
+                </div>
+                <div class="form-group">
+                    <span>type:</span> <select name="rec[0][type]">
+                        <option value="academic">academic</option>
+                        <option value="industrial">industrial</option>
+                    </select>
+                </div>
+            </div>
+            <div  class="add-record-input">Add More Records</div>
         </div>
-        <div class="form-group">
-            <label>Category: </label>
-            <select name="category">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
-        </div>
+
     @endif
     <input type="hidden" name="type" value="{{$type}}">
         {{ csrf_field() }}
