@@ -9,6 +9,7 @@ use App\Research;
 use App\Member;
 use App\Tag;
 use App\Photo;
+use App\Record;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use \Illuminate\Support\Facades\DB;
@@ -211,7 +212,18 @@ class AdminController extends Controller {
                         $member->photos()->save($photo);
                     }
                 }
-               // $cat = Category::where('title', '=', $request->input('category'))->first();
+
+                $recordArray = $request->input('rec');
+                foreach($recordArray as $key) {
+                    $record = new Record;
+                    $record->institute = $key['institute'];
+                    $record->position = $key['position'];
+                    $record->start = $key['start'];
+                    $record->end = $key['end'];
+                    $record->type = $key['type'];
+                    $member->records()->save($record);
+                }
+                // $cat = Category::where('title', '=', $request->input('category'))->first();
                 return redirect('admin');
             }
         } elseif ($type == 'researches') {
@@ -350,5 +362,9 @@ class AdminController extends Controller {
                 return redirect('admin');
             }
         }
+    }
+
+    public function editQuery(Request $request) {
+
     }
 }

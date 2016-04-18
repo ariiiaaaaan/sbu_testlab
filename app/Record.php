@@ -7,7 +7,7 @@ class Record extends Model {
     public $timestamps = false;
 
 
-    public function member() {
+    public function members() {
 
         return $this->belongsTo('App\Member');
     }
