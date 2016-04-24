@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
             <label>Category: </label>
-            @include('categorysimple',['catss'=>$cats])
+            @include('categorysimple',['cats'=>$cats])
         </div>
         @if($type ==  "galleries")
             <div class="form-group img">
