@@ -245,9 +245,9 @@
                     </div>
                 @endif
                 <div class="modal-body">
-                    @if(session('errorcode'))
-                        @include('newcontentmodal',['type' => session('errorcode')])
-                    @endif
+                    {{--@if(session('errorcode'))--}}
+                        {{--@include('newcontentmodal',['type' => session('errorcode')])--}}
+                    {{--@endif--}}
                 </div>
             </div>
 
