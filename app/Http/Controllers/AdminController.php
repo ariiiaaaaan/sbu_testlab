@@ -123,20 +123,30 @@ class AdminController extends Controller {
     {
         $type = $request->input('type');
         $tag = $request->input('tags');
+        $id = $request->input('id');
+        $mode = $request->input('mode');
+        ////////////////////////////////////
+        //mode = 0 edit , mode = 1 insert //
+        ////////////////////////////////////
         if ($type == 'events') {
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
                 'address' => 'required',
                 'body' => 'required',
-                'tags' => 'required|array',
-                'img' => 'image|array'
+                'tags' => 'required|array'
             ]);
 
                 if ($validator->fails()) {
                     return redirect()->back()->withErrors($validator)->withInput()->with(array('errorcode' => 'events' , 'tags' => $this->returnTags()));
                 } else {
-                    $event = new Events;
-                    $content = new Content;
+
+                    if($mode == 1) {
+                        $event = new Events;
+                        $content = new Content;
+                    } else {
+                        $content = Content::where('id','=',$id);
+                        $event = Events::where('content_id','=',$id);
+                    }
                     $content->title = $request->input('title');
                     $event->address = $request->input('address');
                     $content->body = $request->input('body');

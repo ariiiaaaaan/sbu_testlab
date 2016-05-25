@@ -1,4 +1,4 @@
-<form id="new-content-form" action="insert" method="post" enctype="multipart/form-data">
+<form id="new-content-form" action="insert" method="post" enctype="multipart/form-data" accept-charset="utf-8">
     @if($type != 'events' && $type != 'researches' && $type != 'members')
         <div class="form-group">
             <label for="title">title:</label>
