@@ -92,6 +92,25 @@ $(document).ready(function(){
     $("#company-wrapper").animate({"left" : animateto.toString() + "px"} , 1500,"easeInOutQuart");
   });
 
+  var member_num = $(".member").length;
+  $("#members-wrapper").css("width",(member_num * 24 * vw + 5*vw).toString()+"px");
+  $("#members-next").click(function(){
+    var current = parseInt( $("#members-wrapper").css("left"),10);
+    var max = member_num * 23 * vw + 5;
+    var animateto = current - 69 * vw;
+    if(animateto < -max + 92 * vw)
+      animateto = -max + 92 * vw;
+    $("#members-wrapper").animate({"left" : animateto.toString() + "px"} , 1500,"easeInOutQuart");
+  });
+  $("#members-prev").click(function(){
+    var current = parseInt( $("#members-wrapper").css("left"),10);
+    var max = member_num * 23 * vw + 5;
+    var animateto = current + 69 * vw;
+    if(animateto > 0)
+      animateto = 0;
+    $("#members-wrapper").animate({"left" : animateto.toString() + "px"} , 1500,"easeInOutQuart");
+  });
+
   var catnavdepth = 0;
   $(".cat-nav-close").click(function(){
     $(this).toggleClass('cat-nav-')

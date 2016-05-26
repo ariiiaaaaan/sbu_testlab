@@ -1,0 +1,1 @@
+@include('newcontentmodal',['entity'=>$entity,'type'=>$type,'mode'=> 0 ,'tags'=>$tags,'cats'=>$cats])

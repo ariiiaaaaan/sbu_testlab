@@ -36,4 +36,8 @@ class CategoryController extends Controller {
     public static function justGetAll(){
         return Category::all();
     }
+
+    public function test(){
+        return view('category',['nodes' => CategoryController::getTree(),'root' => false,'level' => 0]);
+    }
 }

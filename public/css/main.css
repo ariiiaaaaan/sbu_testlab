@@ -77,18 +77,18 @@ body{
     padding: 5px;
 }
 
-ul.nav{
+#main-menu ul.nav{
     display: block;
     text-align: right;
     padding: 0;
 }
 
-ul.nav li{
+#main-menu ul.nav li{
     display: inline-block;
     margin-left: 35px;
 }
 
-ul.nav li a{
+#main-menu ul.nav li a{
     font-size: 18px;
     color:white !important;
     padding: 0 ;
@@ -96,12 +96,12 @@ ul.nav li a{
     transition: all 0.5s;
 }
 
-.nav li.active a{
+#main-menu .nav li.active a{
     color:#18afd7 !important;
     background:none !important;
 }
 
-.nav li a:hover{
+#main-menu .nav li a:hover{
     color:#7cc3d8 !important;
     /*background-color: white;*/
 }
@@ -224,6 +224,23 @@ ul.nav li a{
  z-index: 10;
  padding: 0;
 }
+
+.tab-section .nav-pills li{
+    float: none;
+    margin: 0 5px;
+    min-width: 5vw;
+    display: inline-block;
+}
+
+.tab-section .nav-pills li a{
+    border-radius: 0;
+}
+
+.tab-section .hider{
+    margin: 20px auto 0;
+}
+
+.tab-section
 
 .page-header{
     position: relative;

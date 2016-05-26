@@ -69,7 +69,13 @@ class AdminController extends Controller {
     public function getInsertForm(Request $r){
         $tags = Tag::all();
         $cats =  Category::all();
-        return view('newcontentmodal',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'tags'=>$tags,'cats'=>$cats]);
+        return view('newcontentmodal',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'mode' => 1 ,'tags'=>$tags,'cats'=>$cats]);
+    }
+
+    public function showEditForm(Request $r){
+        $tags = Tag::all();
+        $cats =  Category::all();
+        return view('edit',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'tags'=>$tags,'cats'=>$cats]);
     }
 
     public function getAdminTable(Request $r){
@@ -89,7 +95,7 @@ class AdminController extends Controller {
             default:
                 echo "unknown type";
         }
-        return view('admintable',['type' => "events",'entity' => "contents", 'items' => $items,'member' => $member]);
+        return view('admintable',['type' => $r->input('type') ,'entity' => $r->input('entity'), 'items' => $items,'member' => $member]);
     }
 
     public function returnTags() {

@@ -30,11 +30,11 @@
 @endsection
 
 @section('content')
-    <section id="home" class="home-section">
+    <section id="home" class="onepage-section">
         <img src="images/header-logo-prev.png" class="header-logo">
         <p class="logo-caption">Shahid Beheshti University Of Tehran Laboratories</p>
     </section>
-    <section id="services" class="home-section">
+    <section id="services" class="onepage-section">
         <a href="#services" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>Services We Provide</h2>
         <h3>We are working on software testing and repair</h3>
@@ -54,7 +54,7 @@
         <span class="fa fa-angle-right fa-4x" id="services-next"></span>
         <span class="fa fa-angle-left fa-4x" id="services-prev"></span>
     </section>
-    <section id="blogs" class="home-section">
+    <section id="blogs" class="onepage-section">
         <a href="#blogs" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>Blog and News</h2>
         <h3>News and information about tools</h3>
@@ -73,7 +73,7 @@
         </div>
         <a href="blogs" class="blog-btn-all">CLICK TO VIEW MORE POST</a>
     </section>
-    <section id="events" class="home-section">
+    <section id="events" class="onepage-section">
         <a href="#events" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>Events</h2>
         <h3>Seminars and Presentations we want to provide</h3>
@@ -98,7 +98,7 @@
         <span class="fa fa-angle-right fa-4x" id="events-next"></span>
         <span class="fa fa-angle-left fa-4x" id="events-prev"></span>
     </section>
-    <section id="researches" class="home-section">
+    <section id="researches" class="onepage-section">
         <a href="#researches" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>Researches and Papers </h2>
         <h3>Our Researches and Papers</h3>
@@ -116,7 +116,7 @@
         </div>
         <a href="#" class="research-btn-all">CLICK TO VIEW MORE POST</a>
     </section>
-    <section id="companies" class="home-section">
+    <section id="companies" class="onepage-section">
         <a href="#companies" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>Our Partners</h2>
         <h3>Companies we have worked with or for them</h3>
@@ -136,7 +136,7 @@
         <span class="fa fa-angle-right fa-4x" id="company-next"></span>
         <span class="fa fa-angle-left fa-4x" id="company-prev"></span>
     </section>
-    <section id="gallery" class="home-section">
+    <section id="gallery" class="onepage-section">
         <a href="#gallery" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>Gallery </h2>
         <h3>Galleries of events and etc</h3>
@@ -160,7 +160,7 @@
         </div>
         <a href="galleries" class="research-btn-all">CLICK TO VIEW MORE POSTS</a>
     </section>
-    <section id="contact" class="home-section">
+    <section id="contact" class="onepage-section">
         <a href="#contact" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>Contact Us</h2>
         <h3>The means to contact us</h3>
@@ -187,7 +187,7 @@
             </div>
         </div>
     </section>
-    <section id="footer" class="home-section">
+    <section id="footer" class="onepage-section">
         <a href="#home" class="section-down-btn"><span class="fa fa-angle-up fa-4x"></span></a>
         <h1>Shahid Beheshti University of Tehran<br>Software Testing Laboratories</h1>
         <h3>copyright 2015</h3>

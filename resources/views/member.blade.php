@@ -43,7 +43,7 @@
             </div>
             <div class="animate-right animate">
                 <div class="member-on-header">
-                    <div class="img-wrapper"><img src="{{$member->photo[0]->path}}"></div>
+                    <div class="img-wrapper"><img src="{{$member->photos->path}}"></div>
                     <h1>{{$member->firstname}} {{$member->lastname}}</h1>
                     <h2>{{$member->position}}</h2>
                 </div>
@@ -69,7 +69,6 @@
         <h2 class="section-header">Academic Background</h2>
         <div class="animate-holder">
             <div class="animate-left animate">
-                {{--{{dd($member->records())}}--}}
                 @foreach($member->records()->get() as $rec)
                     @if($rec->type == "academic")
                         <div class="member-rec">
@@ -128,7 +127,7 @@
 
 @section('absolutes')
     <div id="card">
-        <div class="img-wrapper"><img src="{{$member->photo[0]->path}}"></div>
+        <div class="img-wrapper"><img src="{{$member->photos->path}}"></div>
         <p class="name">{{$member->firstname}} {{$member->lastname}}</p>
     </div>
 @endsection

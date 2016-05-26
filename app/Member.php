@@ -11,7 +11,7 @@ class Member extends Model {
         return $this->hasOne('App\Photo');
     }
 
-    public function records() {
+    public function records(){
         return $this->hasMany('App\Record');
     }
 }

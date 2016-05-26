@@ -206,7 +206,12 @@
 
     @endif
     <input type="hidden" name="type" value="{{$type}}">
+    <input type="hidden" name="mode" value="{{$mode}}">
         {{ csrf_field() }}
+    @if($mode)
         <input type="submit" value="Add" class="btn btn-primary" >
-    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+    @else
+        <input type="submit" value="save" class="btn btn-primary" >
+    @endif
 </form>

@@ -11,7 +11,7 @@
         <td class="title">{{$item->title}}</td>
         <td class="body">{{$item->body}}</td>
         <td class="date">{{$item->date_created}}</td>
-        <td class="actions"><a class="admin-action delete" href="#" data-type="{{$type}}" data-id="{{$item->id}}">delete</a>&nbsp | &nbsp<a class="admin-action edit" href="editcontent?id={{$item->id}}" data="{{$item->id}}">edit</a> </td>
+        <td class="actions"><a class="admin-action delete" href="edit?type={{$type}}&id={{$item->id}}">delete</a>&nbsp | &nbsp<a class="admin-action edit" href="edit?type={{$type}}&id={{$item->id}}">edit</a> </td>
     </tr>
     @endforeach
 </table>
@@ -29,7 +29,7 @@
                 <td class="title">{{$item->firstname}}</td>
                 <td class="body">{{$item->lastname}}</td>
                 <td class="date">{{$item->email}}</td>
-                <td class="actions"><a class="admin-action delete" href="#" data-type="{{$type}}" data-id="{{$item->id}}">delete</a>&nbsp | &nbsp<a class="admin-action edit" href="editcontent?id={{$item->id}}" data="{{$item->id}}">edit</a> </td>
+                <td class="actions"><a class="admin-action delete" href="edit?type={{$type}}&id={{$item->id}}">delete</a>&nbsp | &nbsp<a class="admin-action edit" href="edit?type={{$type}}&id={{$item->id}}">edit</a> </td>
             </tr>
         @endforeach
     </table>
