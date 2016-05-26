@@ -46,7 +46,7 @@
             <textarea class="form-control" id="body" name="body">{{ empty(old('body')) ? "" : old('body') }}</textarea>
         </div>
         <div class="form-group">
-            <label for="adress">Address:</label>
+            <label for="address">Address:</label>
             <textarea class="form-control" id="address" name="address">{{ empty(old('title')) ? "" : old('title') }}</textarea>
         </div>
 
