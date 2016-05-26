@@ -39,7 +39,7 @@
     @elseif($type == 'events' )
         <div class="form-group">
             <label for="title">Title:</label>
-            <input type="text" class="form-control" id="title" name="title" value="{{ empty(old('title')) ? "" : old('title') }}">
+            <input type="text" class="form-control" id="title" name="title" value="{{ empty($old->contents()->title) ? "" : $old->title }}">
         </div>
         <div class="form-group">
             <label for="body">Description:</label>

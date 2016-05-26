@@ -73,9 +73,15 @@ class AdminController extends Controller {
     }
 
     public function showEditForm(Request $r){
+
+        $type = $r->input('type');
+        $id = $r->input('id');
+        if($type == 'events') {
+            $old = Events::where('id','=',$id);
+        }
         $tags = Tag::all();
         $cats =  Category::all();
-        return view('edit',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'tags'=>$tags,'cats'=>$cats]);
+        return view('edit',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'tags'=>$tags,'cats'=>$cats,'old' => $old]);
     }
 
     public function getAdminTable(Request $r){
@@ -131,9 +137,11 @@ class AdminController extends Controller {
         $tag = $request->input('tags');
         $id = $request->input('id');
         $mode = $request->input('mode');
+
         ////////////////////////////////////
-        //mode = 0 edit , mode = 1 insert //
+        //mode = 0 edit , mode = 1 insert///
         ////////////////////////////////////
+
         if ($type == 'events') {
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
