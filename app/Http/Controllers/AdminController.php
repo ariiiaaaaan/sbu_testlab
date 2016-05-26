@@ -156,7 +156,7 @@ class AdminController extends Controller {
                     $end = $request->input('end-day') . "|" . $request->input('end-month') . "|" . $request->input('end-year') . "|" . $request->input('end-hour') . ":" . $request->input('end-minute');
                     $event->start = $start;
                     $event->end = $end;
-                    $event->highlight = $request->input('hightlight') == NULL ? 0 : 1;
+                    $event->highlight = $request->input('highlight') == NULL ? 0 : 1;
                     $files = $request->file('img');
 
                     foreach ($files as $file) {
