@@ -77,9 +77,8 @@ class AdminController extends Controller {
         $type = $r->input('type');
         $id = $r->input('id');
         if($type == 'events') {
-            $old = Events::find(12)->contents;
+            $old = Content::find($id)->event;
         }
-        dd($old);
         $tags = Tag::all();
         $cats =  Category::all();
         return view('edit',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'tags'=>$tags,'cats'=>$cats,'old' => $old]);
@@ -193,7 +192,7 @@ class AdminController extends Controller {
                     //$cat = Category::where('title', '=', $request->input('category'))->first();
                     //$content->categories()->save($cat);
 
-                    $content->events()->save($event);
+                    $content->event()->save($event);
                     return redirect('admin');
                 }
         } elseif ($type == 'members') {

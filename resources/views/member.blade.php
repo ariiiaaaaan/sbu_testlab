@@ -43,7 +43,7 @@
             </div>
             <div class="animate-right animate">
                 <div class="member-on-header">
-                    <div class="img-wrapper"><img src="{{$member->photos->path}}"></div>
+                    <div class="img-wrapper"><img src="{{$member->photo->path}}"></div>
                     <h1>{{$member->firstname}} {{$member->lastname}}</h1>
                     <h2>{{$member->position}}</h2>
                 </div>
@@ -127,7 +127,7 @@
 
 @section('absolutes')
     <div id="card">
-        <div class="img-wrapper"><img src="{{$member->photos->path}}"></div>
+        <div class="img-wrapper"><img src="{{$member->photo->path}}"></div>
         <p class="name">{{$member->firstname}} {{$member->lastname}}</p>
     </div>
 @endsection

@@ -13,7 +13,7 @@ class Events extends Model {
         return $this->hasMany('App\Photo');
     }
 
-    public function contents() {
+    public function content() {
         return $this->belongsTo('App\Content');
     }
 

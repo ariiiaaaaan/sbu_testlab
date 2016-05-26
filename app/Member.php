@@ -6,7 +6,7 @@ class Member extends Model {
     public $timestamps = false;
 
 
-    public function photos() {
+    public function photo() {
 
         return $this->hasOne('App\Photo');
     }

@@ -17,7 +17,7 @@ class Content extends Model {
         return $this->belongsToMany('App\Tag','tag_content','content_id','tag_id');
     }
 
-    public function events() {
+    public function event() {
         return $this->hasOne('App\Events');
     }
 
