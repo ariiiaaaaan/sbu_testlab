@@ -77,8 +77,9 @@ class AdminController extends Controller {
         $type = $r->input('type');
         $id = $r->input('id');
         if($type == 'events') {
-            $old = Events::where('id','=',$id);
+            $old = Events::find(12)->contents;
         }
+        dd($old);
         $tags = Tag::all();
         $cats =  Category::all();
         return view('edit',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'tags'=>$tags,'cats'=>$cats,'old' => $old]);
