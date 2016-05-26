@@ -186,9 +186,9 @@ label{
     cursor: pointer;
 }
 
-/*#new-content-form #body{*/
-    /*display: none !important;*/
-/*}*/
+#new-content-form #body.ckedit{
+    display: none !important;
+}
 
 #new-content-form #cke_body{
     display: inline-block;

@@ -6,7 +6,7 @@
         </div>
         <div class="form-group">
             <label for="body">body:</label>
-            <textarea class="form-control" id="body" name="body" rows="10" cols="50" value="{{ empty(old('body')) ? "" : old('body') }}"></textarea>
+            <textarea class="form-control ckedit" id="body" name="body" rows="10" cols="50" value="{{ empty(old('body')) ? "" : old('body') }}"></textarea>
             <script>
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.
