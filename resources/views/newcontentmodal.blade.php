@@ -47,7 +47,7 @@
         </div>
         <div class="form-group">
             <label for="address">Address:</label>
-            <textarea class="form-control" id="address" name="address">{{ empty(old('title')) ? "" : old('title') }}</textarea>
+            <textarea class="form-control" id="address" name="address">{{ empty($old->address) ? "" : $old->address }}</textarea>
         </div>
 
         <div class="checkbox form-group">
@@ -212,6 +212,7 @@
         <input type="submit" value="Add" class="btn btn-primary" >
         <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
     @else
-        <input type="submit" value="save" class="btn btn-primary" >
+            <input type="hidden" name="id" value="{{$old->id}}">
+            <input type="submit" value="save" class="btn btn-primary" >
     @endif
 </form>

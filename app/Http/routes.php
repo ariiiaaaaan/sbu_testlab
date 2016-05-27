@@ -56,3 +56,8 @@ Route::get('/member', ['as' => 'member', 'uses' => 'MemberController@showMember'
 Route::post('/insert', ['as' => 'insert', 'uses' => 'AdminController@insertQuery']);
 
 Route::get('/edit', ['as' => 'edit', 'uses' => 'AdminController@showEditForm']);
+
+Route::get('/delete', ['as' => 'edit', 'uses' => 'AdminController@delete']);
+
+
+

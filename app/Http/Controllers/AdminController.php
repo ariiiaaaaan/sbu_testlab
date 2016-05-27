@@ -84,6 +84,17 @@ class AdminController extends Controller {
         return view('edit',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'tags'=>$tags,'cats'=>$cats,'old' => $old]);
     }
 
+    public function delete(Request $r) {
+        $type = $r->input('type');
+        $id = $r->input('id');
+
+        if($type == 'events') {
+            $index = Content::find($id);
+            $index->delete();
+            return redirect('admin');
+        }
+    }
+
     public function getAdminTable(Request $r){
         $items = array();
         $member = false;
@@ -158,8 +169,10 @@ class AdminController extends Controller {
                         $event = new Events;
                         $content = new Content;
                     } else {
-                        $content = Content::where('id','=',$id);
-                        $event = Events::where('content_id','=',$id);
+
+                        $event = Events::find($id);
+                        $content = $event->content;
+
                     }
                     $content->title = $request->input('title');
                     $event->address = $request->input('address');
