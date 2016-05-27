@@ -115,5 +115,14 @@ $(document).ready(function(){
   $(".cat-nav-close").click(function(){
     $(this).toggleClass('cat-nav-')
   });
+
+  $(".auto-scroll-wrapper").hover(function(){
+    inside = $(this).find(".auto-scroll");
+    h1 = $(this).height();
+    h2 = inside.height();
+    if(h1 < h2){
+      inside.animate({top: h1-h2},((h1/h2)+1)*8000);
+    }
+  });
 });
 

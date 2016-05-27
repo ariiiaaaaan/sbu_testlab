@@ -180,6 +180,7 @@
                 <input type="file" name="img">
         </div>
         <div class="form-group rec">
+            @if($mode)
             <label>Record:</label>
             <div class="record-form">
                 <div class="form-group">
@@ -201,6 +202,34 @@
                     </select>
                 </div>
             </div>
+            @else
+                @foreach($old->records as $key => $rec)
+                    <label>Record:</label>
+                    <div class="record-form">
+                        <div class="form-group">
+                            <span>institute:</span><input type="text" class="small" name="rec[{{$key}}][institute]" value="{{$rec->institute}}">
+                        </div>
+                        <div class="form-group">
+                            <span>position:</span><input type="text" class="small" name="rec[{{$key}}][position]" value="{{$rec->position}}">
+                        </div>
+                        <div class="form-group">
+                            <span>start:</span><input type="text" class="small" name="rec[{{$key}}][start]" value="{{$rec->start}}">
+                        </div>
+                        <div class="form-group">
+                            <span>end:</span><input type="text" class="small" name="rec[{{$key}}][end]" value="{{$rec->end}}">
+                        </div>
+                        <div class="form-group">
+                            <span>type:</span> <select name="rec[{{$key}}][type]">
+                                <option value="academic" @if($rec->type == 'academic') selected @endif>academic</option>
+                                <option value="industrial" @if($rec->type == 'industrial') selected @endif>industrial</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <span> DELETE </span><input type="checkbox" name="delete">
+                        </div>
+                    </div>
+                @endforeach
+            @endif
             <div  class="add-record-input">Add More Records</div>
         </div>
 

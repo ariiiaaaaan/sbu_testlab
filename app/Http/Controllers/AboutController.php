@@ -11,7 +11,10 @@ use App\Http\Controllers\Controller;
 class AboutController extends Controller {
 
     public function showAbout(Request $r) {
-
         return view('about');
+    }
+
+    public function autoScroll(){
+        return view('scroll');
     }
 }

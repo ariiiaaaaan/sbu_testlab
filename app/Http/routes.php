@@ -49,6 +49,9 @@ Route::get('/gallery', ['as' => 'gallery', 'uses' => 'GalleryController@showGall
 Route::get('/about', ['as' => 'gallery', 'uses' => 'AboutController@showAbout'
 ]);
 
+Route::get('/scroll', ['as' => 'gallery', 'uses' => 'AboutController@autoScroll'
+]);
+
 Route::get('/cat', ['as' => 'cat', 'uses' => 'CategoryController@test']);
 
 Route::get('/member', ['as' => 'member', 'uses' => 'MemberController@showMember']);

@@ -1,3 +1,4 @@
+
 @extends('master')
 
 @section('outsource')
@@ -5,7 +6,6 @@
     <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
     <script src="js/isotope.pkgd.js"></script>
     <script src="js/masonry-horizontal.js"></script>
-
 @endsection
 
 @section('menu')
@@ -24,13 +24,13 @@
     </section>
     <section id="goals" class="onepage-section">
         <a href="#goals" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
-        <h2>Services We Provide</h2>
+        <h2>Our Goals</h2>
         <h3>We are working on software testing and repair</h3>
 
     </section>
     <section id="industry" class="onepage-section tab-section">
         <a href="#industry" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
-        <h2>Services We Provide</h2>
+        <h2>Test In Industry</h2>
             <div class="col-sm-12 section-nav-container">
                 <ul class="nav nav-pills text-center">
                     <li class="active"><a data-toggle="pill" href="#tab1">Services</a></li>
@@ -104,7 +104,7 @@
         <h3>copyright 2015</h3>
     </section>
 
-@endsection@extends('master')
+@endsection
 
 @section('outsource')
     <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}"/>

@@ -64,6 +64,6 @@
 
 </div>
 
-    @yield('absolutes');
+    @yield('absolutes')
 </body>
 </html>
