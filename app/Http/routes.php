@@ -59,5 +59,7 @@ Route::get('/edit', ['as' => 'edit', 'uses' => 'AdminController@showEditForm']);
 
 Route::get('/delete', ['as' => 'edit', 'uses' => 'AdminController@delete']);
 
+Route::get('/adminlogin' ,  ['as' => 'adminlogin', 'uses' => 'AdminController@doLogin']);
+
 
 

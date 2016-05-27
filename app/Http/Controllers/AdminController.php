@@ -66,6 +66,10 @@ class AdminController extends Controller {
         return $result;
     }
 
+    public function doLogin() {
+        return view('adminlogin');
+    }
+
     public function getInsertForm(Request $r){
         $tags = Tag::all();
         $cats =  Category::all();
@@ -78,6 +82,10 @@ class AdminController extends Controller {
         $id = $r->input('id');
         if($type == 'events') {
             $old = Content::find($id)->event;
+        } else if ($type == 'researches') {
+            $old = Content::find($id)->researches;
+        } else if ($type == 'members') {
+            $old = Member::find($id);
         }
         $tags = Tag::all();
         $cats =  Category::all();
@@ -92,6 +100,11 @@ class AdminController extends Controller {
             $index = Content::find($id);
             $index->delete();
             return redirect('admin');
+        } else if($type == 'researches') {
+            $index = Content::find($id);
+            $index->delete();
+            return redirect('admin');
+        } else if($type == 'members') {
         }
     }
 
@@ -233,7 +246,6 @@ class AdminController extends Controller {
                 $member->facebook = $request->input('facebook') == NULL ? NULL : $request->input('facebook');
                 $member->instagram = $request->input('instagram') == NULL ? NULL : $request->input('instagram');
                 $member->linkedin = $request->input('linkedin') == NULL ? NULL : $request->input('linkedin');
-                $member->save();
 
                 if($request->hasFile('img')) {
                     $file = $request->file('img');
@@ -246,7 +258,6 @@ class AdminController extends Controller {
                         $file->move($destination, $name);
                         //$photo->title = $request->input('photoTitle');
                         $photo->path = $destination . "/" . $name;
-                        $member->photos()->save($photo);
                     }
                 }
 
@@ -258,6 +269,8 @@ class AdminController extends Controller {
                     $record->start = $key['start'];
                     $record->end = $key['end'];
                     $record->type = $key['type'];
+                    $member->save();
+                    $member->photo()->save($photo);
                     $member->records()->save($record);
                 }
                 // $cat = Category::where('title', '=', $request->input('category'))->first();

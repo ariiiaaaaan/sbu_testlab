@@ -77,15 +77,15 @@
     @elseif($type == 'researches' )
         <div class="form-group">
             <label for="title">Title:</label>
-            <input type="text" class="form-control" id="title" name="title" value="{{ empty(old('title')) ? "" : old('title') }}">
+            <input type="text" class="form-control" id="title" name="title" value="{{ empty($old->content->title) ? "" : $old->content->title }}">
         </div>
         <div class="form-group">
             <label for="body">Author:</label>
-            <input type="text" class="form-control" id="Author" name="author" value="{{ empty(old('author')) ? "" : old('author') }}">
+            <input type="text" class="form-control" id="Author" name="author" value="{{ empty($old->author) ? "" : $old->author }}">
         </div>
         <div class="form-group">
             <label for="publishe">Publisher:</label>
-            <textarea class="form-control" id="publisher" name="publisher">{{ empty(old('publisher')) ? "" : old('publisher') }}</textarea>
+            <textarea class="form-control" id="publisher" name="publisher">{{ empty($old->publisher) ? "" : $old->publisher }}</textarea>
         </div>
         <div class="form-group">
             <label>Publish Date:</label>
@@ -93,7 +93,7 @@
         </div>
         <div class="form-group">
             <label for="body">Pages:</label>
-            <input type="number" class="form-control" id="pages" name="pages" value="{{ empty(old('pages')) ? "" : old('pages') }}">
+            <input type="number" class="form-control" id="pages" name="pages" value="{{ empty($old->pages) ? "" : $old->pages }}">
         </div>
         <div class="form-group">
             <label for="body">File:</label>
@@ -104,15 +104,15 @@
         </div>
         <div class="form-group">
             <label for="abstract">Abstract:</label>
-            <textarea class="form-control" id="abstract" name="abstract">{{ empty(old('abstract')) ? "" : old('abstract') }}</textarea>
+            <textarea class="form-control" id="abstract" name="abstract">{{ empty($old->abstract) ? "" : $old->abstract }}</textarea>
         </div>
         <div class="form-group">
             <label for="refrences">Refrences:</label>
-            <textarea class="form-control" id="refrences" name="refrences">{{ empty(old('refrences')) ? "" : old('refrences') }}</textarea>
+            <textarea class="form-control" id="refrences" name="refrences">{{ empty($old->refrences) ? "" : $old->refrences }}</textarea>
         </div>
         <div class="form-group">
             <label for="keywords">Keywords:</label>
-            <textarea class="form-control" id="keywords" name="keywords">{{ empty(old('keywords')) ? "" : old('keywords') }}</textarea>
+            <textarea class="form-control" id="keywords" name="keywords">{{ empty($old->keywords) ? "" : $old->keywords }}</textarea>
         </div>
         <div class="form-group">
             <label>Select Images:</label>
@@ -129,51 +129,51 @@
     @elseif($type == 'members' )
         <div class="form-group">
             <label for="firstname">Firstname:</label>
-            <input type="text" class="form-control" id="firstname" name="firstname" value="{{ empty(old('firstname')) ? "" : old('firstname') }}">
+            <input type="text" class="form-control" id="firstname" name="firstname" value="{{ empty($old->firstname) ? "" : $old->firstname }}">
         </div>
         <div class="form-group">
             <label for="lastname">Lastname:</label>
-            <input type="text" class="form-control" id="lastname" name="lastname" value="{{ empty(old('lastname')) ? "" : old('lastname') }}">
+            <input type="text" class="form-control" id="lastname" name="lastname" value="{{ empty($old->lastname) ? "" : $old->lastname }}">
         </div>
         <div class="form-group">
             <label for="emali">E-mail:</label>
-            <input type="email" class="form-control" id="emila" name="email" value="{{ empty(old('email')) ? "" : old('email') }}">
+            <input type="email" class="form-control" id="emila" name="email" value="{{ empty($old->email) ? "" : $old->email }}">
         </div>
         <div class="form-group">
             <label for="reaearchareas">Research Areas:</label>
-            <textarea class="form-control" id="researchareas" name="researchareas">{{ empty(old('researchareas')) ? "" : old('researchareas') }}</textarea>
+            <textarea class="form-control" id="researchareas" name="researchareas">{{ empty($old->researchareas) ? "" : $old->researchareas }}</textarea>
         </div>
         <div class="form-group">
             <label for="interests">Interests:</label>
-            <textarea class="form-control" id="interests" name="interests">{{ empty(old('interests')) ? "" : old('interests') }}</textarea>
+            <textarea class="form-control" id="interests" name="interests">{{ empty($old->interests) ? "" : $old->interests }}</textarea>
         </div>
         <div class="form-group">
             <label for="mobile">Mobile:</label>
-            <input type="text" class="form-control" id="mobile" name="mobile" value="{{ empty(old('mobile')) ? "" : old('mobile') }}">
+            <input type="text" class="form-control" id="mobile" name="mobile" value="{{ empty($old->mobile) ? "" : $old->mobile }}">
         </div>
         <div class="form-group">
             <label for="telephone">Telephone:</label>
-            <input type="text" class="form-control" id="telephone" name="telephone" value="{{ empty(old('telephone')) ? "" : old('telephone') }}">
+            <input type="text" class="form-control" id="telephone" name="telephone" value="{{ empty($old->telephone) ? "" : $old->telephone }}">
         </div>
         <div class="form-group">
             <label for="position">Position:</label>
-            <input type="text" class="form-control" id="position" name="position" value="{{ empty(old('position')) ? "" : old('position') }}">
+            <input type="text" class="form-control" id="position" name="position" value="{{ empty($old->position) ? "" : $old->position }}">
         </div>
         <div class="form-group">
             <label for="linkedin">Linkedin:</label>
-            <input type="text" class="form-control" id="linkedin" name="linkedin" value="{{ empty(old('linkedin')) ? "" : old('linkedin') }}">
+            <input type="text" class="form-control" id="linkedin" name="linkedin" value="{{ empty($old->linkedin) ? "" : $old->linkedin }}">
         </div>
         <div class="form-group">
             <label for="pinterest">Pinterest:</label>
-            <input type="text" class="form-control" id="pinterest" name="pinterest" value="{{ empty(old('pinterest')) ? "" : old('pinterest') }}">
+            <input type="text" class="form-control" id="pinterest" name="pinterest" value="{{ empty($old->pinterest) ? "" : $old->pinterest }}">
         </div>
         <div class="form-group">
             <label for="instagram">Instagram:</label>
-            <input type="text" class="form-control" id="instagram" name="instagram" value="{{ empty(old('instagram')) ? "" : old('instagram') }}">
+            <input type="text" class="form-control" id="instagram" name="instagram" value="{{ empty($old->instagram) ? "" : $old->instagram }}">
         </div>
         <div class="form-group">
             <label for="facebook">Facebook:</label>
-            <input type="text" class="form-control" id="facebook" name="facebook" value="{{ empty(old('facebook')) ? "" : old('facebook') }}">
+            <input type="text" class="form-control" id="facebook" name="facebook" value="{{ empty($old->facebook) ? "" : $old->facebook }}">
         </div>
         <div class="form-group">
             <label>Select ONE Image:</label>
