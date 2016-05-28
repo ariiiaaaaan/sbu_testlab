@@ -86,6 +86,8 @@ class AdminController extends Controller {
             $old = Content::find($id)->researches;
         } else if ($type == 'members') {
             $old = Member::find($id);
+        } else {
+            $old = Content::find($id);
         }
         $tags = Tag::all();
         $cats =  Category::all();
@@ -105,6 +107,13 @@ class AdminController extends Controller {
             $index->delete();
             return redirect('admin');
         } else if($type == 'members') {
+            $index = Member::find($id);
+            $index->delete();
+            return redirect('admin');
+        } else {
+            $index = Content::find($id);
+            $index->delete();
+             return redirect('admin');
         }
     }
 
@@ -231,7 +240,11 @@ class AdminController extends Controller {
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput()->with(array('errorcode' => 'members' , 'tags' => $this->returnTags()));
             } else {
-                $member = new Member;
+                if($mode == 1) {
+                    $member = new Member;
+                } else {
+                    $member = Member::find($id);
+                }
                 $member->firstname = $request->input('firstname');
                 $member->lastname = $request->input('lastname');
                 $member->email = $request->input('email');
@@ -258,20 +271,30 @@ class AdminController extends Controller {
                         $file->move($destination, $name);
                         //$photo->title = $request->input('photoTitle');
                         $photo->path = $destination . "/" . $name;
+                        $member->save();
+                        $member->photo()->save($photo);
                     }
                 }
 
+                if($mode == 0) {
+                    $record = Member::find($id)->records;
+                    foreach($record as $rec) {
+                        $rec->delete();
+                    }
+                }
                 $recordArray = $request->input('rec');
                 foreach($recordArray as $key) {
-                    $record = new Record;
-                    $record->institute = $key['institute'];
-                    $record->position = $key['position'];
-                    $record->start = $key['start'];
-                    $record->end = $key['end'];
-                    $record->type = $key['type'];
-                    $member->save();
-                    $member->photo()->save($photo);
-                    $member->records()->save($record);
+                    if(empty($key['delete']))
+                        $key['delete'] = 'off';
+                    if($key['delete'] != "on") {
+                        $record = new Record;
+                        $record->institute = $key['institute'];
+                        $record->position = $key['position'];
+                        $record->start = $key['start'];
+                        $record->end = $key['end'];
+                        $record->type = $key['type'];
+                        $member->records()->save($record);
+                    }
                 }
                 // $cat = Category::where('title', '=', $request->input('category'))->first();
                 return redirect('admin');
@@ -343,28 +366,49 @@ class AdminController extends Controller {
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput()->with(array('errorcode' => 'galleries' , 'tags' => $this->returnTags()));
             } else {
-                $content = new Content;
+                if($mode ==1) {
+                    $content = new Content;
+                } else {
+                    $content = Content::find($id);
+                }
                 $content->title = $request->input('title');
                 $content->body = $request->input('body');
                 $content->type = $type;
                 $content->save();
-                $file = $request->file('img');
-                for ($i=0;$i<count($file);$i++) {
-                    if ($file[$i]->isValid()) {
-                        $photo = new Photo;
-                        $tempName = $file[$i]->getClientOriginalName();
-                        $extension = explode(".",$tempName);
-                        $name = $extension[0]."-".time().".".$extension[1];
-                        $destination = 'upload';
-                        $file[$i]->move($destination, $name);
-                        $photo->title = $request->input('imgtitle')[$i];
-                        $photo->path = $destination . "/" . $name;
-                        $content->photos()->save($photo);
+                    if($request->hasFile('img')) {
+                        $file = $request->file('img');
+                        for ($i = 0; $i < count($file); $i++) {
+                            if ($file[$i]->isValid()) {
+                                $photo = new Photo;
+                                $tempName = $file[$i]->getClientOriginalName();
+                                $extension = explode(".", $tempName);
+                                $name = $extension[0] . "-" . time() . "." . $extension[1];
+                                $destination = 'upload';
+                                $file[$i]->move($destination, $name);
+                                $photo->title = $request->input('imgtitle')[$i];
+                                $photo->path = $destination . "/" . $name;
+                                $content->photos()->save($photo);
+                            }
+                        }
+                    }
+                if($mode != 1) {
+                    if (!empty($request->input('oldimg'))) {
+                        foreach ($request->input('oldimg') as $img) {
+                            if (empty($img['delete'])) {
+                                $img['delete'] = "off";
+                            }
+                            if ($img['delete'] == "on") {
+                                $temp = Photo::find($img['id']);
+                                $temp->delete();
+                            }
+                        }
                     }
                 }
-                foreach ($tag as $insertTag) {
-                    $row = Tag::where('title', '=', $insertTag)->first();
-                    $content->tags()->save($row);
+                if(!empty($tag)) {
+                    foreach ($tag as $insertTag) {
+                        $row = Tag::where('title', '=', $insertTag)->first();
+                        $content->tags()->save($row);
+                    }
                 }
                 //$cat = Category::where('title', '=', $request->input('category'))->first();
                 //$content->categories()->save($cat);

@@ -29,7 +29,7 @@
                 <td class="title">{{$item->firstname}}</td>
                 <td class="body">{{$item->lastname}}</td>
                 <td class="date">{{$item->email}}</td>
-                <td class="actions"><a class="admin-action delete" href="edit?type={{$type}}&id={{$item->id}}">delete</a>&nbsp | &nbsp<a class="admin-action edit" href="edit?type={{$type}}&id={{$item->id}}">edit</a> </td>
+                <td class="actions"><a class="admin-action delete" href="delete?type={{$type}}&id={{$item->id}}">delete</a>&nbsp | &nbsp<a class="admin-action edit" href="edit?type={{$type}}&id={{$item->id}}">edit</a> </td>
             </tr>
         @endforeach
     </table>
