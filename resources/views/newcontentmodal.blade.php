@@ -2,11 +2,11 @@
     @if($type != 'events' && $type != 'researches' && $type != 'members')
         <div class="form-group">
             <label for="title">title:</label>
-            <input type="text" class="form-control" id="title" name="title" value="{{ empty(old('title')) ? "" : old('title') }}">
+            <input type="text" class="form-control" id="title" name="title" value="{{ empty($old->title) ? "" : $old->title }}">
         </div>
         <div class="form-group">
             <label for="body">body:</label>
-            <textarea class="form-control ckedit" id="body" name="body" rows="10" cols="50" value="{{ empty(old('body')) ? "" : old('body') }}"></textarea>
+            <textarea class="form-control ckedit" id="body" name="body" rows="10" cols="50">{{ empty($old->body) ? "" : $old->body }}</textarea>
             <script>
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.
@@ -22,11 +22,24 @@
             @include('categorysimple',['cats'=>$cats])
         </div>
         @if($type ==  "galleries")
+            @if($mode == 0)
+            @foreach($old->photos as $key => $photo)
+                <div class="form-group img">
+                    <label>Select Images:</label>
+                    <img src="{{$photo->path}}">
+                    <label for="delete">Delete
+                        <input type="checkbox" name="oldimg[{{$key}}][delete]" id="delete">
+                    </label>
+                    <input type="text" disabled="disabled" class="small" placeholder="Title" value="{{ empty($photo->title) ? "" : $photo->title }}">
+                    <input type="hidden" name="oldimg[{{$key}}][id]" value="{{$photo->id}}">
+                </div>
+            @endforeach
+            @endif
             <div class="form-group img">
                 <label>Select Images:</label>
                 <input type="file" name="img[]">
 
-                <input type="text" class="small" placeholder="Title" name="imgtitle[]" value="{{ empty(old('imgtitle')) ? "" : old('imgtitle') }}">
+                <input type="text" class="small" placeholder="Title" name="imgtitle[]">
             </div>
             <div  class="add-img-input">Add More Images</div>
         @else
@@ -225,7 +238,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <span> DELETE </span><input type="checkbox" name="delete">
+                            <span> DELETE </span><input type="checkbox" name="rec[{{$key}}][delete] ">
                         </div>
                     </div>
                 @endforeach
