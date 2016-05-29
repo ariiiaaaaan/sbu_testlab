@@ -14,6 +14,7 @@
     <form action="adminlogin" method="post">
         <label for="password">Password</label>
         <input type="password" name="password" id="password">
-        <input type="submit" value="Enter" class="btn btn-primary" >
+        <input type="submit" value="Enter" class="btn btn-primary">
+        {{ csrf_field() }}
     </form>
 </body>

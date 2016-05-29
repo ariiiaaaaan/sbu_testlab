@@ -10,6 +10,8 @@ use App\Member;
 use App\Tag;
 use App\Photo;
 use App\Record;
+use Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use \Illuminate\Support\Facades\DB;
@@ -66,8 +68,23 @@ class AdminController extends Controller {
         return $result;
     }
 
-    public function doLogin() {
+    public function showLogin() {
         return view('adminlogin');
+    }
+
+    public function doLogin(Request $r) {
+        $index = User::where('title','=','password')->first();
+        if(Hash::check($r->input('password'),$index->body)) {
+            Auth::login($index);
+            return redirect('admin');
+        } else {
+            return redirect('adminlogin');
+        }
+    }
+
+    public function doLogout() {
+        Auth::logout();
+        return redirect('adminlogin');
     }
 
     public function getInsertForm(Request $r){
@@ -220,9 +237,11 @@ class AdminController extends Controller {
                             $content->photos()->save($photo);
                         }
                     }
-                    foreach ($tag as $insertTag) {
-                        $row = Tag::where('title', '=', $insertTag)->first();
-                        $content->tags()->save($row);
+                    if(!empty($tag)) {
+                        foreach ($tag as $insertTag) {
+                            $row = Tag::where('title', '=', $insertTag)->first();
+                            $content->tags()->save($row);
+                        }
                     }
                     //$cat = Category::where('title', '=', $request->input('category'))->first();
                     //$content->categories()->save($cat);
@@ -309,8 +328,13 @@ class AdminController extends Controller {
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput()->with(array('errorcode' => 'researches' , 'tags' => $this->returnTags()));
             } else {
-                $research = new Research;
-                $content = new Content;
+                if($mode == 1) {
+                    $research = new Research;
+                    $content = new Content;
+                } else {
+                    $research = Research::find($id);
+                    $content = $research->content;
+                }
                 $content->title = $request->input('title');
                 $research->author = $request->input('author');
                 $content->body = $request->input('body');
@@ -323,7 +347,6 @@ class AdminController extends Controller {
                 $research->abstract = $request->input('abstract') == NULL ? NULL : $request->input('abstract');
                 $research->keywords = $request->input('keywords') == NULL ? NULL : $request->input('keywords');
                 $research->refrences = $request->input('refrences') == NULL ? NULL : $request->input('refrences');
-                $files = $request->file('img');
                 $path = $request->file('path');
                 if ($path->isValid()) {
                     $tempName = $path->getClientOriginalName();
@@ -333,22 +356,27 @@ class AdminController extends Controller {
                     $path->move($destination, $name);
                     $research->path = $destination . "/" .$name;
                 }
-                foreach ($files as $file) {
-                    if ($file->isValid()) {
-                        $photo = new Photo;
-                        $tempName = $file->getClientOriginalName();
-                        $extension = explode(".",$tempName);
-                        $name = $extension[0]."-".time().".".$extension[1];
-                        $destination = 'upload';
-                        $file->move($destination, $name);
-                        //$photo->title = $request->input('photoTitle');
-                        $photo->path = $destination . "/" . $name;
-                        $content->photos()->save($photo);
+                if($request->hasFile('img')) {
+                    $files = $request->file('img');
+                    foreach ($files as $file) {
+                        if ($file->isValid()) {
+                            $photo = new Photo;
+                            $tempName = $file->getClientOriginalName();
+                            $extension = explode(".", $tempName);
+                            $name = $extension[0] . "-" . time() . "." . $extension[1];
+                            $destination = 'upload';
+                            $file->move($destination, $name);
+                            //$photo->title = $request->input('photoTitle');
+                            $photo->path = $destination . "/" . $name;
+                            $content->photos()->save($photo);
+                        }
                     }
                 }
-                foreach ($tag as $insertTag) {
-                    $row = Tag::where('title', '=', $insertTag)->first();
-                    $content->tags()->save($row);
+                if(!empty($tag)) {
+                    foreach ($tag as $insertTag) {
+                        $row = Tag::where('title', '=', $insertTag)->first();
+                        $content->tags()->save($row);
+                    }
                 }
                 //$cat = Category::where('title', '=', $request->input('category'))->first();
                 //$content->categories()->save($cat);
@@ -449,9 +477,11 @@ class AdminController extends Controller {
                         }
                     }
                 }
-                foreach ($tag as $insertTag) {
-                    $row = Tag::where('title', '=', $insertTag)->first();
-                    $news->tags()->save($row);
+                if(!empty($tag)) {
+                    foreach ($tag as $insertTag) {
+                        $row = Tag::where('title', '=', $insertTag)->first();
+                        $news->tags()->save($row);
+                    }
                 }
                 return redirect('admin');
             }
