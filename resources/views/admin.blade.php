@@ -143,6 +143,7 @@
 
 </head>
 <body data-spy="scroll" data-target=".navbar-main" data-offset="60">
+<a href="logout" class="btn-primary" id="logout">LogOut</a>
 <div class="container">
         <div class="row">
         <div class="col-sm-3" id="nav-container" data-spy="affix" data-offset-top="8">

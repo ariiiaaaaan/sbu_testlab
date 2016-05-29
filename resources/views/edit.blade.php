@@ -4,6 +4,10 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/admin.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="ResponsiveMultiLevelMenu/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="ResponsiveMultiLevelMenu/css/component.css" />
+    <script src="ResponsiveMultiLevelMenu/js/modernizr.custom.js"></script>
+    <script src="ResponsiveMultiLevelMenu/js/jquery.dlmenu.js"></script>
     <script>
         $(document).ready(function(){
             $("body").on("click",".add-img-input",function(){
@@ -16,6 +20,12 @@
                 recnum = recnum + 1;
                 var regex = new RegExp('0', 'g');
                 $(".form-group.rec").append(form.replace(regex,recnum.toString()));
+            });
+
+            $(function() {
+                $('#cat-container').dlmenu({
+                    animationClasses: {classin: 'dl-animate-in-3', classout: 'dl-animate-out-3'}
+                });
             });
 
         });

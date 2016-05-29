@@ -243,3 +243,22 @@ label{
 .form-group.img-old img{
     width: 10vw;
 }
+
+#logout{
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    text-decoration: none;
+    text-align: center;
+    position: fixed;
+    transition: all 1s;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    opacity: .7;
+}
+
+#logout:hover{
+    opacity: 1;
+}
