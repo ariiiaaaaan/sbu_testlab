@@ -24,8 +24,8 @@
         @if($type ==  "galleries")
             @if($mode == 0)
             @foreach($old->photos as $key => $photo)
-                <div class="form-group img">
-                    <label>Select Images:</label>
+                <div class="form-group img-old">
+                    <label>Old Image:</label>
                     <img src="{{$photo->path}}">
                     <label for="delete">Delete
                         <input type="checkbox" name="oldimg[{{$key}}][delete]" id="delete">
@@ -38,7 +38,6 @@
             <div class="form-group img">
                 <label>Select Images:</label>
                 <input type="file" name="img[]">
-
                 <input type="text" class="small" placeholder="Title" name="imgtitle[]">
             </div>
             <div  class="add-img-input">Add More Images</div>
