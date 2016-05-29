@@ -65,7 +65,7 @@
     </section>
     <section id="research" class="onepage-section">
         <a href="#research" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
-        <h2>Events</h2>
+        <h2>Research</h2>
         <h3>Seminars and Presentations we want to provide</h3>
     </section>
     <section id="tools" class="onepage-section">
