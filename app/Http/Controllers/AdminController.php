@@ -89,7 +89,8 @@ class AdminController extends Controller {
 
     public function getInsertForm(Request $r){
         $tags = Tag::all();
-        $cats =  Category::all();
+        $catcon = new CategoryController();
+        $cats = $catcon->getTree();
         return view('newcontentmodal',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'mode' => 1 ,'tags'=>$tags,'cats'=>$cats]);
     }
 
@@ -107,7 +108,8 @@ class AdminController extends Controller {
             $old = Content::find($id);
         }
         $tags = Tag::all();
-        $cats =  Category::all();
+        $catcon = new CategoryController();
+        $cats = $catcon->getTree();
         return view('edit',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'tags'=>$tags,'cats'=>$cats,'old' => $old]);
     }
 

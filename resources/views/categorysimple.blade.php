@@ -9,19 +9,14 @@
     <script>
 
         $(document).ready(function() {
-            $(function() {
-                $('#cat-container').dlmenu({
-                    animationClasses: {classin: 'dl-animate-in-3', classout: 'dl-animate-out-3'}
-                });
+
+            $('#cat-container').dlmenu({
+                animationClasses: {classin: 'dl-animate-in-3', classout: 'dl-animate-out-3'}
             });
 
-            $("body").on("click","#cat-container li",function(){
-                // alert("r");
-//            $("#selectes-cat").attr("value") = $(this).attr("cat-id");
-            });
         });
     </script>
 
 @endsection
 
-@include("category");
+@include("category")

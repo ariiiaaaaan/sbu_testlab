@@ -7,6 +7,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/admin.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/dropdown.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/category.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="ResponsiveMultiLevelMenu/css/component.css" />
+
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
@@ -18,6 +21,8 @@
     <!-- Latest compiled JavaScript -->
     <script src="js/bootstrap.js"></script>
     <script src="ckeditor/ckeditor.js"></script>
+    <script src="ResponsiveMultiLevelMenu/js/modernizr.custom.js"></script>
+    <script src="ResponsiveMultiLevelMenu/js/jquery.dlmenu.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @yield('outsource')
     <script>
@@ -71,7 +76,9 @@
                                 $('#insert-modal').modal();
                                 $('#insert-modal .modal-body').html(data);
                                 $('#insert-modal').modal("show");
-                                $(".cat-select").dropdown();
+                                $('#cat-container').dlmenu({
+                                    animationClasses: {classin: 'dl-animate-in-3', classout: 'dl-animate-out-3'}
+                                });
                             },
                             error: function(jqXHR, textStatus, errorThrown)
                             {
@@ -143,21 +150,28 @@
 
 </head>
 <body data-spy="scroll" data-target=".navbar-main" data-offset="60">
-<a href="logout" class="btn-primary" id="logout">LogOut</a>
-<div class="container">
+
+<div class="container" id="admin-container">
         <div class="row">
+            <a href="logout" class="btn-primary" id="logout">LogOut</a>
         <div class="col-sm-3" id="nav-container" data-spy="affix" data-offset-top="8">
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a data-toggle="pill" href="#tab1">Services</a></li>
                 <li><a data-toggle="pill" href="#tab2">Blogs</a></li>
                 <li><a data-toggle="pill" href="#tab3">News</a></li>
                 <li><a data-toggle="pill" href="#tab4">Events</a></li>
-                <li><a data-toggle="pill" href="#tab5">Researches</a></li>
-                <li><a data-toggle="pill" href="#tab6">Contact</a></li>
-                <li><a data-toggle="pill" href="#tab7">Galleries</a></li>
-                <li><a data-toggle="pill" href="#tab8">Members</a></li>
-                <li><a data-toggle="pill" href="#tab9">Company</a></li>
-                <li><a data-toggle="pill" href="#tab10">Newsletter</a></li>
+                <li><a data-toggle="pill" href="#tab5">Papers(other's)</a></li>
+                <li><a data-toggle="pill" href="#tab6">Resources</a></li>
+                <li><a data-toggle="pill" href="#tab7">Researches</a></li>
+                <li><a data-toggle="pill" href="#tab8">Tools</a></li>
+                <li><a data-toggle="pill" href="#tab9">Galleries</a></li>
+                <li><a data-toggle="pill" href="#tab10">Members</a></li>
+                <li><a data-toggle="pill" href="#tab11">Company</a></li>
+                <li><a data-toggle="pill" href="#tab12">Newsletter</a></li>
+                <li><a data-toggle="pill" href="#tab13">NL Groups</a></li>
+                <li><a data-toggle="pill" href="#tab14">Variables</a></li>
+                <li><a data-toggle="pill" href="#tab15">Tags</a></li>
+                <li><a data-toggle="pill" href="#tab16">Categories</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3" id="main-container">
@@ -198,27 +212,51 @@
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab5" class="tab-pane fade" data-entity="contents" data-type="researches">
+                <div id="tab5" class="tab-pane fade" data-entity="contents" data-type="papers">
+                    <h3>Menu 1</h3>
+                    <p>Some content in menu 1.</p>
+                </div>
+                <div id="tab6" class="tab-pane fade" data-entity="contents" data-type="resources">
+                    <h3>Menu 1</h3>
+                    <p>Some content in menu 1.</p>
+                </div>
+                <div id="tab7" class="tab-pane fade" data-entity="contents" data-type="researches">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab6" class="tab-pane fade" data-entity="contacts" data-type="contacts">
+                <div id="tab8" class="tab-pane fade" data-entity="contents" data-type="tools">
+                    <h3>Menu 1</h3>
+                    <p>Some content in menu 1.</p>
+                </div>
+                <div id="tab9" class="tab-pane fade" data-entity="contents" data-type="galleries">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab7" class="tab-pane fade" data-entity="contents" data-type="galleries">
+                <div id="tab10" class="tab-pane fade" data-entity="members" data-type="members">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab8" class="tab-pane fade" data-entity="members" data-type="members">
+                <div id="tab11" class="tab-pane fade" data-entity="contents" data-type="companies">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab9" class="tab-pane fade" data-entity="contents" data-type="companies">
+                <div id="tab12" class="tab-pane fade" data-entity="contents" data-type="newsletters">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab10" class="tab-pane fade" data-entity="newsletter">
+                <div id="tab13" class="tab-pane fade" data-entity="newsletter-groups" data-type="newsletter-groups">
+                    <h3>Menu 2</h3>
+                    <p>Some content in menu 2.</p>
+                </div>
+                <div id="tab14" class="tab-pane fade" data-entity="variables" data-type="variables">
+                    <h3>Menu 2</h3>
+                    <p>Some content in menu 2.</p>
+                </div>
+                <div id="tab15" class="tab-pane fade" data-entity="tags" data-type="tags">
+                    <h3>Menu 2</h3>
+                    <p>Some content in menu 2.</p>
+                </div>
+                <div id="tab16" class="tab-pane fade" data-entity="categories" data-type="categories">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>

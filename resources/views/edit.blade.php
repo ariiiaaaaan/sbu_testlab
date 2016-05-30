@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="ResponsiveMultiLevelMenu/css/component.css" />
     <script src="ResponsiveMultiLevelMenu/js/modernizr.custom.js"></script>
     <script src="ResponsiveMultiLevelMenu/js/jquery.dlmenu.js"></script>
+    <script src="ckeditor/ckeditor.js"></script>
     <script>
         $(document).ready(function(){
             $("body").on("click",".add-img-input",function(){

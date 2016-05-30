@@ -102,12 +102,14 @@ label{
     bottom: 5px;
 }
 .form-group.dateinput{
-    width: 15%;
+    width: 14vw !important;
     display: inline-block;
 }
 
 .form-group.dateinput select{
-    margin: 0 5px !important;
+    margin: 0 2px !important;
+    font-size: 12px;
+    padding: 0;
 }
 
 .form-group.dateinput label{
@@ -120,7 +122,7 @@ label{
 }
 
 .form-group.dateinput.time{
-    width: 25%;
+    width: 18vw !important;
 }
 
 .form-group.dateinput.year{
@@ -244,6 +246,10 @@ label{
     width: 10vw;
 }
 
+#admin-container{
+    position: relative;
+}
+
 #logout{
     width: 80px;
     height: 30px;
@@ -251,10 +257,10 @@ label{
     font-size: 18px;
     text-decoration: none;
     text-align: center;
-    position: fixed;
+    position: absolute;
     transition: all 1s;
-    top: 20px;
-    right: 20px;
+    top: 40px;
+    right: 0px;
     z-index: 100;
     opacity: .7;
 }
@@ -262,3 +268,22 @@ label{
 #logout:hover{
     opacity: 1;
 }
+
+/*#new-content-form .form-group{*/
+    /*width: 90%;*/
+    /*margin: 5px auto;*/
+/*}*/
+
+#cat-container{
+    float: right;
+    z-index: 101;
+}
+
+#nav-container{
+    overflow: scroll;
+    height: 90vh;
+}
+
+#nav-container::-webkit-scrollbar { width: 0 !important }
+#nav-container{ -ms-overflow-style: none; }
+#nav-container { overflow: -moz-scrollbars-none; }

@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
             <label>Category: </label>
-            @include('categorysimple',['cats'=>$cats])
+            @include('categorysimple',['nodes'=>$cats,'level'=>0])
         </div>
         @if($type ==  "galleries")
             @if($mode == 0)
@@ -68,11 +68,11 @@
         </div>
         <div class="form-group">
             <label>Start:</label>
-            @include('dateinput',['prefix'=>"start"])
+            @include('dateinput',['prefix'=>"start",'date' => isset($old->start) ? $old->start : "0|0|0|0|0"])
         </div>
         <div class="form-group">
             <label>End:</label>
-            @include('dateinput',['prefix'=>"end"])
+            @include('dateinput',['prefix'=>"end",'date' => isset($old->end) ? $old->end : "0|0|0|0|0"])
         </div>
         <div class="form-group">
             <label>Select Images:</label>
@@ -84,7 +84,7 @@
         </div>
         <div class="form-group">
             <label>Category: </label>
-            @include('categorysimple',['cats'=>$cats])
+            @include('categorysimple',['nodes'=>$cats,'level'=>0])
         </div>
     @elseif($type == 'researches' )
         <div class="form-group">
@@ -101,7 +101,7 @@
         </div>
         <div class="form-group">
             <label>Publish Date:</label>
-            @include('dateinput',['prefix'=>"date"])
+            @include('dateinput',['prefix'=>"date",'date' => isset($old->date) ? $old->date : "0|0|0|0|0"])
         </div>
         <div class="form-group">
             <label for="body">Pages:</label>
@@ -136,7 +136,7 @@
         </div>
         <div class="form-group">
             <label>Category: </label>
-            @include('categorysimple',['cats'=>$cats])
+            @include('categorysimple',['nodes'=>$cats,'level'=>0])
         </div>
     @elseif($type == 'members' )
         <div class="form-group">

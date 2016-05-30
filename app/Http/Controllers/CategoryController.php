@@ -38,6 +38,6 @@ class CategoryController extends Controller {
     }
 
     public function test(){
-        return view('category',['nodes' => CategoryController::getTree(),'root' => false,'level' => 0]);
+        return view('categorysimple',['nodes' => CategoryController::getTree(),'root' => false,'level' => 0]);
     }
 }
