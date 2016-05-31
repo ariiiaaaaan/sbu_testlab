@@ -275,7 +275,7 @@
             </div>
         </div>
     @elseif($type == 'newsletter-groups')
-        <div class="text-center text-success"> enter Emails separated with '#' and no space</div>
+        <div class="text-center text-success"> enter NAME:EMAIL separated with '#' and no space</div>
         <div class="form-group">
             <label for="title">title:</label>
             <input type="text" class="form-control" id="title" name="title" value="{{ empty($old->title) ? "" : $old->title }}">
