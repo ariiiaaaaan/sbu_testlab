@@ -265,9 +265,23 @@
             <textarea class="form-control" id="body" name="body" rows="10" cols="50">{{ empty($old->body) ? "" : $old->body }}</textarea>
         </div>
     @elseif($type == 'categories')
-        <div class="text-center text-success"> enter tags separated with '#' and no space</div>
+        <div class="text-center text-success"> select parent and enter category title, dont select parent to add a root</div>
         <div class="form-group">
-            <label for="body">tags:</label>
+            <label>Category: </label>
+            @include('categorysimple',['nodes'=>$cats,'level'=>0])
+            <div class="form-group">
+                <label for="title">title:</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ empty($old->title) ? "" : $old->title }}">
+            </div>
+        </div>
+    @elseif($type == 'newsletter-groups')
+        <div class="text-center text-success"> enter Emails separated with '#' and no space</div>
+        <div class="form-group">
+            <label for="title">title:</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ empty($old->title) ? "" : $old->title }}">
+        </div>
+        <div class="form-group">
+            <label for="body">Emails:</label>
             <textarea class="form-control" id="body" name="body" rows="10" cols="50">{{ empty($old->body) ? "" : $old->body }}</textarea>
         </div>
     @endif
