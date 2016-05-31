@@ -26,12 +26,29 @@
         <a href="#goals" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>Our Goals</h2>
         <h3>We are working on software testing and repair</h3>
+        <div class="section-text">
+            <div class="auto-scroll-wrapper">
+                <div class="auto-scroll">
+                    Why? Because such a move would undoubtedly hit the aforementioned upsell factor. Apple may try and counter this by making 128GB and 256GB the new mid and top level storage options, but I can still see 32GB proving to be ‘enough’ for many mainstream users. Similarly the knock-on effect of a 128GB midranger would likely make the top end 256GB edition wholly unnecessary for most people.
 
+                    As such the move to 32GB would be a risk. But does Apple have a choice?
+
+                    Personally I’d argue it is no longer credible in 2016 to sell a smartphone with 16GB of storage for $650 and after Apple’s sales hit with the iPhone 6S it may be forced to move with the times.
+                    Obviously the latter is the real talking point given the iPhone range has been marooned on 16GB since the iPhone 5 was introduced back in 2012. This is criminal given rivals moved to 32GB years ago and Apple has since introduced a 50% larger camera sensor plus storage hogging Live Photos and 4K video recording to its phones.
+                    Why? Because such a move would undoubtedly hit the aforementioned upsell factor. Apple may try and counter this by making 128GB and 256GB the new mid and top level storage options, but I can still see 32GB proving to be ‘enough’ for many mainstream users. Similarly the knock-on effect of a 128GB midranger would likely make the top end 256GB edition wholly unnecessary for most people.
+
+                    As such the move to 32GB would be a risk. But does Apple have a choice?
+
+                    Personally I’d argue it is no longer credible in 2016 to sell a smartphone with 16GB of storage for $650 and after Apple’s sales hit with the iPhone 6S it may be forced to move with the times.
+                    Obviously the latter is the real talking point given the iPhone range has been marooned on 16GB since the iPhone 5 was introduced back in 2012. This is criminal given rivals moved to 32GB years ago and Apple has since introduced a 50% larger camera sensor plus storage hogging Live Photos and 4K video recording to its phones.
+                </div>
+            </div>
+        </div>
     </section>
     <section id="industry" class="onepage-section tab-section">
         <a href="#industry" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>Test In Industry</h2>
-            <div class="col-sm-12 section-nav-container">
+            <div class="section-nav-container">
                 <ul class="nav nav-pills text-center">
                     <li class="active"><a data-toggle="pill" href="#tab1">Services</a></li>
                     <li><a data-toggle="pill" href="#tab2">Field</a></li>

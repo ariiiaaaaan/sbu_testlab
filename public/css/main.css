@@ -33,6 +33,7 @@ body{
 
 .affix{
     width: 100%;
+    height: 55px;
     position: fixed !important;
     top: 0 !important;
     /*transition: all 0.5s;*/
@@ -225,22 +226,13 @@ body{
  padding: 0;
 }
 
-.tab-section .nav-pills li{
-    float: none;
-    margin: 0 5px;
-    min-width: 5vw;
-    display: inline-block;
-}
-
-.tab-section .nav-pills li a{
-    border-radius: 0;
-}
-
 .tab-section .hider{
     margin: 20px auto 0;
 }
 
-.tab-section
+.tab-content #services-next,.tab-content #services-prev{
+    top: 20vh !important;
+}
 
 .page-header{
     position: relative;
@@ -405,8 +397,6 @@ body{
 }
 
 .auto-scroll-wrapper{
-    height: 50px;
-    width: 100%;
     overflow: hidden;
     position: relative;
 }
@@ -415,4 +405,19 @@ body{
     position: absolute;
     top: 0;
     left: 0;
+    padding: 20px;
+    cursor: pointer;
+    /*transition: all 5s;*/
+}
+
+.section-text{
+    background-color: rgba(0,0,0,0.7);
+    margin: 1vh auto 3vh;
+    width: 80vw;
+    padding: 2vh;
+    text-align: justify;
+}
+
+.section-text .auto-scroll-wrapper{
+    height: 40vh; ;
 }

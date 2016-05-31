@@ -123,9 +123,6 @@ position: absolute;
     color: #aaaaaa;
     transition: all .5s;
 }
-#services-next{
-    top:20vh;
-}
 
 #services-prev,#company-prev,#members-prev{
     position: absolute;
@@ -134,10 +131,6 @@ position: absolute;
     cursor: pointer;
     color: #aaaaaa;
     transition: all .5s;
-}
-
-#services-prev{
-    top:20vh;
 }
 
 #services-next:hover,#services-prev:hover,#members-next:hover,#members-prev:hover,#company-next:hover,#company-prev:hover{
@@ -154,7 +147,7 @@ position: absolute;
 }
 
 #company-wrapper,#members-wrapper{
-    margin-top: 5vh;
+    margin-top: 0vh;
     height: 50vh;
 }
 
@@ -256,7 +249,7 @@ section#members .hider{
     display: inline-block;
     background-color: #373737;
     width: 25vw;
-    margin: 4vh 2.5vw;
+    margin: 0vh 2.5vw;
     height: 48vh;
     box-shadow: 0 0 4px black;
     cursor: pointer;
@@ -465,7 +458,7 @@ section#members .hider{
     margin: 2vh 4% 0;
 }
 #events #event-wrapper{
-    height: 56vh;
+    height: 60vh;
     left: 0px;
     transition: all 0.5s;
 }
@@ -530,6 +523,7 @@ section#members .hider{
 .gallery .gallery-body p{
     padding-top:1vw ;
     max-width: 25vw;
+    height: 25vh;
     position: absolute;
     opacity: 0;
     background-color: rgba(0,0,0,0.5);
@@ -721,6 +715,51 @@ section#members .hider{
 
 #contact .socials .ld{
     background-color:#238cc8 ;
+}
+
+
+.section-nav-container{
+    float: left;
+    position: absolute;
+    top: 65px;
+    left:10px;
+}
+
+.tab-section .nav-pills li{
+    float: left;
+    margin: 0;
+    display: inline-block;
+    padding: 0;
+}
+
+.tab-section .nav-pills li a,.tab-section .nav-pills li a:hover{
+    border-radius: 0;
+    text-decoration: none;
+    min-width: 8vw;
+    height: 25px;
+    line-height: 30px;
+    margin: 0;
+    padding: 0 15px;
+    text-align: center;
+    background-color: #1b687b;
+    color: #dddddd;
+    transition: all .8s;
+}
+
+.tab-section .nav-pills li a:hover{
+    color: white;
+}
+
+.onepage-section:nth-child(even).tab-section .nav-pills li.active a{
+    background-color: #0088ff;
+}
+
+.onepage-section:nth-child(odd).tab-section .nav-pills li.active a{
+    background-color: #373737;
+}
+
+#goals .section-text .auto-scroll-wrapper{
+    height: 50vh;
 }
 
 

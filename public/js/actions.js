@@ -57,8 +57,8 @@ $(document).ready(function(){
     var current = parseInt( $("#event-wrapper").css("left"),10);
     var max = $("#event-wrapper").width();
     var animateto = current - 28 * vh;
-    if(animateto < -max + 28 * vh)
-      animateto = -max + 28 * vh;
+    if(animateto < -max + 130 * vh)
+      animateto = -max + 130 * vh;
     $("#event-wrapper").css("left",animateto.toString() + "px");
   });
 
@@ -121,8 +121,14 @@ $(document).ready(function(){
     h1 = $(this).height();
     h2 = inside.height();
     if(h1 < h2){
-      inside.animate({top: h1-h2},((h1/h2)+1)*8000);
+      inside.clearQueue().stop();
+      inside.animate({top: h1-h2},((h1/h2)+1)*6000);
     }
+  });
+  $(".auto-scroll-wrapper").mouseleave(function(){
+    inside = $(this).find(".auto-scroll");
+    inside.clearQueue().stop();
+    inside.animate({top: 0},((h1/h2)+1)*2500);
   });
 });
 

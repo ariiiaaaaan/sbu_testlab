@@ -11,7 +11,7 @@
                 layoutMode: 'masonryHorizontal',
                 itemSelector: '.event',
                 masonryHorizontal: {
-                    rowHeight: $(window).height()*0.55/2
+                    rowHeight: $(window).height()*0.60/2
                 }});
             $('.event').mouseover(function(){
                 $('.event').addClass("fade");
@@ -33,6 +33,30 @@
     <section id="home" class="onepage-section">
         <img src="images/header-logo-prev.png" class="header-logo">
         <p class="logo-caption">Shahid Beheshti University Of Tehran Laboratories</p>
+    </section>
+    <section id="Introduction" class="onepage-section">
+        <a href="#Introduvtion" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
+        <h2>Introduction</h2>
+        <h3>Who we are and what we can do</h3>
+        <div class="section-text">
+            <div class="auto-scroll-wrapper">
+                <div class="auto-scroll">
+                    Why? Because such a move would undoubtedly hit the aforementioned upsell factor. Apple may try and counter this by making 128GB and 256GB the new mid and top level storage options, but I can still see 32GB proving to be ‘enough’ for many mainstream users. Similarly the knock-on effect of a 128GB midranger would likely make the top end 256GB edition wholly unnecessary for most people.
+
+                    As such the move to 32GB would be a risk. But does Apple have a choice?
+
+                    Personally I’d argue it is no longer credible in 2016 to sell a smartphone with 16GB of storage for $650 and after Apple’s sales hit with the iPhone 6S it may be forced to move with the times.
+                    Obviously the latter is the real talking point given the iPhone range has been marooned on 16GB since the iPhone 5 was introduced back in 2012. This is criminal given rivals moved to 32GB years ago and Apple has since introduced a 50% larger camera sensor plus storage hogging Live Photos and 4K video recording to its phones.
+                    Why? Because such a move would undoubtedly hit the aforementioned upsell factor. Apple may try and counter this by making 128GB and 256GB the new mid and top level storage options, but I can still see 32GB proving to be ‘enough’ for many mainstream users. Similarly the knock-on effect of a 128GB midranger would likely make the top end 256GB edition wholly unnecessary for most people.
+
+                    As such the move to 32GB would be a risk. But does Apple have a choice?
+
+                    Personally I’d argue it is no longer credible in 2016 to sell a smartphone with 16GB of storage for $650 and after Apple’s sales hit with the iPhone 6S it may be forced to move with the times.
+                    Obviously the latter is the real talking point given the iPhone range has been marooned on 16GB since the iPhone 5 was introduced back in 2012. This is criminal given rivals moved to 32GB years ago and Apple has since introduced a 50% larger camera sensor plus storage hogging Live Photos and 4K video recording to its phones.
+                </div>
+            </div>
+        </div>
+        <a href="blogs" class="blog-btn-all">CLICK TO SEE ABOUT PAGE</a>
     </section>
     <section id="services" class="onepage-section">
         <a href="#services" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>

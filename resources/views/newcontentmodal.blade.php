@@ -1,5 +1,5 @@
 <form id="new-content-form" action="insert" method="post" enctype="multipart/form-data" accept-charset="utf-8">
-    @if($type != 'events' && $type != 'researches' && $type != 'members')
+    @if($type != 'events' && $type != 'researches' && $type != 'members' && $type != 'variables' && $type != 'tags' && $type != 'categories' && $type != 'newsletter-groups')
         <div class="form-group">
             <label for="title">title:</label>
             <input type="text" class="form-control" id="title" name="title" value="{{ empty($old->title) ? "" : $old->title }}">
@@ -245,6 +245,31 @@
             <div  class="add-record-input">Add More Records</div>
         </div>
 
+    @elseif($type == 'variables')
+            <div class="form-group">
+                <label for="title">title:</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ empty($old->title) ? "" : $old->title }}">
+            </div>
+            <div class="form-group">
+                <label for="body">body:</label>
+                <textarea class="form-control" id="body" name="body" rows="10" cols="50">{{ empty($old->body) ? "" : $old->body }}</textarea>
+            </div>
+            <div class="form-group img">
+                <label>Select Images:</label>
+                <input type="file" name="img[]">
+            </div>
+    @elseif($type == 'tags')
+        <div class="text-center text-success"> enter tags separated with '#' and no space</div>
+        <div class="form-group">
+            <label for="body">tags:</label>
+            <textarea class="form-control" id="body" name="body" rows="10" cols="50">{{ empty($old->body) ? "" : $old->body }}</textarea>
+        </div>
+    @elseif($type == 'categories')
+        <div class="text-center text-success"> enter tags separated with '#' and no space</div>
+        <div class="form-group">
+            <label for="body">tags:</label>
+            <textarea class="form-control" id="body" name="body" rows="10" cols="50">{{ empty($old->body) ? "" : $old->body }}</textarea>
+        </div>
     @endif
     <input type="hidden" name="type" value="{{$type}}">
     <input type="hidden" name="mode" value="{{$mode}}">
