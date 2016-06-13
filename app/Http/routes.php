@@ -64,7 +64,7 @@ Route::get('/delete', ['as' => 'edit', 'uses' => 'AdminController@delete']);
 
 Route::get('/adminlogin' ,  ['as' => 'adminlogin', 'uses' => 'AdminController@showLogin']);
 
-Route::post('/adminlogin', ['as' => 'adminlogin', 'uses' => 'AdminController@doLogin']);
+Route::post('/adminlogin', ['uses' => 'AdminController@doLogin']);
 
 Route::get('/logout', ['uses' => 'AdminController@doLogout']);
 

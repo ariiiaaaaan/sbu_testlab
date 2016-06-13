@@ -10,7 +10,7 @@ use App\Member;
 use App\Tag;
 use App\Photo;
 use App\Record;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
@@ -72,11 +72,12 @@ class AdminController extends Controller {
         return view('adminlogin');
     }
 
-    public function doLogin(Request $r) {
-        $index = User::where('title','=','password')->first();
-        if(Hash::check($r->input('password'),$index->body)) {
-            Auth::login($index);
-            return redirect('admin');
+    public function doLogin(Request $request) {
+        $input=$request->all();
+        $password=$input['password'];
+        //return $password;
+        if(Auth::attempt(['email'=>'arian@google.com','password'=>$password])){
+            return redirect()->intended('admin');
         } else {
             return redirect('adminlogin');
         }
@@ -444,7 +445,28 @@ class AdminController extends Controller {
                 //$content->categories()->save($cat);
                 return redirect('admin');
             }
+        } elseif ($type == 'tags') {
+            $input = $request->all();
+            $split = explode("#",$input['body']);
+            for($i=0;$i<count($split);$i++) {
+                if(!empty($split[$i]) && $split[$i] != '') {
+                    $tag = new Tag;
+                    $tag->title = trim($split[$i]);
+                    $tag->save();
+                }
+            }
+            return redirect('admin');
+        } elseif ($type == 'categories') {
+
         }
+
+
+
+
+
+
+
+
         else {
 
             $validator = Validator::make($request->all(), [
@@ -457,7 +479,11 @@ class AdminController extends Controller {
                 return redirect()->back()->withErrors($validator)->withInput()->with(array('errorcode' => 'news' , 'tags' => $this->returnTags()));
             }
             else {
-                $news = new Content;
+                if($mode ==1) {
+                    $news= new Content;
+                } else {
+                    $news = Content::find($id);
+                }
                 $news->title = $request->input('title');
                 $news->body = $request->input('body');
                 $news->type = $type;
