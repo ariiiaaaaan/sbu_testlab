@@ -58,6 +58,41 @@
         </div>
         <a href="blogs" class="blog-btn-all">CLICK TO SEE ABOUT PAGE</a>
     </section>
+    <section id="industry" class="onepage-section tab-section">
+        <a href="#industry" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
+        <h2>Test In Industry</h2>
+        <div class="section-nav-container">
+            <ul class="nav nav-pills text-center">
+                <li class="active"><a data-toggle="pill" href="#industrytab1">Services</a></li>
+                <li><a data-toggle="pill" href="#industrytab2">Field</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-12 section-tab-container">
+            <div class="tab-content">
+                <div id="industrytab1" class="tab-pane fade in active">
+                    <div class="hider">
+                        <div id="service-wrapper">
+                            @for($i =0; $i<9; $i++)
+                                <div class="service">
+                                    <img src="images/service1.png">
+                                    <h4>Game Testing</h4>
+                                    <p>
+                                        Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.
+                                    </p>
+                                </div>
+                            @endfor
+                        </div>
+                    </div>
+                    <span class="fa fa-angle-right fa-4x" id="services-next"></span>
+                    <span class="fa fa-angle-left fa-4x" id="services-prev"></span>
+                </div>
+                <div id="industrytab2" class="tab-pane fade"">
+                <h3>Menu 1</h3>
+                <p>Some content in menu 1.</p>
+            </div>
+        </div>
+        </div>
+    </section>
     <section id="services" class="onepage-section">
         <a href="#services" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>Services We Provide</h2>

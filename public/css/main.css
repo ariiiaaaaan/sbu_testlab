@@ -34,6 +34,7 @@ body{
 .affix{
     width: 100%;
     height: 55px;
+    overflow:hidden;
     position: fixed !important;
     top: 0 !important;
     /*transition: all 0.5s;*/

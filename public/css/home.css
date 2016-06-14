@@ -167,8 +167,8 @@ position: absolute;
 }
 
 #members-wrapper .member{
-    border: solid 1px white;
-    height: 40vh;
+    /*border: solid 1px white;*/
+    height: 45vh;
     width: 19.5vw;
 }
 
@@ -179,8 +179,8 @@ position: absolute;
 }
 
 #members-wrapper .member img{
-    width: 12vw;
-    height: 12vw;
+    width: 14vw;
+    height: 14vw;
     margin-top: 1vw;
     transition: all 0.5s;
     border-radius: 1000px;
@@ -216,13 +216,13 @@ position: absolute;
 }
 
 #members-wrapper .member h4{
-    border-top: solid 1px white;
+    /*border-top: solid 1px white;*/
     padding: 20px 10px 0;
     font-size: 16px;
     line-height: 20px;
     margin: 0;
     position: absolute;
-    top: 14vw;
+    top: 16vw;
     background: #0098be;
     height: 100px
 }
