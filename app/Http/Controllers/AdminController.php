@@ -10,6 +10,7 @@ use App\Member;
 use App\Tag;
 use App\Photo;
 use App\Record;
+use App\Variable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -105,7 +106,9 @@ class AdminController extends Controller {
             $old = Content::find($id)->researches;
         } else if ($type == 'members') {
             $old = Member::find($id);
-        } else {
+        } else if ($type == 'variables') {
+            $old = Variable::find($id);
+        }else {
             $old = Content::find($id);
         }
         $tags = Tag::all();
@@ -118,8 +121,14 @@ class AdminController extends Controller {
         $type = $r->input('type');
         $id = $r->input('id');
 
-        if($type == 'events') {
-            $index = Content::find($id);
+        if($type == 'categories') {
+            $index = Category::find($id);
+            $pa = $index->parent;
+            $children = Category::where('parent',$id)->get();
+            foreach($children as $child){
+                $child->parent = $pa;
+                $child->save();
+            }
             $index->delete();
             return redirect('admin');
         } else if($type == 'researches') {
@@ -130,31 +139,40 @@ class AdminController extends Controller {
             $index = Member::find($id);
             $index->delete();
             return redirect('admin');
+        } else if($type == 'tags') {
+            $index = Tag::find($id);
+            $index->delete();
         } else {
             $index = Content::find($id);
             $index->delete();
-             return redirect('admin');
         }
+
+        return redirect('admin');
     }
 
     public function getAdminTable(Request $r){
         $items = array();
-        $member = false;
         switch ($r->input("entity")){
             case "contents":
                 $items = Content::where("type",$r->input("type"))->simplePaginate(10);
                 break;
             case "members":
                 $items = Member::simplePaginate(10);
-                $member = true;
                 break;
-            case "contacts":
-                echo "contacts";
+            case "variables":
+                $items = Variable::simplePaginate(10);
+                break;
+            case "tags":
+                $items =  Tag::simplePaginate(20);
+                break;
+            case "categories":
+                $catcon = new CategoryController();
+                $items = $catcon->getTree();
                 break;
             default:
                 echo "unknown type";
         }
-        return view('admintable',['type' => $r->input('type') ,'entity' => $r->input('entity'), 'items' => $items,'member' => $member]);
+        return view('admintable',['type' => $r->input('type') ,'entity' => $r->input('entity'), 'items' => $items]);
     }
 
     public function returnTags() {
@@ -457,17 +475,12 @@ class AdminController extends Controller {
             }
             return redirect('admin');
         } elseif ($type == 'categories') {
-
-        }
-
-
-
-
-
-
-
-
-        else {
+            $cat = new Category();
+            $cat->title = $request->input("title");
+            $cat->parent = $request->input("cat-id");
+            $cat->save();
+            return redirect('admin');
+        } else {
 
             $validator = Validator::make($request->all(), [
                 'title' => 'required',

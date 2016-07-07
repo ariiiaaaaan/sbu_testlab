@@ -97,6 +97,10 @@ label{
     resize: none;
 }
 
+.form-group{
+    overflow: hidden;
+}
+
 .form-group input[type="checkbox"]{
     margin-left: 10px !important;
     bottom: 5px;
@@ -287,3 +291,15 @@ label{
 #nav-container::-webkit-scrollbar { width: 0 !important }
 #nav-container{ -ms-overflow-style: none; }
 #nav-container { overflow: -moz-scrollbars-none; }
+
+span.label-primary{
+    margin: 5px;
+    padding: 0 5px;
+    color: white;
+}
+
+span.label-primary a{
+    margin-left: 10px;
+    color: white;
+    text-decoration: none;
+}
