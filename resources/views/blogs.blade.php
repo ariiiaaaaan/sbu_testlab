@@ -7,7 +7,7 @@
     <script src="js/touch.js"></script>
     <script src="js/scrollbar.js"></script>
     <script src="js/dropdown.js"></script>
-    <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
     <script type="text/javascript">
         $( window ).load( function()
         {
