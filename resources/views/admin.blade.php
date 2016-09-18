@@ -37,16 +37,15 @@
             {
                 e.preventDefault(); //STOP default action
                 var postData = $(this).serializeArray();
-//                var mytype = {};
-//                mytype["type"] = $('.tab-pane.active').attr('data');
                 postData.push ({name:'entity',value:$('.tab-pane.active').attr('data-entity')});
                 postData.push ({name:'type',value:$('.tab-pane.active').attr('data-type')});
-                var formURL = $(this).attr("action");
+                //var postData = {type:$('.tab-pane.active').attr('data-type'),entity:$('.tab-pane.active').attr('data-entity')};
+                var formURL = "getadmintable";
                 $.ajax(
                         {
 
                             url : formURL,
-                            type: "POST",
+                            type: "GET",
                             data : postData,
                             success:function(data)
                             {
@@ -54,18 +53,36 @@
                             },
                             error: function(jqXHR, textStatus, errorThrown)
                             {
-                                alert("error"); //if fails
+                                alert(textStatus); //if fails
+
                             }
                         });
                // e.unbind(); //unbind. to stop multiple form submit.
             });
 
+            $('.nav-pills a').on('shown.bs.tab',function(e) {
+                var postData = {type:$('.tab-pane.active').attr('data-type'),entity:$('.tab-pane.active').attr('data-entity')};
+                var formURL = "getadmintable";
+                $.ajax(
+                        {
+                            url : formURL,
+                            type: "GET",
+                            data : postData,
+                            success:function(data)
+                            {
+                                $('.tab-pane.active').html(data);
+                            },
+                            error: function(jqXHR, textStatus, errorThrown)
+                            {
+                                alert("error loading table"); //if fails
+                            }
+                        });
+            });
+
             $("#admin-add-button").click('show.bs.tab',function(e)
             {
-
                 var postData = {type:$('.tab-pane.active').attr('data-type'),entity:$('.tab-pane.active').attr('data-entity')};
                 var formURL ="getinsertform";
-
                 $.ajax(
                         {
                             url : formURL,
@@ -88,24 +105,6 @@
                 // e.unbind(); //unbind. to stop multiple form submit.
             });
 
-            $('.nav-pills a').on('shown.bs.tab',function(e) {
-                var postData = {type:$('.tab-pane.active').attr('data-type'),entity:$('.tab-pane.active').attr('data-entity')};
-                var formURL = "getadmintable";
-                $.ajax(
-                        {
-                            url : formURL,
-                            type: "GET",
-                            data : postData,
-                            success:function(data)
-                            {
-                                $('.tab-pane.active').html(data);
-                            },
-                            error: function(jqXHR, textStatus, errorThrown)
-                            {
-                                alert("error loading table"); //if fails
-                            }
-                        });
-            });
 
             $(document).on('click','.pager a',function(e) {
                 e.preventDefault();
@@ -151,44 +150,50 @@
 </head>
 <body data-spy="scroll" data-target=".navbar-main" data-offset="60">
 
+<a href="logout" class="btn-primary" id="logout"><span class="fa fa-sign-out fa-2x"></span></a>
+@if($lang == "en")
+    <a href="../admin" class="btn-primary" id="lang">FA</a>
+@else
+    <a href="admin/en" class="btn-primary" id="lang">EN</a>
+@endif
+
 <div class="container" id="admin-container">
-        <div class="row">
-            <a href="logout" class="btn-primary" id="logout">LogOut</a>
+    <div class="row">
         <div class="col-sm-3" id="nav-container" data-spy="affix" data-offset-top="8">
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a data-toggle="pill" href="#tab1">Services</a></li>
-                <li><a data-toggle="pill" href="#tab2">Blogs</a></li>
-                <li><a data-toggle="pill" href="#tab3">News</a></li>
-                <li><a data-toggle="pill" href="#tab4">Events</a></li>
-                <li><a data-toggle="pill" href="#tab5">Papers(other's)</a></li>
-                <li><a data-toggle="pill" href="#tab6">Resources</a></li>
-                <li><a data-toggle="pill" href="#tab7">Researches</a></li>
-                <li><a data-toggle="pill" href="#tab8">Tools</a></li>
-                <li><a data-toggle="pill" href="#tab9">Galleries</a></li>
-                <li><a data-toggle="pill" href="#tab10">Members</a></li>
-                <li><a data-toggle="pill" href="#tab11">Company</a></li>
-                <li><a data-toggle="pill" href="#tab12">Newsletter</a></li>
-                <li><a data-toggle="pill" href="#tab13">NL Groups</a></li>
-                <li><a data-toggle="pill" href="#tab14">Variables</a></li>
-                <li><a data-toggle="pill" href="#tab15">Tags</a></li>
-                <li><a data-toggle="pill" href="#tab16">Categories</a></li>
+                <li><a data-toggle="pill" href="#tab1">Services</a></li>
+                <li><a data-toggle="pill" href="#tab2">Fields</a></li>
+                <li><a data-toggle="pill" href="#tab3">Blogs</a></li>
+                <li><a data-toggle="pill" href="#tab4">News</a></li>
+                <li><a data-toggle="pill" href="#tab5">Events</a></li>
+                <li><a data-toggle="pill" href="#tab6">Papers(other's)</a></li>
+                <li><a data-toggle="pill" href="#tab7">Resources</a></li>
+                <li><a data-toggle="pill" href="#tab8">Researches</a></li>
+                <li><a data-toggle="pill" href="#tab9">Tools</a></li>
+                <li><a data-toggle="pill" href="#tab10">Galleries</a></li>
+                <li><a data-toggle="pill" href="#tab11">Members</a></li>
+                <li><a data-toggle="pill" href="#tab12">Company</a></li>
+                <li><a data-toggle="pill" href="#tab13">Newsletter</a></li>
+                <li><a data-toggle="pill" href="#tab14">NL Groups</a></li>
+                <li><a data-toggle="pill" href="#tab15">Customization</a></li>
+                <li><a data-toggle="pill" href="#tab16">Tags</a></li>
+                <li><a data-toggle="pill" href="#tab17">Categories</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3" id="main-container">
             <div class="form-wraper">
                 <form id="admin-filter" action="adminfilter" method="post">
 
-                    <div class="form-group">
+                    <div class="form-group" style="min-height: auto">
                         <label for="search">Search:</label>
                         <input type="text" class="form-control" name="query" id="search">
                         <label for="sel1">Select list:</label>
                         <select class="form-control" id="sel1" name="sort">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                            <option value="new">Newest</option>
+                            <option value="old">Oldest</option>
+                            <option value="title">Name</option>
                         </select>
-                        <input type="submit" class="btn btn-primary form-control">
+                        <input type="submit" value="Filter" class="btn btn-primary form-control">
                     </div>
                     {{ csrf_field() }}
                 </form>
@@ -197,66 +202,70 @@
             <hr>
             <div class="tab-content">
                 <div id="tab1" class="tab-pane fade in active" data-entity="contents" data-type="services">
+                    <h3><- select a content type</h3>
+                    <p></p>
+                </div>
+                <div id="tab2" class="tab-pane fade" data-entity="contents" data-type="fields">
                     <h3>HOME</h3>
                     <p>Some content.</p>
                 </div>
-                <div id="tab2" class="tab-pane fade" data-entity="contents" data-type="blogs">
+                <div id="tab3" class="tab-pane fade" data-entity="contents" data-type="blogs">
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab3" class="tab-pane fade" data-entity="contents" data-type="news">
+                <div id="tab4" class="tab-pane fade" data-entity="contents" data-type="news">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab4" class="tab-pane fade" data-entity="contents" data-type="events">
+                <div id="tab5" class="tab-pane fade" data-entity="contents" data-type="events">
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab5" class="tab-pane fade" data-entity="contents" data-type="papers">
+                <div id="tab6" class="tab-pane fade" data-entity="contents" data-type="papers">
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab6" class="tab-pane fade" data-entity="contents" data-type="resources">
+                <div id="tab7" class="tab-pane fade" data-entity="contents" data-type="resources">
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab7" class="tab-pane fade" data-entity="contents" data-type="researches">
+                <div id="tab8" class="tab-pane fade" data-entity="contents" data-type="researches">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab8" class="tab-pane fade" data-entity="contents" data-type="tools">
+                <div id="tab9" class="tab-pane fade" data-entity="contents" data-type="tools">
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab9" class="tab-pane fade" data-entity="contents" data-type="galleries">
+                <div id="tab10" class="tab-pane fade" data-entity="contents" data-type="galleries">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab10" class="tab-pane fade" data-entity="members" data-type="members">
+                <div id="tab11" class="tab-pane fade" data-entity="members" data-type="members">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab11" class="tab-pane fade" data-entity="contents" data-type="companies">
+                <div id="tab12" class="tab-pane fade" data-entity="contents" data-type="companies">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab12" class="tab-pane fade" data-entity="contents" data-type="newsletters">
+                <div id="tab13" class="tab-pane fade" data-entity="contents" data-type="newsletters">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab13" class="tab-pane fade" data-entity="newsletter-groups" data-type="newsletter-groups">
+                <div id="tab14" class="tab-pane fade" data-entity="newsletter-groups" data-type="newsletter-groups">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab14" class="tab-pane fade" data-entity="variables" data-type="variables">
+                <div id="tab15" class="tab-pane fade" data-entity="variables" data-type="variables">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab15" class="tab-pane fade" data-entity="tags" data-type="tags">
+                <div id="tab16" class="tab-pane fade" data-entity="tags" data-type="tags">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>
-                <div id="tab16" class="tab-pane fade" data-entity="categories" data-type="categories">
+                <div id="tab17" class="tab-pane fade" data-entity="categories" data-type="categories">
                     <h3>Menu 2</h3>
                     <p>Some content in menu 2.</p>
                 </div>

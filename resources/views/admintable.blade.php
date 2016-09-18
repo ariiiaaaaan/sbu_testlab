@@ -10,7 +10,7 @@
     @foreach($items as $item)
     <tr>
         <td class="title">{{$item->title}}</td>
-        <td class="body">{{$item->body}}</td>
+        <td class="body">{!!$item->body!!}</td>
         <td class="date">{{$item->date_created}}</td>
         <td class="actions"><a class="admin-action delete" href="delete?type={{$type}}&id={{$item->id}}">delete</a>&nbsp | &nbsp<a class="admin-action edit" href="edit?type={{$type}}&id={{$item->id}}">edit</a> </td>
     </tr>
@@ -44,15 +44,15 @@
     @include('categoryforadmin',['level' => 0, 'nodes' => $items])
 @elseif($type == 'variables')
     <table class="admin-table table table-striped table-bordered">
-        <tr>
+        <thead>
+            <th>Section</th>
             <th>Title</th>
-            <th>Value</th>
             <th>Actions</th>
-        </tr>
+        </thead>
     @foreach($items as $item)
         <tr>
-            <td class="title">{{$item->title}}</td>
-            <td class="body">{{$item->body}}</td>
+            <td class="title">{{$item->section}}</td>
+            <td class="body">{{$item->title}}</td>
             <td class="actions"><a class="admin-action edit" href="edit?type={{$type}}&id={{$item->id}}">edit</a> </td>
         </tr>
     @endforeach

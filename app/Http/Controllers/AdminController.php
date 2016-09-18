@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller {
 
+
     public function selectFrom($table, $type, $tag = NULL, $offset = NULL, $limit = NULL) {
 
         $result = NULL;
@@ -152,18 +153,23 @@ class AdminController extends Controller {
 
     public function getAdminTable(Request $r){
         $items = array();
+        $query = $r->input("query","");
+        $sort = $r->input("sort","id");
+        $asc = "DESC";
+        if($sort == "old" || $sort == "title") $asc = "ASC";
+        if($sort != "title") $sort = "id";
         switch ($r->input("entity")){
             case "contents":
-                $items = Content::where("type",$r->input("type"))->simplePaginate(10);
+                $items = Content::where("type",$r->input("type"))->where("title","like","%".$query."%")->orderBy($sort,$asc)->simplePaginate(10);
                 break;
             case "members":
-                $items = Member::simplePaginate(10);
+                $items = Member::where("firstname","like","%".$query."%")->orWhere("lastname","like","%".$query."%")->orderBy($sort,$asc)->simplePaginate(10);
                 break;
             case "variables":
-                $items = Variable::simplePaginate(10);
+                $items = Variable::where("title","like","%".$query."%")->orderBy($sort,$asc)->simplePaginate(10);
                 break;
             case "tags":
-                $items =  Tag::simplePaginate(20);
+                $items =  Tag::where("title","like","%".$query."%")->orderBy($sort,$asc)->simplePaginate(20);
                 break;
             case "categories":
                 $catcon = new CategoryController();
@@ -180,21 +186,13 @@ class AdminController extends Controller {
         return $tags;
     }
 
-    public function admin() {
+    public function admin($lang = "fa") {
         /*if(Auth::check()) {
             return view('admin');
         } else {
             return view('adminlogin');
         }*/
-        return view('admin')->with(array('tags' => $this->returnTags()));
-//        $services = $this->selectFrom('content','services');
-//        $blogs = $this->selectFrom('content','blogs');
-//        $news = $this->selectFrom('content','news');
-//        $companies = $this->selectFrom('content','companies');
-//        $members = $this->selectFrom('member');
-//        $researches = $this->selectFrom('research');
-//        $events = $this->selectFrom('event');
-//        return view('admin',array('services' => $services,'blogs' => $blogs,'news' => $news,'companies'=>$companies,'members' => $members,'researches' => $researches, 'events' => $events));
+        return view('admin')->with(array('tags' => $this->returnTags(),"lang" => $lang));
     }
 
     public function adminFilter(Request $request) {
@@ -208,6 +206,8 @@ class AdminController extends Controller {
         $tag = $request->input('tags');
         $id = $request->input('id');
         $mode = $request->input('mode');
+
+
 
         ////////////////////////////////////
         //mode = 0 edit , mode = 1 insert///
@@ -288,18 +288,17 @@ class AdminController extends Controller {
                 $member->firstname = $request->input('firstname');
                 $member->lastname = $request->input('lastname');
                 $member->email = $request->input('email');
-                $member->body = $request->input('body') == NULL ? NULL : $request->input('body');
                 //$member->password = $request->input('password');
                 $member->researchareas = $request->input('researchareas') == NULL ? NULL : $request->input('researchareas');
-                $member->interests = $request->input('interests') == NULL ? NULL : $request->input('interests');
+                $member->industrialareas = $request->input('intery') == NULL ? NULL : $request->input('industry');
                 $member->tel = $request->input('telephone') == NULL ? NULL : $request->input('telephone');
                 $member->mobile = $request->input('mobile') == NULL ? NULL : $request->input('mobile');
                 $member->position = $request->input('position') == NULL ? NULL : $request->input('position');
-                $member->pinterest = $request->input('pinterest') == NULL ? NULL : $request->input('pinterest');
+                $member->googleplus = $request->input('googleplus') == NULL ? NULL : $request->input('pinterest');
                 $member->facebook = $request->input('facebook') == NULL ? NULL : $request->input('facebook');
-                $member->instagram = $request->input('instagram') == NULL ? NULL : $request->input('instagram');
+                $member->twitter = $request->input('twitter') == NULL ? NULL : $request->input('instagram');
                 $member->linkedin = $request->input('linkedin') == NULL ? NULL : $request->input('linkedin');
-
+                $member->save();
                 if($request->hasFile('img')) {
                     $file = $request->file('img');
                     if ($file->isValid()) {
@@ -311,7 +310,20 @@ class AdminController extends Controller {
                         $file->move($destination, $name);
                         //$photo->title = $request->input('photoTitle');
                         $photo->path = $destination . "/" . $name;
-                        $member->save();
+                        Photo::where("member_id",$member->id)->delete();
+                        $member->photo()->save($photo);
+                    }
+                }
+
+                if($request->hasFile('cv')) {
+                    $file = $request->file('cv');
+                    if ($file->isValid()) {
+                        $tempName = $file->getClientOriginalName();
+                        $extension = explode(".",$tempName);
+                        $name = $extension[0]."-".time().".".$extension[1];
+                        $destination = 'upload';
+                        $file->move($destination, $name);
+                        $member->cv = $destination . "/" . $name;
                         $member->photo()->save($photo);
                     }
                 }
@@ -323,10 +335,11 @@ class AdminController extends Controller {
                     }
                 }
                 $recordArray = $request->input('rec');
+
                 foreach($recordArray as $key) {
                     if(empty($key['delete']))
                         $key['delete'] = 'off';
-                    if($key['delete'] != "on") {
+                    if($key['delete'] != "on" && $key['institute'] != "") {
                         $record = new Record;
                         $record->institute = $key['institute'];
                         $record->position = $key['position'];
@@ -343,7 +356,7 @@ class AdminController extends Controller {
 
             $validator = Validator::make($request->all(), [
                 'author' => 'required',
-                'path' => 'required'
+                'title' => 'required'
             ]);
 
             if ($validator->fails()) {
@@ -377,22 +390,7 @@ class AdminController extends Controller {
                     $path->move($destination, $name);
                     $research->path = $destination . "/" .$name;
                 }
-                if($request->hasFile('img')) {
-                    $files = $request->file('img');
-                    foreach ($files as $file) {
-                        if ($file->isValid()) {
-                            $photo = new Photo;
-                            $tempName = $file->getClientOriginalName();
-                            $extension = explode(".", $tempName);
-                            $name = $extension[0] . "-" . time() . "." . $extension[1];
-                            $destination = 'upload';
-                            $file->move($destination, $name);
-                            //$photo->title = $request->input('photoTitle');
-                            $photo->path = $destination . "/" . $name;
-                            $content->photos()->save($photo);
-                        }
-                    }
-                }
+
                 if(!empty($tag)) {
                     foreach ($tag as $insertTag) {
                         $row = Tag::where('title', '=', $insertTag)->first();
@@ -480,7 +478,26 @@ class AdminController extends Controller {
             $cat->parent = $request->input("cat-id");
             $cat->save();
             return redirect('admin');
-        } else {
+        } elseif($type == "variables"){
+            $var =  Variable::find($id);
+            $var->title = $request->input("title");
+            $var->subtitle = $request->input("subtitle");
+            $var->body = $request->input("body");
+            if($request->hasFile('img')) {
+                $file = $request->file('img');
+                if ($file->isValid()) {
+                    $tempName = $file->getClientOriginalName();
+                    $extension = explode(".", $tempName);
+                    $name = $extension[0] . "-" . time() . "." . $extension[1];
+                    $destination = 'upload';
+                    $file->move($destination, $name);
+                    //$photo->title = $request->input('photoTitle');
+                    $var->body = $destination . "/" . $name;
+                }
+            }
+            $var->save();
+            return redirect('admin');
+        }else {
 
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
@@ -503,6 +520,11 @@ class AdminController extends Controller {
                 $news->save();
                 if($request->hasFile('img')) {
                     $files = $request->file('img');
+                    if($mode == 0)
+                    {
+                        $oldphoto = Photo::where("content_id",$id)->first();
+                        $oldphoto->delete();
+                    }
 
                     foreach ($files as $file) {
                         if ($file->isValid()) {
@@ -529,7 +551,4 @@ class AdminController extends Controller {
         }
     }
 
-    public function editQuery(Request $request) {
-
-    }
 }

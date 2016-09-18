@@ -14,7 +14,7 @@
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home'
 ]);
 
-Route::get('/admin', ['as' => 'admin', 'uses' => 'AdminController@admin'
+Route::get('/admin/{lang?}', ['as' => 'admin', 'uses' => 'AdminController@admin'
 ]);
 
 Route::post('/getinsertform', ['as' => 'getinsertform', 'uses' => 'AdminController@getInsertForm'
@@ -68,4 +68,8 @@ Route::post('/adminlogin', ['uses' => 'AdminController@doLogin']);
 
 Route::get('/logout', ['uses' => 'AdminController@doLogout']);
 
+Route::get('/contents', ['uses' => 'ContentController@showContents']);
 
+Route::get('/content', ['uses' => 'ContentController@showContent']);
+
+Route::get('/lang', ['uses' => 'HomeController@setLang']);

@@ -1,5 +1,8 @@
 <form id="new-content-form" action="insert" method="post" enctype="multipart/form-data" accept-charset="utf-8">
     @if($type != 'events' && $type != 'researches' && $type != 'members' && $type != 'variables' && $type != 'tags' && $type != 'categories' && $type != 'newsletter-groups')
+        @if($type == "newsletters")
+            <a href="nlmaker" class="btn btn-primary" id="nl-maker-link" target="_blank">Open Newsletter-Maker in new tab</a>
+        @endif
         <div class="form-group">
             <label for="title">title:</label>
             <input type="text" class="form-control" id="title" name="title" value="{{ empty($old->title) ? "" : $old->title }}">
@@ -42,11 +45,21 @@
             </div>
             <div  class="add-img-input">Add More Images</div>
         @else
+            @if($mode == 0)
+                @foreach($old->photos as $key => $photo)
+                    <div class="form-group img-old">
+                        <label>Old Image:</label>
+                        <img src="{{$photo->path}}">
+                    </div>
+                @endforeach
+            @endif
             <div class="form-group img">
-                <label>Select Images:</label>
+                <label>Select Image:</label>
                 <input type="file" name="img[]">
             </div>
         @endif
+
+
 
     @elseif($type == 'events' )
         <div class="form-group">
@@ -127,7 +140,7 @@
             <textarea class="form-control" id="keywords" name="keywords">{{ empty($old->keywords) ? "" : $old->keywords }}</textarea>
         </div>
         <div class="form-group">
-            <label>Select Images:</label>
+            <label>Select File:</label>
             <input type="file" name="img[]" multiple>
         </div>
         <div class="form-group">
@@ -156,8 +169,8 @@
             <textarea class="form-control" id="researchareas" name="researchareas">{{ empty($old->researchareas) ? "" : $old->researchareas }}</textarea>
         </div>
         <div class="form-group">
-            <label for="interests">Interests:</label>
-            <textarea class="form-control" id="interests" name="interests">{{ empty($old->interests) ? "" : $old->interests }}</textarea>
+            <label for="industry">Industrial Areas:</label>
+            <textarea class="form-control" id="industry" name="industry">{{ empty($old->industry) ? "" : $old->industry }}</textarea>
         </div>
         <div class="form-group">
             <label for="mobile">Mobile:</label>
@@ -176,12 +189,12 @@
             <input type="text" class="form-control" id="linkedin" name="linkedin" value="{{ empty($old->linkedin) ? "" : $old->linkedin }}">
         </div>
         <div class="form-group">
-            <label for="pinterest">Pinterest:</label>
-            <input type="text" class="form-control" id="pinterest" name="pinterest" value="{{ empty($old->pinterest) ? "" : $old->pinterest }}">
+            <label for="googleplus">Google Plus:</label>
+            <input type="text" class="form-control" id="googleplus" name="googleplus" value="{{ empty($old->googleplus) ? "" : $old->googleplus }}">
         </div>
         <div class="form-group">
-            <label for="instagram">Instagram:</label>
-            <input type="text" class="form-control" id="instagram" name="instagram" value="{{ empty($old->instagram) ? "" : $old->instagram }}">
+            <label for="twitter">Twitter:</label>
+            <input type="text" class="form-control" id="twitter" name="twitter" value="{{ empty($old->twitter) ? "" : $old->twitter }}">
         </div>
         <div class="form-group">
             <label for="facebook">Facebook:</label>
@@ -191,7 +204,16 @@
             <label>Select ONE Image:</label>
                 <input type="file" name="img">
         </div>
-        <div class="form-group rec">
+        <div class="form-group">
+            <label>Select C.V. file:</label>
+            <input type="file" name="cv">
+        </div>
+    @if($mode == 0)
+        <div class="form-group">
+            <img style="width: 100px; margin: 10px" class="old" src="{{empty($old->photo->path) ? "" : $old->photo->path}}">
+        </div>
+    @endif
+        <div class="form-group rec" style="min-height: 100px">
             @if($mode)
             <label>Record:</label>
             <div class="record-form">
@@ -216,6 +238,7 @@
             </div>
             @else
                 @foreach($old->records as $key => $rec)
+                    <div></div>
                     <label>Record:</label>
                     <div class="record-form">
                         <div class="form-group">
@@ -247,17 +270,32 @@
 
     @elseif($type == 'variables')
             <div class="form-group">
-                <label for="title">title:</label>
-                <input type="text" class="form-control" id="title" name="title" value="{{ empty($old->title) ? "" : $old->title }}">
+                <label for="section">Section:</label>
+                <input type="text" class="form-control" disabled id="section" name="section" value="{{ empty($old->section) ? "" : $old->section }}">
             </div>
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <textarea class="form-control" id="title" name="title" rows="10" cols="50">{{ empty($old->title) ? "" : $old->title }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="subtitle">Subtitle:</label>
+                <textarea class="form-control" id="subtitle" name="subtitle" rows="10" cols="50">{{ empty($old->subtitle) ? "" : $old->subtitle }}</textarea>
+            </div>
+            @if(!empty($old->section) && $old->section == "logo")
+            <div class="form-group img">
+                <label>Select Image:</label>
+                <input type="file" name="body">
+            </div>
+            <div class="form-group">
+                <label for="body">body:</label>
+                <textarea class="form-control" id="body" disabled name="body" rows="10" cols="50">{{ empty($old->body) ? "" : $old->body }}</textarea>
+            </div>
+            @else
             <div class="form-group">
                 <label for="body">body:</label>
                 <textarea class="form-control" id="body" name="body" rows="10" cols="50">{{ empty($old->body) ? "" : $old->body }}</textarea>
             </div>
-            <div class="form-group img">
-                <label>Select Images:</label>
-                <input type="file" name="img[]">
-            </div>
+            @endif
     @elseif($type == 'tags')
         <div class="text-center text-success"> enter tags separated with '#' and no space</div>
         <br>

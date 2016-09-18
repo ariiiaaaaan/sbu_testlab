@@ -119,8 +119,9 @@
     opacity: 0;
 }
 
-.member-on-header,.logo-on-member-header{
+.member-on-header{
     width: 40vw;
+    margin: 22vh auto;
     position: relative;
     text-align: center;
     transition: all 0.8s;
@@ -131,13 +132,15 @@
     width: 20vw;
     height: 20vw;
     overflow: hidden;
-    margin: 0 auto;
+    border-radius: 1000px;
+    margin: 0 auto 4vh;
     box-shadow: 0 0 10px black;
 }
 
 .member-on-header img{
-    margin-top: 0;
+    margin:0;
 }
+
 
 .shrink .member-on-header{
     opacity: 0;
@@ -146,7 +149,7 @@
 
 .shrink .logo-on-member-header{
     opacity: 0;
-    transform: translate(-30vw,-30vh) scale(0.1,0.1);
+    transform:scale(0.1,0.1);
 }
 
 #card{
@@ -155,8 +158,8 @@
     opacity: 0;
     top: 0;
     right: 0;
-    width: 30vw;
-    height: 10vh;
+    display: inline-block;
+    height: 6vh;
     transition: all 0.8s;
 }
 
@@ -175,7 +178,7 @@
 }
 
 #card img{
-    width: 9vh;
+    width: 6vh;
     height: auto;
 }
 #card p{
@@ -183,16 +186,17 @@
     color: #ffffff;
     width: auto;
     float: right;
-    line-height: 4.5vh;
+    line-height: 2.5vh;
     padding: 2vh 2vh 1vh;
-    background: #0098bf;
-    margin: 1vh 0vh 0;
-    font-size: 20px;
+    background: rgba(0,0,0,.5);
+    margin:0;
+    height: 6vh;
+    font-size: 16px;
 }
 
 .section-header{
     margin-top:0 !important;
-    padding-top: 25vh !important;
+    padding-top: 10vh !important;
 }
 
 #research .animate-holder,#academic .animate-holder,#career .animate-holder{
@@ -252,47 +256,79 @@
     display: inline-block;
     vertical-align: bottom;
     width: 22vw;
-    height: 30vh;
-    margin: 5vh 2vw;
-    background: #373737;
+    height: 45vh;
+    margin: 10vh 2vw 0;
+    background: #0098bf;
     box-shadow: 0 0 5px black;
 }
 
 .member-rec .row{
-    text-align: left;
-    font-size: 16px;
-    margin: 4vh 5px 2vh;
-    border-bottom: solid 1px white;
+    text-align: center;
+    color: #373737;
 }
 
-#academic .member-rec{
-    background-color: #0098bf;
+.member-rec .row:nth-child(1){
+    font-size: 1.8em;
+    margin: 10vh 0 0;
 }
 
-#contact .animate-holder{
-    top: 5vh;
+.member-rec .row:nth-child(2){
+    font-size: 2.2em;
+    font-weight: bold;
+    margin: 1vh 0 0;
+}
+
+.member-rec .row:nth-child(3){
+    font-size: 1.4em;
+    margin: 5vh 0 0;
+}
+
+#contact .contact-socials{
+    margin-top: 10vh;
+}
+
+#contact .contact-socials h3{
+    font-size: 22px;
 }
 
 #contact .social{
     display: inline-block;
-    background-color: gray;
+    background-color: #373737;
     color: white;
-    width: 10vw;
-    height: 10vw;
+    width: 3em;
+    font-size: 1.5em;
+    height: 3em;
     margin: 1vw;
     border-radius: 100px;
-    font-size: 25px;
-    padding-top: 6vh;
+    line-height: 3em;
     transition: all .8s;
 }
 
-#contact .footer-info {
-    font-size: 30px;
-    clear: both;
-    height: 15vh;
-    width: 30vw;
-    margin: 5vh 2vw 10vh 2vw;
+#contact .contact-card{
+    margin: 5vh auto 0;
+    width: 40vw;
+    border-bottom: solid 3px #373737;
+}
+#contact .contact-row {
     overflow: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 1vh;
+    border-bottom: solid 1px #373737;
+}
+
+#contact .contact-row label{
+    font-size: 1.8em;
+    color: #373737;
+    float: left;
+    margin: 0.2em;
+}
+
+#contact .contact-row p{
+    font-size: 1.8em;
+    color: #373737;
+    float: right;
+    margin: 0.2em;
 }
 
 #contact .social.fb:hover{
@@ -309,4 +345,22 @@
 
 #contact .social.ld:hover{
     background-color:#238cc8 ;
+}
+
+.member-section:nth-child(odd).tab-section .nav-pills li.active a{
+    background-color: #0098bf;
+}
+
+.member-section:nth-child(even).tab-section .nav-pills li.active a{
+    background-color: #373737;
+}
+
+
+#global-footer{
+    background-color: #0098bf;
+    height: auto;
+}
+
+#global-footer .section-down-btn{
+    background-color: #0098bf;
 }

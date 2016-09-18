@@ -1,0 +1,166 @@
+@font-face {
+    font-family: farsi;
+    src: url(../fonts/irsans.ttf);
+}
+
+@font-face {
+    font-family: 'IRANSans-web';
+    src: url('../fonts/IRANSBW.woff2') format('woff2'),  /* Chrome36+, Opera24+*/ url('fonts/IRANSBW.woff') format('woff');  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'IRANSans-web';
+    src: url('../fonts/IRANSLW.woff2') format('woff2'),  /* Chrome36+, Opera24+*/ url('fonts/IRANSLW.woff') format('woff');  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'IRANSans-web';
+    src: url('../fonts/IRANSW.woff2') format('woff2'),  /* Chrome36+, Opera24+*/ url('fonts/IRANSW.woff') format('woff');  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    font-weight: normal;
+}
+
+body{
+    font-family: Yekan;
+    direction: rtl;
+}
+
+.navbar-brand {
+    float: right;
+}
+
+/*.affix .navbar-brand{*/
+    /*margin-left: 0!important;*/
+    /*margin-right: -12px !important;*/
+/*}*/
+
+#main-menu ul.nav{
+    display: block;
+    text-align: right;
+    padding: 0;
+}
+
+#main-menu ul.nav li{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.navbar-form{
+    float: left;
+}
+
+.navbar-form .fa{
+    padding-right: 15px;
+    padding-left: 0;
+}
+
+.navbar-search-wrapper{
+    float: right;
+}
+
+.navbar-form .submit{
+    right: 0;
+}
+
+.navbar-form .text{
+    right: -11em;
+}
+
+.navbar-form .text.hide{
+    right: 0;
+}
+
+.navbar-form .lang span, .navbar-form .fa-facebook{
+    border-right: solid 1px #aaa;
+    border-left: none ;
+}
+
+.navbar-form .fa-search{
+    padding-left: 10px;
+    padding-right: 0;
+}
+
+.navbar-form .fa-google-plus{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.section-down-btn {
+    margin-left: auto;
+    margin-right: -2em;
+}
+
+
+#service-wrapper,#company-wrapper,#members-wrapper,#field-wrapper{
+    right: 0vw;
+    left: auto;
+    margin-right: -10px;
+    margin-left: auto;
+}
+
+#service-wrapper .service,#company-wrapper .company,#members-wrapper .member,#event-wrapper .event,#field-wrapper .field{
+    float: right;
+}
+
+.blog .blog-date .fa{
+    margin:0 20px 0 10px ;
+}
+
+.blog .blog-date{
+    text-align: right;
+}
+
+#event-wrapper,#event-wrapper .event{
+    transform: scale(-1,1);
+}
+
+#service-modal .modal-content img{
+    float: left;
+}
+
+.shrink .member-on-header{
+    opacity: 0;
+    transform:scale(0.1,0.1) !important;
+}
+
+#card{
+    left: 0;
+    right: auto;
+}
+
+#card p{
+    display: inline-block;
+    text-align: left;
+    width: auto;
+    float: left;
+    padding: 2vh 2vh 1vh;
+}
+
+.member-section #contact .contact-row label{
+    float: right;
+}
+
+.member-section #contact .contact-row p{
+    float: left;
+}
+
+#contact-form .send{
+    float: right !important;
+    margin-right: 14%;
+}
+
+#contact .footer-info p {
+    text-align: right;
+    margin: 0px 60px 5px 5px;
+}
+
+#contact .footer-info span.fa {
+    float: right !important;
+    text-align: right;
+}
+
+#contact .socials{
+    text-align: right;
+    margin-right: 2vw;
+}

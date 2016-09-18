@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head>
     <meta charset="UTF-8">
     <title>Shahid Beheshti university Of Tehran - Software Testing Laboratories</title>
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}"/>
+    <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+    @if($lang == "fa")
+        <link rel="stylesheet" type="text/css" href="{{asset('css/farsi.css')}}"/>
+        <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css">
+        @endif
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
@@ -15,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @yield('outsource')
 </head>
-<body data-spy="scroll" data-target=".navbar-main" data-offset="60">
+<body data-spy="scroll" data-target=".navbar-main" data-offset="60" class="body-{{$lang or "fa"}}">
 <div class="container-fluid">
 
     <div class="row">
@@ -40,12 +45,9 @@
                         </div>
                         <a href="#home" class="social"><span class="fa fa-facebook fa-2x"></span></a>
                         <a href="#home" class="social"><span class="fa fa-twitter fa-2x"></span></a>
-                        <a href="#home" class="social"><span class="fa fa-google-plus fa-2x"></span></a>
-                        @if(Auth::check())
-                            <a href="#home" class="login"><span class="fa fa-user fa-2x"></span></a>
-                        @else
-                            <a href="#home" class="profile"><span class="fa fa-user fa-2x"></span></a>
-                        @endif
+                        <a href="lang" class="social"><span class="fa fa-google-plus fa-2x"></span></a>
+                        <a href="lang?lang={{$lang == "en" ? "fa":"en"}}" class="lang"><span class="fa fa-2x">{{$lang == "en" ? "FA":"EN"}}</span></a>
+
                     </div>
                 </div>
             </nav>

@@ -1,0 +1,38 @@
+#content-section{
+    background: #fff;
+}
+.content-wrapper{
+    width: 60vw;
+    margin: 0 auto;
+    padding: 2vh 2vw;
+    background: white;
+}
+
+.content-wrapper img{
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    box-shadow: 0 0 4px black;
+}
+
+.content-wrapper h2,.content-wrapper .content-date{
+    text-align: center;
+}
+
+.content-wrapper h2{
+    font-weight: bold;
+    font-size: 2.55em;
+    margin-top: 5vh;
+    margin-bottom: 1vh;
+}
+
+.content-wrapper p.content-date{
+    font-weight: bold;
+    margin-bottom: 3.5vh;
+    color: #777777;
+}
+
+.content-wrapper .content-body{
+    text-align: justify;
+    font-size: 16px;
+}

@@ -2,7 +2,6 @@
 position: absolute;
 }
 
-
 .onepage-section {
     position: relative;
     height: 100vh;
@@ -11,22 +10,22 @@ position: absolute;
 }
 
 .onepage-section h2{
-    font-size: 36px;
+    font-size: 2em;
     font-weight: bolder;
     margin-top: 0px;
-    padding-top: 70px;
+    padding-top: 9vh;
 }
 
 .onepage-section h3{
-    font-size: 14px;
-    margin-top: 10px;
+    font-size: 1.2em;
+    margin-top: 2.5vh;
 }
 
 .onepage-section#home{
     background: url("../images/home-header.jpg");
     background-origin: content-box;
     background-repeat: no-repeat;
-    padding-top: 4vh;
+    padding-top: 3vh;
     position: relative;
     height: 100vh;
     text-align: center;
@@ -43,7 +42,7 @@ position: absolute;
     margin-top: 3vh;
     text-align: center;
     color: #373737;
-    font-size: 22px;
+    font-size: 1.8em;
     font-weight: bold;
 }
 
@@ -91,31 +90,36 @@ position: absolute;
     color:#373737;
 }
 
-.onepage-section#footer h1{
+.onepage-section#footer h2{
     margin-top: 0;
     padding-top: 1em;
-    font-size: 18px;
+    font-size: 1.2em;
     color:#373737;
-    line-height: 30px;
+    line-height: 4.5vh;
+    font-weight: normal;
 }
 
 .onepage-section#footer h3{
     margin-top: 0px;
-    font-size: 18px;
+    font-size: 1.2em;
     color:#373737;
 }
 
 .onepage-section#footer{
-    height: 20vh;
+    height: auto !important;
+}
+
+.onepage-section#footer h2,.onepage-section#footer h3{
+    color:white;
 }
 
 .hider{
     width: 96%;
-    margin: 10vh 2%;
+    margin: 12vh 2% 8vh;
     overflow: hidden;
 }
 
-#services-next,#company-next,#members-next{
+#services-next,#company-next,#members-next,#fields-next{
     position: absolute;
     right: 10px;
     top:45vh;
@@ -124,7 +128,7 @@ position: absolute;
     transition: all .5s;
 }
 
-#services-prev,#company-prev,#members-prev{
+#services-prev,#company-prev,#members-prev,#fields-prev{
     position: absolute;
     left: 10px;
     top:45vh;
@@ -133,10 +137,10 @@ position: absolute;
     transition: all .5s;
 }
 
-#services-next:hover,#services-prev:hover,#members-next:hover,#members-prev:hover,#company-next:hover,#company-prev:hover{
+#services-next:hover,#services-prev:hover,#members-next:hover,#-prev:hover,#company-next:hover,#company-prev:hover,#fields-next:hover,#fields-prev:hover{
     color: #ffffff;
 }
-#service-wrapper,#company-wrapper,#members-wrapper{
+#service-wrapper,#company-wrapper,#member-wrapper,#field-wrapper{
     display: inline-block;
     position: relative;
     left: 0vw;
@@ -146,39 +150,43 @@ position: absolute;
     text-align: center;
 }
 
-#company-wrapper,#members-wrapper{
+#company-wrapper,#member-wrapper{
     margin-top: 0vh;
     height: 50vh;
 }
 
-#members-wrapper{
-    padding: 0 2vw;
+#member-wrapper{
+    padding: 0 0vw;
 }
 
-#service-wrapper .service,#company-wrapper .company,#members-wrapper .member{
+#service-wrapper .service,#company-wrapper .company,#member-wrapper .member, #field-wrapper .field{
     display: inline-block;
     float: left;
     width: 20vw;
     height: 50vh;
-    margin: 10px 1.8vw;
+    margin: 3vh 1.8vw;
     position: relative;
     cursor: pointer;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
-#members-wrapper .member{
+.tab-content #services-next,.tab-content #services-prev,.tab-content #fields-next,.tab-content #fields-prev{
+    top: 20vh !important;
+}
+
+#member-wrapper .member{
     /*border: solid 1px white;*/
     height: 45vh;
-    width: 19.5vw;
 }
 
-#service-wrapper .service img,#company-wrapper .company img{
+#service-wrapper .service img,#company-wrapper .company img, #field-wrapper .field img{
     width: 10vw;
     height: 10vw;
     transition: all 0.5s;
 }
 
-#members-wrapper .member img{
+#member-wrapper .member img{
     width: 14vw;
     height: 14vw;
     margin-top: 1vw;
@@ -192,7 +200,7 @@ position: absolute;
     filter: grayscale(100%) contrast(180%);
 }
 
-#members-wrapper .member img{
+#member-wrapper .member img{
     margin-bottom: 2vh;
     -webkit-filter: grayscale(80%) contrast(180%);
     filter: grayscale(80%) contrast(180%);
@@ -208,26 +216,25 @@ position: absolute;
     filter: grayscale(0%);
 }
 
-#service-wrapper .service h4,#company-wrapper .company h4, #members-wrapper .member h4{
+#service-wrapper .service h4,#company-wrapper .company h4, #member-wrapper .member h4,#field-wrapper .field h4{
     font-size: 16px;
     margin-top: 5px;
     width: 100%;
     text-align: center;
 }
 
-#members-wrapper .member h4{
-    /*border-top: solid 1px white;*/
-    padding: 20px 10px 0;
-    font-size: 16px;
-    line-height: 20px;
+#member-wrapper .member h4{
+    padding: 10px 5px;
+    font-size: 1.4em;
+    line-height: 1.4em;
     margin: 0;
     position: absolute;
     top: 16vw;
-    background: #0098be;
-    height: 100px
+    height: 1.4em;
+    box-sizing: content-box;
 }
 
-#service-wrapper .service p,#company-wrapper .company p{
+#service-wrapper .service p,#company-wrapper .company p,#field-wrapper .field p{
     font-size: 12px;
     max-height: 100px;
     line-height: 16px;
@@ -235,13 +242,10 @@ position: absolute;
     overflow: hidden;
 }
 
-section#members .hider{
-    margin-top: 2vh;
-}
 
 #blog-wrapper{
     width: 100%;
-    padding: 1vh 5vm;
+    margin: 9vh auto;
 }
 
 .blog{
@@ -249,7 +253,7 @@ section#members .hider{
     display: inline-block;
     background-color: #373737;
     width: 25vw;
-    margin: 0vh 2.5vw;
+    margin: 0vh 1.5vw;
     height: 48vh;
     box-shadow: 0 0 4px black;
     cursor: pointer;
@@ -266,18 +270,26 @@ section#members .hider{
     height: 8vh;
 }
 
+.blog .auto-scroll-wrapper{
+    height: 12vh;
+}
+
+.blog .auto-scroll{
+    line-height: 8vh;
+}
+
 .blog .blog-date{
-    color: #ffffff;
+    color: #cccccc;
     background-color: #000000;
-    font-size: 12px;
+    font-size: 1em;
     line-height: 9vh;
     height: 8vh;
     width: 100%;
     text-align: left;
 }
 .blog .blog-date .fa{
-    margin:0 10px 0 20px ;
-}
+     margin:0 10px 0 20px ;
+ }
 
 .blog img{
     width: 100%;
@@ -316,32 +328,36 @@ section#members .hider{
     background-color: rgba(0,0,0,0.7);
 }
 
-.blog-btn-all,.research-btn-all{
+.section-btn-all{
     display: inline-block;
-    width: 25vw;
+    position: absolute;
+    left: 37.5%;
+    bottom: 4vh;
+    width: 25%;
     height: 8vh;
     line-height: 9vh;
     font-size: 16px;
     margin: 0vh auto 0;
+    margin-bottom: 2em;
     padding: 0 10px;
     color: #ffffff !important;
     text-decoration: none !important;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.5);
     box-shadow: 0 0 4px black;
     transition: all 1s;
 }
 
-.blog-btn-all:hover,.research-btn-all:hover{
+.section-btn-all:hover{
     background-color: rgba(0,0,0,1);
 }
 
 .blog p{
-    font-size: 12px;
-    max-height: 16vh;
+    font-size: 1em;
+    max-height: 6.6em;
     padding: 2vh 4vh 2vh;
     text-align: justify;
-    line-height: 16px;
-    margin-top: 10px;
+    line-height: 1.2;
+    margin-top: 2vh;
     overflow: hidden;
     opacity: 0;
     transition: all 1s;
@@ -382,6 +398,10 @@ section#members .hider{
     text-align: center;
     background-color: #2ca02c;
     transition: opacity, 0.5s;
+}
+
+.event p{
+    font-size: 1.2em;
 }
 
 .color1{
@@ -453,9 +473,9 @@ section#members .hider{
 }
 
 #events .hider{
-    height: 56vh;
+    height: 58vh;
     width: 92%;
-    margin: 2vh 4% 0;
+    margin: 6vh 4% 0;
 }
 #events #event-wrapper{
     height: 60vh;
@@ -470,30 +490,31 @@ section#members .hider{
 .research{
     text-align: left;
     background-color: #373737;
-    width: 90%;
-    display: block;
-    margin: 2vh auto;
-    height: 27vh;
-    padding: 10px 20px;
+    width: 40vw;
+    display: inline-block;
+    margin: 2vw;
+    height: 50vh;
+    padding: 2vh 4vw;
 }
 
 .research h4{
-    font-size: 16px;
-    margin-top: 5px;
+    font-size: 1.2em;
+    margin-top: 1em;
     width: 100%;
 }
 
 .research h5{
-    font-size: 14px;
-    margin-top: 5px;
+    font-size: 1em;
+    color:#cccccc;
+    margin-top: .5em;
     width: 100%;
 }
 
 .research p{
-    font-size: 12px;
-    max-height: 30px;
-    line-height: 18px;
-    margin-top: 15px;
+    font-size: 1em;
+    height: 9em;
+    line-height: 1.2em;
+    margin-top: 1em;
     overflow: hidden;
 }
 
@@ -522,6 +543,7 @@ section#members .hider{
 
 .gallery .gallery-body p{
     padding-top:1vw ;
+    text-align: center;
     max-width: 25vw;
     height: 25vh;
     position: absolute;
@@ -573,7 +595,7 @@ section#members .hider{
     height: 6vh;
     line-height: 7vh;
     font-size: 12px;
-    margin: 1vh auto;
+    margin: 2vh auto;
     padding: 0 10px;
     color: #ffffff;
     text-decoration: none;
@@ -583,6 +605,7 @@ section#members .hider{
 .form-wrapper{
     width: 50%;
     position: relative;
+    margin-top: 6vh;
 }
 
 
@@ -634,7 +657,6 @@ section#members .hider{
     width: 25%;
     color: white;
     transition: all 0.5s;
-    float: left;
     background-color: #080808;
     margin: 2%;
     border: none;
@@ -646,6 +668,7 @@ section#members .hider{
 
 .links-wrapper{
     width: 39%;
+    margin-top: 6vh;
     margin-left: 10%;
     position: relative;
 }
@@ -654,7 +677,7 @@ section#members .hider{
     clear: both;
     width: 22vw;
     height: 8vh;
-    margin: 3vh 2vw 2vh 2vw;
+    margin: 3vh 2vw 2vh 2vw !important;
     overflow: hidden;
 }
 
@@ -717,51 +740,52 @@ section#members .hider{
     background-color:#238cc8 ;
 }
 
-
-.section-nav-container{
-    float: left;
-    position: absolute;
-    top: 65px;
-    left:10px;
-}
-
-.tab-section .nav-pills li{
-    float: left;
-    margin: 0;
-    display: inline-block;
-    padding: 0;
-}
-
-.tab-section .nav-pills li a,.tab-section .nav-pills li a:hover{
-    border-radius: 0;
-    text-decoration: none;
-    min-width: 8vw;
-    height: 25px;
-    line-height: 30px;
-    margin: 0;
-    padding: 0 15px;
-    text-align: center;
-    background-color: #1b687b;
-    color: #dddddd;
-    transition: all .8s;
-}
-
-.tab-section .nav-pills li a:hover{
-    color: white;
-}
-
-.onepage-section:nth-child(even).tab-section .nav-pills li.active a{
-    background-color: #0088ff;
-}
-
-.onepage-section:nth-child(odd).tab-section .nav-pills li.active a{
-    background-color: #373737;
-}
-
 #goals .section-text .auto-scroll-wrapper{
     height: 50vh;
 }
 
+#introduction .section-text .custom-scroll-wrapper{
+    height: 45vh;
+}
+
+#industry .section-text .custom-scroll-wrapper{
+    height: 45vh;
+}
+
+#goals .section-text .custom-scroll-wrapper{
+    height: 45vh;
+}
+
+#experience .section-text .custom-scroll-wrapper{
+    height: 45vh;
+}
+
+#service-modal .modal-dialog{
+    width: 70vw;
+}
+
+#service-modal .modal-content{
+    border-radius: 0;
+    color: white;
+    z-index: 1020;
+    background: #000;
+}
+
+#service-modal .modal-content img{
+    float: right;
+    width: 18vw;
+    height: auto;
+    margin: 1vw;
+}
+
+#service-modal h4{
+    font-size: 1.6em;
+    margin: 1vw;
+}
+
+#service-modal p{
+    padding: 1vw 1vw 0;
+}
 
 
 

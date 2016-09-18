@@ -3,16 +3,19 @@
 @section('outsource')
     <link rel="stylesheet" type="text/css" href="{{asset('css/dropdown.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/blog.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/category.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="ResponsiveMultiLevelMenu/css/component.css" />
     <script src="js/core.js"></script>
     <script src="js/touch.js"></script>
     <script src="js/scrollbar.js"></script>
     <script src="js/dropdown.js"></script>
     <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+    <script src="ResponsiveMultiLevelMenu/js/modernizr.custom.js"></script>
+    <script src="ResponsiveMultiLevelMenu/js/jquery.dlmenu.js"></script>
     <script type="text/javascript">
         $( window ).load( function()
         {
             $( '.grid' ).masonry( { itemSelector: '.item', columWidth: $(window).width()*0.8/3 } );
-            $('.select').dropdown();
             $('.blog-btn-more').click(function() {
                 var id = $(this).attr('offset');
                 $.ajax({
@@ -44,11 +47,8 @@
     </section>
     <section id="filters" class="filter-section">
         <a href="#filters" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
-        <select class="select">
-            @foreach($cats as $cat)
-                <option value="{{$cat->id}}" @if($cat->title == "All")selected="selected"@endif>{{$cat->title}}</option>
-            @endforeach
-        </select>
+            @include('categorysimple',['nodes'=>$cats,'level'=>0])
+
         <div class="current-cat">All</div>
         <div class="catnav-holder">
             {{--@include('category',['level' => 1,'nodes' => $catnav,'root' => 1]);--}}

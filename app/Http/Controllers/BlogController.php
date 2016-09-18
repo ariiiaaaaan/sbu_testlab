@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class BlogController extends Controller {
 
     public function showBlogs() {
-        return view('blogs',['cats' => CategoryController::justGetAll(),'catnav' => CategoryController::getTree()]);
+        return view('blogs',['catnav' => CategoryController::getTree(),'lang' => 'en']);
     }
 
     public function moreBlogs(Request $r){

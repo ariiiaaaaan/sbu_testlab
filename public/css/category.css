@@ -1,3 +1,12 @@
-.cat-close{
-    display: none;
+#cat-container{
+
+}
+
+#selected-cat{
+    display: inline-block;
+    height: 45px;
+    text-align: center;
+    background: #373737;
+    border: none;
+    color: white;
 }
