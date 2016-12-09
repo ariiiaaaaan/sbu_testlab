@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\User;
 use App\Content;
-use App\Events;
+use App\Event;
 use App\Research;
 use App\Member;
 use App\Tag;
@@ -104,7 +104,7 @@ class AdminController extends Controller {
         if($type == 'events') {
             $old = Content::find($id)->event;
         } else if ($type == 'researches') {
-            $old = Content::find($id)->researches;
+            $old = Content::find($id)->research;
         } else if ($type == 'members') {
             $old = Member::find($id);
         } else if ($type == 'variables') {
@@ -133,6 +133,14 @@ class AdminController extends Controller {
             $index->delete();
             return redirect('admin');
         } else if($type == 'researches') {
+            $index = Content::find($id)->researches;
+            $index->delete();
+            $index = Content::find($id);
+            $index->delete();
+            return redirect('admin');
+        } else if($type == 'events') {
+            $index = Content::find($id)->events;
+            $index->delete();
             $index = Content::find($id);
             $index->delete();
             return redirect('admin');
@@ -207,8 +215,6 @@ class AdminController extends Controller {
         $id = $request->input('id');
         $mode = $request->input('mode');
 
-
-
         ////////////////////////////////////
         //mode = 0 edit , mode = 1 insert///
         ////////////////////////////////////
@@ -226,13 +232,11 @@ class AdminController extends Controller {
                 } else {
 
                     if($mode == 1) {
-                        $event = new Events;
+                        $event = new Event;
                         $content = new Content;
                     } else {
-
-                        $event = Events::find($id);
+                        $event = Event::find($id);
                         $content = $event->content;
-
                     }
                     $content->title = $request->input('title');
                     $event->address = $request->input('address');
@@ -298,7 +302,7 @@ class AdminController extends Controller {
                 $member->facebook = $request->input('facebook') == NULL ? NULL : $request->input('facebook');
                 $member->twitter = $request->input('twitter') == NULL ? NULL : $request->input('instagram');
                 $member->linkedin = $request->input('linkedin') == NULL ? NULL : $request->input('linkedin');
-                $member->save();
+
                 if($request->hasFile('img')) {
                     $file = $request->file('img');
                     if ($file->isValid()) {
@@ -320,14 +324,14 @@ class AdminController extends Controller {
                     if ($file->isValid()) {
                         $tempName = $file->getClientOriginalName();
                         $extension = explode(".",$tempName);
-                        $name = $extension[0]."-".time().".".$extension[1];
+                        $name = $extension[0]."-".time().".".$extension[count($extension)-1];
                         $destination = 'upload';
                         $file->move($destination, $name);
                         $member->cv = $destination . "/" . $name;
-                        $member->photo()->save($photo);
+//                        $member->photo()->save($photo);
                     }
                 }
-
+                $member->save();
                 if($mode == 0) {
                     $record = Member::find($id)->records;
                     foreach($record as $rec) {
@@ -335,7 +339,7 @@ class AdminController extends Controller {
                     }
                 }
                 $recordArray = $request->input('rec');
-
+                if(!empty($recordArray))
                 foreach($recordArray as $key) {
                     if(empty($key['delete']))
                         $key['delete'] = 'off';
@@ -356,7 +360,8 @@ class AdminController extends Controller {
 
             $validator = Validator::make($request->all(), [
                 'author' => 'required',
-                'title' => 'required'
+                'title' => 'required',
+                'abstract' => 'required'
             ]);
 
             if ($validator->fails()) {
@@ -370,22 +375,23 @@ class AdminController extends Controller {
                     $content = $research->content;
                 }
                 $content->title = $request->input('title');
-                $research->author = $request->input('author');
-                $content->body = $request->input('body');
+                $content->body = $request->input('abstract');
                 $content->type = $type;
                 $content->save();
+                $research->author = $request->input('author');
                 $research->publisher = $request->input('publisher') == NULL ? NULL : $request->input('publisher');
-                $date = $request->input('date-year')."-".$request->input('date-month')."-".$request->input('date-day')."-".$request->input('date-hour').":".$request->input('date-minute');
+                $date = $request->input('date-year')."|".$request->input('date-month')."|".$request->input('date-day')."|".$request->input('date-hour').":".$request->input('date-minute');
                 $research->date = $date;
+                $research->external = $request->input("external") == NULL ? true : false;
                 $research->pages = $request->input('pages') == NULL ? NULL : $request->input('pages');
-                $research->abstract = $request->input('abstract') == NULL ? NULL : $request->input('abstract');
+//                $research->abstract = $request->input('abstract') == NULL ? NULL : $request->input('abstract');
                 $research->keywords = $request->input('keywords') == NULL ? NULL : $request->input('keywords');
-                $research->refrences = $request->input('refrences') == NULL ? NULL : $request->input('refrences');
+                $research->link = $request->input('link') == NULL ? NULL : $request->input('link');
                 $path = $request->file('path');
-                if ($path->isValid()) {
+                if (!empty($path) && $path->isValid()) {
                     $tempName = $path->getClientOriginalName();
                     $extension = explode(".",$tempName);
-                    $name = $extension[0]."-".date(DATE_ATOM).".".$extension[1];
+                    $name = $extension[0].time().$extension[count($extension)-1];
                     $destination = 'upload';
                     $path->move($destination, $name);
                     $research->path = $destination . "/" .$name;
@@ -429,11 +435,12 @@ class AdminController extends Controller {
                                 $photo = new Photo;
                                 $tempName = $file[$i]->getClientOriginalName();
                                 $extension = explode(".", $tempName);
-                                $name = $extension[0] . "-" . time() . "." . $extension[1];
+                                $name = $extension[0] . "-" . time() . (string)$i. "." . $extension[count($extension)-1];
                                 $destination = 'upload';
                                 $file[$i]->move($destination, $name);
                                 $photo->title = $request->input('imgtitle')[$i];
                                 $photo->path = $destination . "/" . $name;
+                                $photo->highlight = $request->input("highlight")[$i] == "true" ? 1 : 0;
                                 $content->photos()->save($photo);
                             }
                         }
@@ -443,6 +450,10 @@ class AdminController extends Controller {
                         foreach ($request->input('oldimg') as $img) {
                             if (empty($img['delete'])) {
                                 $img['delete'] = "off";
+                                $image = Photo::find($img['id']);
+                                $image->title = $img['title'];
+                                $image->highlight = ($img['highlight'] == "true") ? 1 : 0 ;
+                                $image->save();
                             }
                             if ($img['delete'] == "on") {
                                 $temp = Photo::find($img['id']);

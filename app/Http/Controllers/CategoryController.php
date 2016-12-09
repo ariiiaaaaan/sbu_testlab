@@ -37,7 +37,7 @@ class CategoryController extends Controller {
         return Category::all();
     }
 
-    public function test(){
-        return view('categorysimple',['nodes' => CategoryController::getTree(),'root' => false,'level' => 0]);
+    public function jsonTree(){
+        return json_encode($this->getTree());
     }
 }

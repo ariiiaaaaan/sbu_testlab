@@ -1,7 +1,5 @@
-{{-- */
- $date = str_replace(":","|",$date);
- $tokens = explode("|",$date);
-/* --}}
+@if($date = str_replace(":","|",$date))@endif
+@if($tokens = explode("|",$date))@endif
 
 
 

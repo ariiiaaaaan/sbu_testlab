@@ -12,7 +12,7 @@
     <script>
         $(document).ready(function(){
             $("body").on("click",".add-img-input",function(){
-                $form = '<input type="file" name="img[]"><input type="text" class="small" placeholder="Title" name="imgtitle[]">';
+                $form = '<input type="file" name="img[]"><input type="text" class="small" placeholder="Title" name="imgtitle[]"><select name="highlight[]"><option value="false">Normal</option><option value="true">Highlight</option></select>';
                 $(".form-group.img").append($form);
             });
             var recnum = 0;

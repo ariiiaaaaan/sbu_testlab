@@ -86,7 +86,7 @@ label{
 #insert-modal input[type="text"]:not(.small),#edit input[type="text"]:not(.small),input[type="email"],input[type="file"],input[type="number"],textarea{
     width: 67% !important;
     vertical-align: top !important;
-    color: #444 !important;
+    color: #444;
     font-size: 18px !important;
     line-height: 24px !important;
     display: inline-block!important;
@@ -170,9 +170,8 @@ label{
     overflow: hidden;
 }
 .form-group.img input,.form-group.img-old input{
-    width: 37% !important;
+    width: 30% !important;
     margin-left: 10px;
-    float: right;
     margin-bottom: 10px;
     height: 25px;
 }
@@ -180,6 +179,11 @@ label{
 .form-group.img input[type="text"],.form-group.img-old input[type="text"]{
     border: solid 1px #aaa;
     padding: 5px 5px 0;
+}
+
+.form-group.img-old label{
+    font-size: 12px;
+    width: 15%;
 }
 
 .add-img-input,.add-record-input{

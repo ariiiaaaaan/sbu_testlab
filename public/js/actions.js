@@ -3,7 +3,7 @@
  */
 $(document).ready(function(){
   // Add smooth scrolling to all links in navbar + footer link
-  $(".navbar-nav a, footer a[href='#myPage'],.section-down-btn").on('click', function(event) {
+  $(".navbar-nav li.onepage a, footer a[href='#myPage'],.section-down-btn").on('click', function(event) {
 
   // Prevent default anchor click behavior
   event.preventDefault();
@@ -28,6 +28,7 @@ $(document).ready(function(){
   			$(".navbar-form .text").addClass("hide");
   		}else{
   			$(".navbar-form .text").removeClass("hide");
+            $(".navbar-form .text").focus();
   		}
   		search_toggle = !search_toggle;
   });
@@ -39,11 +40,11 @@ $(document).ready(function(){
     itemcls = "." + cls;
     var item_num = $(itemcls).length;
     var width = $(itemcls).outerWidth() + parseFloat($(itemcls).css("margin-left"),10) + parseFloat($(itemcls).css("margin-right"),10);
-    $("#" + cls + "-wrapper").css("width",(item_num * width) + 2*item_num);
+    $("#" + cls + "-wrapper").css("width",(item_num * width + item_num));
   }
 
   function animateLeft(cls){
-    itemcls = "." + cls;
+    itemcls = "." + cls + ":not(.highlight)";
     var item_num = $(itemcls).length;
     var width = $(itemcls).outerWidth() + parseInt($(itemcls).css("margin-left"),10) + parseInt($(itemcls).css("margin-right"),10);
     var target = $("#" + cls + "-wrapper");
@@ -59,7 +60,7 @@ $(document).ready(function(){
   }
 
   function animateRight(cls){
-    itemcls = "." + cls;
+    itemcls = "." + cls + ":not(.highlight)";
     var item_num = $(itemcls).length;
     var width = $(itemcls).outerWidth() + parseInt($(itemcls).css("margin-left"),10) + parseInt($(itemcls).css("margin-right"),10);
     var target = $("#" + cls + "-wrapper");

@@ -46,7 +46,8 @@
     display: inline-block;
     background-color: #373737;
     width: 25vw;
-    margin: 1vw;
+    height: auto;
+    margin:2vh  1vw;
     box-shadow: 0 0 5px black;
     cursor: pointer;
     overflow: hidden;
@@ -54,22 +55,14 @@
 
 .gallery h4{
     color: #ffffff;
-    margin: 3vh 0 1vh;
+    margin: 1.5vh 0;
     width: 100%;
-    padding: 0 2em;
-    font-size: 18px;
+    padding: 0 20px;
+    font-size: 1.3em;
     line-height: 7vh;
+    height: 7vh;
     text-align: center;
-}
-
-
-.gallery .gallery-body p{
-    padding-top:1vw ;
-    max-width: 25vw;
-    position: absolute;
-    opacity: 0;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 10;
+    overflow: hidden;
 }
 
 .gallery img{
@@ -91,18 +84,22 @@
     opacity: 1;
 }
 
-.gallery p{
+.gallery div.p{
     font-size: 12px;
     color: white;
     padding: 2vh 4vh 2vh;
-    text-align: justify;
     line-height: 16px;
     overflow: hidden;
     opacity: 0;
     transition: all 1s;
+    text-align: center;
+    width: 100%;
+    height: 25vh;
+    position: absolute;
+    z-index: 10;
 }
 
-.gallery:hover p{
+.gallery:hover div.p{
     opacity: 1;
 }
 
@@ -113,9 +110,9 @@
     position: relative;
     z-index: 10;
     height: 6vh;
-    line-height: 7vh;
+    line-height: 6vh;
     font-size: 12px;
-    margin: 1vh auto;
+    margin: 2.4vh auto;
     padding: 0 10px;
     color: #ffffff;
     text-decoration: none;

@@ -13,7 +13,8 @@
             <script>
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.
-                CKEDITOR.replace( 'body' );
+                CKEDITOR.replace( 'body',{extraPlugins: 'uploadimage'}
+                   );
             </script>
         </div>
         <div class="form-group">
@@ -22,7 +23,7 @@
         </div>
         <div class="form-group">
             <label>Category: </label>
-            @include('categorysimple',['nodes'=>$cats,'level'=>0])
+            @include('categorysimple',['nodes'=>$cats,'level'=>0,'lang'=>"en"])
         </div>
         @if($type ==  "galleries")
             @if($mode == 0)
@@ -33,7 +34,8 @@
                     <label for="delete">Delete
                         <input type="checkbox" name="oldimg[{{$key}}][delete]" id="delete">
                     </label>
-                    <input type="text" disabled="disabled" class="small" placeholder="Title" value="{{ empty($photo->title) ? "" : $photo->title }}">
+                    <input type="text" name="oldimg[{{$key}}][title]" class="small" placeholder="Title" value="{{ empty($photo->title) ? "" : $photo->title }}">
+                    <select name="oldimg[{{$key}}][highlight]"><option value="false">Normal</option><option {{$photo->highlight ? "selected='selected'" : ""}} value="true">Highlight</option></select>
                     <input type="hidden" name="oldimg[{{$key}}][id]" value="{{$photo->id}}">
                 </div>
             @endforeach
@@ -42,6 +44,7 @@
                 <label>Select Images:</label>
                 <input type="file" name="img[]">
                 <input type="text" class="small" placeholder="Title" name="imgtitle[]">
+                <select name="highlight[]"><option value="false">Normal</option><option value="true">Highlight</option></select>
             </div>
             <div  class="add-img-input">Add More Images</div>
         @else
@@ -97,12 +100,16 @@
         </div>
         <div class="form-group">
             <label>Category: </label>
-            @include('categorysimple',['nodes'=>$cats,'level'=>0])
+            @include('categorysimple',['nodes'=>$cats,'level'=>0,'lang'=>"en"])
         </div>
     @elseif($type == 'researches' )
         <div class="form-group">
             <label for="title">Title:</label>
             <input type="text" class="form-control" id="title" name="title" value="{{ empty($old->content->title) ? "" : $old->content->title }}">
+        </div>
+        <div class="form-group">
+            <label for="abstract">Abstract:</label>
+            <textarea class="form-control" id="abstract" name="abstract">{{ empty($old->content->body) ? "" : $old->content->body }}</textarea>
         </div>
         <div class="form-group">
             <label for="body">Author:</label>
@@ -117,31 +124,24 @@
             @include('dateinput',['prefix'=>"date",'date' => isset($old->date) ? $old->date : "0|0|0|0|0"])
         </div>
         <div class="form-group">
+            <label for="external">Is it ours? :</label>
+            <input type="checkbox" class="form-control" id="external" name="external" {{ (!empty($old->external) && $old->external ) ? "" : "checked='checked'" }}>
+        </div>
+        <div class="form-group">
             <label for="body">Pages:</label>
             <input type="number" class="form-control" id="pages" name="pages" value="{{ empty($old->pages) ? "" : $old->pages }}">
-        </div>
-        <div class="form-group">
-            <label for="body">File:</label>
-            <div class="fileUpload btn btn-primary">
-                <span>Upload</span>
-                <input type="file" class="form-control myupload" id="file" name="path">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="abstract">Abstract:</label>
-            <textarea class="form-control" id="abstract" name="abstract">{{ empty($old->abstract) ? "" : $old->abstract }}</textarea>
-        </div>
-        <div class="form-group">
-            <label for="refrences">Refrences:</label>
-            <textarea class="form-control" id="refrences" name="refrences">{{ empty($old->refrences) ? "" : $old->refrences }}</textarea>
         </div>
         <div class="form-group">
             <label for="keywords">Keywords:</label>
             <textarea class="form-control" id="keywords" name="keywords">{{ empty($old->keywords) ? "" : $old->keywords }}</textarea>
         </div>
         <div class="form-group">
+            <label for="link">Link</label>
+            <textarea class="form-control" id="link" name="link">{{ empty($old->link) ? "" : $old->link }}</textarea>
+        </div>
+        <div class="form-group">
             <label>Select File:</label>
-            <input type="file" name="img[]" multiple>
+            <input type="file" name="path">
         </div>
         <div class="form-group">
             <label>Tags: </label>
@@ -149,7 +149,7 @@
         </div>
         <div class="form-group">
             <label>Category: </label>
-            @include('categorysimple',['nodes'=>$cats,'level'=>0])
+            @include('categorysimple',['nodes'=>$cats,'level'=>0,'lang'=>"en"])
         </div>
     @elseif($type == 'members' )
         <div class="form-group">
@@ -295,6 +295,11 @@
                 <label for="body">body:</label>
                 <textarea class="form-control" id="body" name="body" rows="10" cols="50">{{ empty($old->body) ? "" : $old->body }}</textarea>
             </div>
+            <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'body');
+            </script>
             @endif
     @elseif($type == 'tags')
         <div class="text-center text-success"> enter tags separated with '#' and no space</div>
@@ -308,7 +313,7 @@
         <br>
         <div class="form-group">
             <label>Category: </label>
-            @include('categorysimple',['nodes'=>$cats,'level'=>0])
+            @include('categorysimple',['nodes'=>$cats,'level'=>0,'lang'=>"en"])
         </div>
         <div class="form-group">
             <label for="title">title:</label>
@@ -332,7 +337,7 @@
         <input type="submit" value="Add" class="btn btn-primary" >
         <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
     @else
-            <input type="hidden" name="id" value="{{$old->id}}">
-            <input type="submit" value="save" class="btn btn-primary" >
+        <input type="hidden" name="id" value="{{$old->id}}">
+        <input type="submit" value="save" class="btn btn-primary" >
     @endif
 </form>

@@ -11,7 +11,12 @@
 |
 */
 
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home'
+use App\Http\Controllers\HomeController;
+
+Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@showHomePage'
+]);
+
+Route::get('/', ['as' => 'homepage', 'uses' => 'HomeController@showHomePage'
 ]);
 
 Route::get('/admin/{lang?}', ['as' => 'admin', 'uses' => 'AdminController@admin'
@@ -31,13 +36,13 @@ Route::post('/adminfilter', ['as' => 'adminfilter', 'uses' => 'AdminController@a
 
 Route::get('/',array('uses' => 'HomeController@showHomePage'));
 
-Route::get('/test', ['as' => 'adminfilter', 'uses' => 'AdminController@selectFrom'
+Route::get('/test', ['as' => 'adminfilter', 'uses' => 'CategoryController@jsonTree'
 ]);
 
 Route::get('/blogs', ['as' => 'blogs', 'uses' => 'BlogController@showBlogs'
 ]);
 
-Route::get('/moreblogs', ['as' => 'moreblogs', 'uses' => 'BlogController@moreBlogs'
+Route::get('/morecontents', ['as' => 'morecontents', 'uses' => 'ContentController@moreContents'
 ]);
 
 Route::get('/galleries', ['as' => 'galleries', 'uses' => 'GalleryController@showGalleries'
@@ -46,7 +51,7 @@ Route::get('/galleries', ['as' => 'galleries', 'uses' => 'GalleryController@show
 Route::get('/gallery', ['as' => 'gallery', 'uses' => 'GalleryController@showGallery'
 ]);
 
-Route::get('/about', ['as' => 'gallery', 'uses' => 'AboutController@showAbout'
+Route::get('/about', ['as' => 'gallery', 'uses' => 'HomeController@showAbout'
 ]);
 
 Route::get('/scroll', ['as' => 'gallery', 'uses' => 'AboutController@autoScroll'
@@ -73,3 +78,29 @@ Route::get('/contents', ['uses' => 'ContentController@showContents']);
 Route::get('/content', ['uses' => 'ContentController@showContent']);
 
 Route::get('/lang', ['uses' => 'HomeController@setLang']);
+
+Route::get('/search', ['uses' => 'HomeController@search']);
+
+Route::get('sendemail', function () {
+
+    $hc =new HomeController();
+    $vars = $hc->getVars();
+    $data = array(
+        'vars' => $vars
+    );
+
+    Mail::send('newsletterbody', $data, function ($message) {
+
+        $message->from('nima.shirvanian@gmail.com', 'Learning Laravel');
+
+        $message->to('nima.shirvanian@gmail.com')->subject('Learning Laravel test email');
+
+    });
+
+    return "Your email has been sent successfully";
+
+});
+
+Route::get('mail', function () {
+    return view("newsletterbody");
+});

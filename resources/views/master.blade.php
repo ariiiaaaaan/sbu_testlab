@@ -17,6 +17,14 @@
     <!-- Latest compiled JavaScript -->
     <script src="js/bootstrap.js"></script>
     <script src="js/actions.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("a.lang").on("click",function(e){
+                e.preventDefault();
+                alert("English Version Will Be Published Soon.");
+            });
+        });
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @yield('outsource')
 </head>
@@ -39,7 +47,7 @@
                     <div class="navbar-form">
                         <div class="navbar-search-wrapper">
                             <form id="navbar-search" action="search" method="get">
-                                <input class="text hide" type="text">
+                                <input class="text hide" type="text" name="query">
                                 <span class="fa fa-search fa-2x"><input type="submit" class="submit" value=" "></span>
                             </form>
                         </div>

@@ -8,5 +8,17 @@
     text-align: center;
     background: #373737;
     border: none;
-    color: white;
+    color: white !important;
+}
+
+#cat-container span.fa{
+    position: absolute;
+    right: 10%;
+    line-height: 50px;
+    top:0;
+    color: #ffffff;
+}
+
+#cat-container span.fa:after{
+    color: #ffffff;
 }

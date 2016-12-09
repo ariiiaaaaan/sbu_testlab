@@ -1,6 +1,13 @@
 @font-face {
     font-family: farsi;
-    src: url(../fonts/irsans.ttf);
+    src: url(../fonts/BYekan+.ttf);
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: farsi;
+    src: url(../fonts/BYekan+Bold.ttf);
+    font-weight: bold;
 }
 
 @font-face {
@@ -21,7 +28,7 @@
 }
 
 body{
-    font-family: Yekan;
+    font-family: farsi;
     direction: rtl;
 }
 
@@ -43,7 +50,7 @@ body{
 #main-menu ul.nav li{
     display: inline-block;
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: 1.7em;
 }
 
 .navbar-form{
@@ -86,11 +93,6 @@ body{
     padding-right: 15px;
 }
 
-.section-down-btn {
-    margin-left: auto;
-    margin-right: -2em;
-}
-
 
 #service-wrapper,#company-wrapper,#members-wrapper,#field-wrapper{
     right: 0vw;
@@ -103,12 +105,17 @@ body{
     float: right;
 }
 
-.blog .blog-date .fa{
-    margin:0 20px 0 10px ;
+.card .card-date .fa{
+    margin:0 20px 0 10px !important;
 }
 
-.blog .blog-date{
-    text-align: right;
+.card .card-date{
+    text-align: right !important;
+}
+
+.card h4{
+    text-align: right !important;
+    line-height: 6vh;
 }
 
 #event-wrapper,#event-wrapper .event{
@@ -137,6 +144,10 @@ body{
     padding: 2vh 2vh 1vh;
 }
 
+.gallery .gallery-btn{
+    font-size: 14px !important;
+}
+
 .member-section #contact .contact-row label{
     float: right;
 }
@@ -147,20 +158,75 @@ body{
 
 #contact-form .send{
     float: right !important;
-    margin-right: 14%;
+    margin-right: 14% !important;
 }
 
-#contact .footer-info p {
-    text-align: right;
-    margin: 0px 60px 5px 5px;
+.footer-info p {
+    text-align: right !important;
+    margin: 0px 4em 5px 5px !important;
 }
 
-#contact .footer-info span.fa {
+.footer-info span.fa {
     float: right !important;
-    text-align: right;
+    margin-left: 5px;
+}
+
+.footer-info {
+    position: relative;
+    right: 2vw;
+}
+
+.footer-info .fa-map-marker{
+    margin-right: .4em !important;
 }
 
 #contact .socials{
     text-align: right;
     margin-right: 2vw;
+}
+
+#contact .footer-info{
+    float: left;
+}
+
+#contact .info{
+    overflow: hidden;
+}
+
+.section-btn-all{
+    font-size: 1.15em !important;
+    line-height: 5.5vh !important;
+}
+
+#cat-container span.fa{
+    left: 10%!important;
+    right:auto !important;
+}
+
+/*#cat-container .dl-menuopen ~ .fa{*/
+    /*opacity: 0;*/
+/*}*/
+
+.custom-scroll-wrapper{
+    direction: ltr !important;
+}
+
+.custom-scroll-content {
+    text-align: right !important;
+}
+
+.custom-scroll-content > a{
+    text-align: center !important;
+}
+
+.tab-section .nav-pills li{
+    float: right;
+}
+
+.field-item, .link-item{
+    direction: rtl;
+}
+
+.result, .result .p,.result h4,.result h5{
+    text-align: right;
 }

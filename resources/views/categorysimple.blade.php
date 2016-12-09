@@ -9,14 +9,12 @@
     <script>
 
         $(document).ready(function() {
-
             $('#cat-container').dlmenu({
-                animationClasses: {classin: 'dl-animate-in-3', classout: 'dl-animate-out-3'}
+                animationClasses: {classin: 'dl-animate-in-1', classout: 'dl-animate-out-1'}
             });
-
         });
     </script>
 
 @endsection
 
-@include("category")
+@include("category",["lang"=>$lang])

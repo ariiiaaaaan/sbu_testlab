@@ -4,30 +4,41 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Content;
-use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ContentController extends Controller {
 
     public function showContents(Request $r) {
-        $content =  Content::find($r->input("id"));
+        $contents =  Content::where('type',$r->input("type"))->take(12)->get();
         $lang = $r->session()->get("lang","fa");
         $cats = CategoryController::getTree();
-        return view('contents',['content' => $content,'cats' => $cats,'lang' => $lang]);
+        $hc =new HomeController();
+        $vars = $hc->getVars();
+        return view('contents',['contents' => $contents,'cats' => $cats,'lang' => $lang,'type' => $r->input("type"),'vars' => $vars]);
     }
 
-    public function getRelated($id){
-        $content = Content::find($id);
-        $ret = Content::where("type",$content->type)->take(3)->get();
-        return $ret;
-    }
 
     public function showContent(Request $r) {
         $content =  Content::find($r->input("id"));
-//        return var_dump($content);
         $lang = $r->session()->get("lang","fa");
-        $rels = ContentController::getRelated($r->input("id"));
-        return view('content',['content' => $content,'rels' => $rels,'lang' => $lang]);
+        $rels = $this->getRelatedBlog($content->id);
+        $hc =new HomeController();
+        $vars = $hc->getVars();
+        return view('content',['content' => $content,'related' => $rels,'lang' => $lang,'vars'=>$vars]);
+    }
+
+    public function moreContents(Request $r){
+        $offset = $r->input("page")*2;
+        $contents =  Content::where('type',$r->input("type"))->offset($offset)->take(2)->get();
+        return view("morecontent",["contents"=>$contents]);
+    }
+
+    public function getRelatedBlog($id){
+        $ids = DB::select('call related(?)',array($id));
+        if(count($ids)<3)
+            return (Content::where("type","blogs")->orWhere("type","didactics")->take(3)->get());
+        return (Content::find([$ids[0]->content_id,$ids[1]->content_id,$ids[2]->content_id]));
     }
 
 }

@@ -6,10 +6,15 @@
 }
 
 .member-section h2,h1{
-    font-size: 36px;
+    font-size: 2.7em;
     font-weight: normal;
-    margin-top: 10px;
-    padding-top: 0px;
+    margin-top: .5em;
+    padding-top: 0;
+}
+
+.member-section h2{
+    font-size: 1.5em;
+    margin-top: .9em;
 }
 
 .member-section h3{
@@ -121,7 +126,7 @@
 
 .member-on-header{
     width: 40vw;
-    margin: 22vh auto;
+    margin: 18vh auto;
     position: relative;
     text-align: center;
     transition: all 0.8s;
@@ -134,7 +139,7 @@
     overflow: hidden;
     border-radius: 1000px;
     margin: 0 auto 4vh;
-    box-shadow: 0 0 10px black;
+    box-shadow: 0 0 5px black;
 }
 
 .member-on-header img{
@@ -159,7 +164,8 @@
     top: 0;
     right: 0;
     display: inline-block;
-    height: 6vh;
+    height: 7vh;
+    min-height: 2.8em;
     transition: all 0.8s;
 }
 
@@ -186,11 +192,11 @@
     color: #ffffff;
     width: auto;
     float: right;
-    line-height: 2.5vh;
+    line-height: 3.5vh;
     padding: 2vh 2vh 1vh;
     background: rgba(0,0,0,.5);
     margin:0;
-    height: 6vh;
+    height: 7vh;
     font-size: 16px;
 }
 
@@ -260,6 +266,7 @@
     margin: 10vh 2vw 0;
     background: #0098bf;
     box-shadow: 0 0 5px black;
+    position: relative;
 }
 
 .member-rec .row{
@@ -268,19 +275,25 @@
 }
 
 .member-rec .row:nth-child(1){
-    font-size: 1.8em;
+    font-size: 1.5em;
     margin: 10vh 0 0;
 }
 
 .member-rec .row:nth-child(2){
-    font-size: 2.2em;
+    font-size: 2.5em;
+    padding: 0 2vw;
+    line-height: .9em;
     font-weight: bold;
     margin: 1vh 0 0;
 }
 
 .member-rec .row:nth-child(3){
-    font-size: 1.4em;
+    font-size: 1.2em;
     margin: 5vh 0 0;
+    position: absolute;
+    bottom: 10vh;
+    left: 0;
+    width: 100%;
 }
 
 #contact .contact-socials{
@@ -307,25 +320,25 @@
 #contact .contact-card{
     margin: 5vh auto 0;
     width: 40vw;
-    border-bottom: solid 3px #373737;
+    border-bottom: solid 4px #373737;
 }
 #contact .contact-row {
     overflow: hidden;
     width: 100%;
     margin: 0;
-    padding: 1vh;
-    border-bottom: solid 1px #373737;
+    padding: 3vh 5vw;
+    border-bottom: solid 2px #373737;
 }
 
 #contact .contact-row label{
-    font-size: 1.8em;
+    font-size: 1.2em;
     color: #373737;
     float: left;
     margin: 0.2em;
 }
 
 #contact .contact-row p{
-    font-size: 1.8em;
+    font-size: 1.2em;
     color: #373737;
     float: right;
     margin: 0.2em;
@@ -353,6 +366,10 @@
 
 .member-section:nth-child(even).tab-section .nav-pills li.active a{
     background-color: #373737;
+}
+
+.member-section:nth-child(even) h2,.member-section:nth-child(even) h3{
+    color: #373737;
 }
 
 

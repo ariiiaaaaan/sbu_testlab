@@ -28,12 +28,35 @@
                 $('#service-modal').modal("show");
             });
 
+            $(document).keydown(function(e){
+                if(e.keyCode == 40){
+                    var next = $("li.onepage.active").next();
+                    if(next.hasClass("onepage"))
+                        next.find("a").click();
+                    else
+                        $("li.onepage").first().find("a").click();
+                }else if(e.keyCode == 38){
+                    var prev = $("li.onepage.active").prev();
+                    if(prev.hasClass("onepage"))
+                        prev.find("a").click();
+                    else
+                        $("li.onepage").first().find("a").click();
+                }
+                else if(e.keyCode == 37){
+                    var section = $("li.onepage.active a").attr("href");
+                    $(section).find("span.fa-angle-left").click();
+                }else if(e.keyCode == 39){
+                    var section = $("li.onepage.active a").attr("href");
+                    $(section).find("span.fa-angle-right").click();
+                }
+
+            });
         });
     </script>
 @endsection
 
 @section('menu')
-    @include('nav',["page"=>"home","lang"=>$lang])
+    @include('nav',["preurl"=>"","lang"=>$lang,"class"=>"onepage"])
 @endsection
 
 @section('content')
@@ -57,7 +80,11 @@
                 {{--</div>--}}
             {{--</div>--}}
         </div>
-        <a href="about" class="section-btn-all">مشاهده‌ی صفحه‌ی معرفی</a>
+        @if($lang == "en")
+            <a href="about" class="section-btn-all">View About Page</a>
+        @else
+            <a href="about" class="section-btn-all">مشاهده‌ی صفحه‌ی معرفی</a>
+        @endif
     </section>
     <section id="industry" class="onepage-section tab-section">
         <a href="#industry" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
@@ -77,9 +104,9 @@
                                 <div class="service">
                                     <img src="{{$service->photos->path or "images/service1.png"}}">
                                     <h4>{{$service->title}}</h4>
-                                    <p>
+                                    <div class="p">
                                         {!!$service->body!!}
-                                    </p>
+                                    </div>
                                 </div>
                             @endforeach
                         </div>
@@ -94,9 +121,9 @@
                                 <div class="field">
                                     <img src="{{$field->photos->path or "images/service1.png"}}">
                                     <h4>{{$field->title}}</h4>
-                                    <p>
+                                    <div class="p">
                                         {!!$field->body!!}
-                                    </p>
+                                    </div>
                                 </div>
                             @endforeach
                         </div>
@@ -114,20 +141,20 @@
         <h3>{{$var["events"]["subtitle"]}}</h3>
         <div class="hider">
             <div id="event-wrapper">
-                @for($i = 0; $i<18; $i++)
-                    <div class="event @if(mt_rand()%10 < 4 ) highlight @endif color{{mt_rand()%6 + 1}}">
-                        <div class="overlay">
-                            <p class="day">25</p>
-                            <p class="month">July</p>
+                    @for($i = 0; $i<14; $i++)
+                        <div class="event @if(mt_rand()%10 < 4 ) highlight @endif color{{mt_rand()%6 + 1}}">
+                            <div class="overlay">
+                                <p class="day">{{$i+15}}</p>
+                                <p class="month">آذر</p>
+                            </div>
+                            <div class="content">
+                                <h3 class="title">رویداد خالی</h3>
+                                <p class="location"></p>
+                                <p class="time"></p>
+                                <p class="desc"></p>
+                            </div>
                         </div>
-                        <div class="content">
-                            <h3 class="title">The London Test Automation</h3>
-                            <p class="location">Shahid Beheshti University</p>
-                            <p class="time">15:00 - 18:30</p>
-                            <p class="desc">Some description about the event which should be trim and prepared for the homepage ...</p>
-                        </div>
-                    </div>
-                @endfor
+                    @endfor
             </div>
         </div>
         <span class="fa fa-angle-right fa-4x" id="events-next"></span>
@@ -137,20 +164,17 @@
         <a href="#blogs" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$var["blogs"]["title"]}}</h2>
         <h3>{{$var["blogs"]["subtitle"]}}</h3>
-        <div id="blog-wrapper">
-            @for($i =0; $i<3; $i++)
-                <div class="blog">
-                    <h4>Unit Test</h4>
-                    <div class="blog-date"><span class="fa fa-calendar fa-2 2x"></span>July 17th, 2015</div>
-                    <p>
-                        Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.
-                    </p>
-                    <img src="images/blog1.jpg">
-                    <a href="blogs" class="blog-btn">CLICK TO VIEW POST</a>
-                </div>
-            @endfor
+        <div id="blog-wrapper" class="card-wrapper">
+            @foreach($content["blogs"] as $blog)
+             @include("card",["class"=>"blog","content"=>$blog])
+            @endforeach
         </div>
-        <a href="blogs" class="section-btn-all">CLICK TO VIEW MORE POST</a>
+        @if($lang == "en")
+            <a href="contents?type=blogs" class="section-btn-all">CLICK TO VIEW MORE POST</a>
+        @else
+            <a href="contents?type=blogs" class="section-btn-all">مشاهده‌ی تمام بلاگ‌ها</a>
+        @endif
+
     </section>
     <section id="members" class="onepage-section">
         <a href="#members" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
@@ -158,12 +182,13 @@
         <h3>{{$var["members"]["subtitle"]}}</h3>
         <div class="hider">
             <div id="member-wrapper">
-                @for($i =0; $i<9; $i++)
-                    <div class="member">
-                        <img src="upload/larry-page.jpg">
-                        <h4>Hewlett Packard</h4>
-                    </div>
-                @endfor
+                @foreach($content["members"] as $member)
+                    <div class="member"><a href="member?id={{$member->id}}">
+                        <img src="{{$member->photo->path or "images/service1.png"}}">
+                        <h4>{{$member->firstname}}&nbsp{{$member->lastname}}</h4>
+                        <h5>{{$member->position}}</h5>
+                        </a></div>
+                @endforeach
             </div>
         </div>
         <span class="fa fa-angle-right fa-4x" id="members-next"></span>
@@ -173,24 +198,16 @@
         <a href="#didactics" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$var["didactics"]["title"]}}</h2>
         <h3>{{$var["didactics"]["subtitle"]}}</h3>
-        <div id="blog-wrapper">
-            @for($i =0; $i<3; $i++)
-                <div class="blog">
-                    <div class="auto-scroll-wrapper">
-                        <div class="auto-scroll">
-                            Unit Test hjsdfsdfh jdfdsfb kjdbfskdbf kjbdfksdjbfds kjdsfdskjfb
-                        </div>
-                    </div>
-                    <div class="blog-date"><span class="fa fa-calendar fa-2 2x"></span>July 17th, 2015</div>
-                    <p>
-                        Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.
-                    </p>
-                    <img src="images/blog1.jpg">
-                    <a href="blogs" class="blog-btn">CLICK TO VIEW POST</a>
-                </div>
-            @endfor
+        <div id="didactic-wrapper" class="card-wrapper">
+            @foreach($content["didactics"] as $blog)
+                @include("card",["class"=>"blog","content"=>$blog])
+            @endforeach
         </div>
-        <a href="blogs" class="section-btn-all">CLICK TO VIEW MORE POST</a>
+        @if($lang == "en")
+            <a href="contents?type=didactics" class="section-btn-all">CLICK TO VIEW MORE POST</a>
+        @else
+            <a href="contents?type=didactics" class="section-btn-all">مشاهده‌ی تمام مطالب</a>
+        @endif
     </section>
     <section id="resources" class="onepage-section tab-section">
         <a href="#resources" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
@@ -199,17 +216,19 @@
         <div class="link-tab">
         <div class="custom-scroll-wrapper link-wrapper">
             <div class="custom-scroll-content">
-
-                @for($i = 0; $i<18; $i++)
-                    <a href="#" class="link-item">some industrial field</a>
-                @endfor
+                @if(count($content["resources"]) > 0)
+                    @foreach($content["resources"] as $res)
+                        <a href="{{$res->body}}" class="link-item">{{$res->title}}</a>
+                    @endforeach
+                @else
+                    <div class="no-content">{{$lang=="en" ? "Content of this section will be provided soon." : "محتوای این قسمت به زودی تهیه خواهد شد."}}</div>
+                @endif
             </div>
-            {{--<a class="animate-modal-btn"></a>--}}
         </div>
         </div>
     </section>
-    <section id="resources" class="onepage-section tab-section">
-        <a href="#resources" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
+    <section id="researches" class="onepage-section tab-section">
+        <a href="#researches" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$lang == "en" ? "Papers":"مقالات" }}</h2>
         <div class="section-nav-container">
             <ul class="nav nav-pills text-center">
@@ -220,41 +239,43 @@
         <div class="col-sm-12 section-tab-container">
             <div class="tab-content">
                 <div id="resource-tab1" class="tab-pane fade in active">
-
+                    @if(count($content["researchesours"])==0)
+                        <div class="no-content">{{$lang=="en" ? "Content of this section will be provided soon." : "محتوای این قسمت به زودی تهیه خواهد شد."}}</div>
+                    @endif
+                    @foreach($content["researchesours"] as $res)
                         <div class="research">
-                            <h4>Co-Evolutionary automatic prograing for software development</h4>
-                            <h5>Andrea Arcuri,xin Yao</h5>
-                            <p>Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.</p>
-                            <a href="#" class="research-btn">CLICK TO VIEW POST</a>
+                            <h4>{{str_limit($res->title,60)}}</h4>
+                            <h5>{{$res->research->author}}</h5>
+                            <div class="p">{!! str_replace("<p>&nbsp;</p>"," ",preg_replace('/[ \t]+/', ' ', preg_replace('/[\r\n]+/',' ',str_limit($res->body,350))))."</p></span>" !!}</div>
+                            <a href="content?id={{$res->id}}" class="research-btn">{{$lang == "en" ? "CLICK TO VIEW POST" : "مشاهده ی مطلب"}}</a>
                         </div>
-                        <div class="research">
-                            <h4>Co-Evolutionary automatic prograing for software development</h4>
-                            <h5>Andrea Arcuri,xin Yao</h5>
-                            <p>Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.</p>
-                            <a href="#" class="research-btn">CLICK TO VIEW POST</a>
-                        </div>
-
-                    <a href="contents?type=paper" class="section-btn-all">CLICK TO VIEW MORE POSTS</a>
+                    @endforeach
+                        @if($lang == "en")
+                            <a href="contents?type=researches?external=0" class="section-btn-all">CLICK TO VIEW MORE POST</a>
+                        @else
+                            <a href="contents?type=researches" class="section-btn-all">مشاهده‌ی تمام مطالب</a>
+                        @endif
                 </div>
                 <div id="resource-tab2" class="tab-pane fade">
+                    @if(count($content["researchesexternal"])==0)
+                        <div class="no-content">{{$lang=="en" ? "Content of this section will be provided soon." : "محتوای این قسمت به زودی تهیه خواهد شد."}}</div>
+                    @endif
+                    @foreach($content["researchesexternal"] as $res)
                         <div class="research">
-                            <h4>Co-Evolutionary automatic prograing for software development</h4>
-                            <h5>Andrea Arcuri,xin Yao</h5>
-                            <p>Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.</p>
-                            <a href="#" class="research-btn">CLICK TO VIEW POST</a>
+                            <h4>{{str_limit($res->title,60)}}</h4>
+                            <h5>{{$res->research->author}}</h5>
+                            <div class="p">{!! str_replace("<p>&nbsp;</p>"," ",preg_replace('/[ \t]+/', ' ', preg_replace('/[\r\n]+/',' ',str_limit($res->body,350))))."</p></span>" !!}</div>
+                            <a href="content?id={{$res->id}}" class="research-btn">{{$lang == "en" ? "CLICK TO VIEW POST" : "مشاهده ی مطلب"}}</a>
                         </div>
-                        <div class="research">
-                            <h4>Co-Evolutionary automatic prograing for software development</h4>
-                            <h5>Andrea Arcuri,xin Yao</h5>
-                            <p>Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit the amount of time students spend on testing to 2 percent of their total time in school.</p>
-                            <a href="#" class="research-btn">CLICK TO VIEW POST</a>
-                        </div>
-
-                        <a href="contents?type=paper" class="section-btn-all">CLICK TO VIEW MORE POSTS</a>
+                    @endforeach
+                        @if($lang == "en")
+                            <a href="contents?type=researches?external=1" class="section-btn-all">CLICK TO VIEW MORE POST</a>
+                        @else
+                            <a href="contents?type=researches?external=1" class="section-btn-all">مشاهده‌ی تمام مطالب</a>
+                        @endif
                 </div>
             </div>
         </div>
-
     </section>
     <section id="companies" class="onepage-section">
         <a href="#companies" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
@@ -262,15 +283,18 @@
         <h3>{{$var["companies"]["subtitle"]}}</h3>
         <div class="hider">
             <div id="company-wrapper">
-                @for($i =0; $i<9; $i++)
+                @if(count($content["companies"])==0)
+                    <div class="no-content">{{$lang=="en" ? "Content of this section will be provided soon." : "محتوای این قسمت به زودی تهیه خواهد شد."}}</div>
+                @endif
+                @foreach($content["companies"] as $comp)
                     <div class="company">
-                        <img src="images/company.png">
-                        <h4>Hewlett Packard</h4>
+                        <img src={{$comp->photo->path or "images/qmark.png"}}>
+                        <h4>{{$comp->title}}</h4>
                         <p>
-                            Educators and parents expressed satisfaction with the Obama administration's.
+                            {!!$comp->body!!}
                         </p>
                     </div>
-                @endfor
+                @endforeach
             </div>
         </div>
         <span class="fa fa-angle-right fa-4x" id="company-next"></span>
@@ -281,24 +305,30 @@
         <h2>{{$var["galleries"]["title"]}}</h2>
         <h3>{{$var["galleries"]["subtitle"]}}</h3>
         <div id="gallery-wrapper">
-            @for($i =0; $i<3; $i++)
-                <div class="gallery item @if($i%2) {{"exhibition"}} @else {{"conference"}} @endif">
-                    <h4>Web Conferance</h4>
+            @foreach($content["galleries"] as $gal)
+                <div class="gallery item {{$gal->category or "all"}} ">
+                    <a href="gallery?id={{$gal->id}}">
+                    <h4>{!! str_limit($gal->title,30) !!}</h4>
                     <div class="gallery-body">
-                        <p>
-                            Educators and parents expressed satisfaction with the Obama administration's announcement Saturday that it would urge Congress to limit @if($i%3) the amount of time students spend on testing to 2 percent of @endif their total time in school.
-                        </p>
-                        @if($i%2)
-                            <img src="images/gallery1.jpg">
-                        @else
-                            <img src="images/gallery2.jpg">
-                        @endif
+                        <div class="p">
+                            {!!str_limit($gal->body,250)!!}
+                        </div>
+                            <img src="{{$gal->photos->first()->path or "non"}}">
                     </div>
-                    <a href="#" class="gallery-btn">CLICK TO VIEW GALLERY</a>
+                    @if($lang == "en")
+                        <a href="gallery?id={{$gal->id}}" class="gallery-btn">CLICK TO VIEW GALLERY</a>
+                    @else
+                        <a href="gallery?id={{$gal->id}}" class="gallery-btn">مشاهده‌ی گالری</a>
+                    @endif
+                    </a>
                 </div>
-            @endfor
+            @endforeach
         </div>
-        <a href="galleries" class="section-btn-all">CLICK TO VIEW MORE POSTS</a>
+        @if($lang == "en")
+            <a href="galleries" class="section-btn-all">View About Page</a>
+        @else
+            <a href="galleries" class="section-btn-all">مشاهده تمام آلبوم ها </a>
+        @endif
     </section>
     <section id="contact" class="onepage-section">
         <a href="#contact" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
@@ -306,18 +336,18 @@
         <h3>{{$var["contact"]["subtitle"]}}</h3>
         <div class="form-wrapper pull-right">
             <form id="contact-form">
-                <input type="text" class="name" placeholder="Name">
-                <input type="email" class="email" placeholder="Email">
-                <textarea class="body" placeholder="Message"></textarea>
-                <input type="submit" class="send pull-left" value="SEND">
+                <input type="text" class="name" {{$lang=="en" ? "placeholder=Name" : "placeholder=نام"}}>
+                <input type="email" class="email" {{$lang=="en" ? "placeholder=Email" : "placeholder=ایمیل"}}>
+                <textarea class="body" {{$lang=="en" ? "placeholder=Messagث" : "placeholder=پیغام"}}></textarea>
+                <input type="submit" class="send pull-left" {{$lang=="en" ? "value=SEND" : "value=ارسال"}}>
             </form>
         </div>
         <div class="links-wrapper pull-left">
             <div class="info">
-                <div class="footer-info"><span class="fa fa-clock-o fa-2x pull-left"></span><p>Office Hours</p><p>{{$var["office-hours"]["title"]}}</p></div>
-                <div class="footer-info"><span class="fa fa-phone fa-2x pull-left"></span><p class="solo">{{$var["tell"]["title"]}}</p></div>
+                <div class="footer-info"><span class="fa fa-clock-o fa-2x pull-left"></span><p>{{$lang=="en" ? "Office Hours" : "ساعات کاری"}}</p><p>{{$var["office-hours"]["title"]}}</p></div>
+                <div class="footer-info"><span class="fa fa-phone fa-2x pull-left"></span><p>{{$lang=="en" ? "Phone Number" : "تلفن"}}</p><p class="solo">{{$var["tell"]["title"]}}</p></div>
                 <div class="footer-info"><span class="fa fa-map-marker fa-2x pull-left"></span><P>{{$var["address"]["title"]}}</P><p>{{$var["address"]["subtitle"]}}</p></div>
-                <div class="footer-info"><span class="fa fa-envelope fa-2x pull-left"></span><p class="solo">{{$var["email"]["title"]}}</p></div>
+                <div class="footer-info"><span class="fa fa-envelope fa-2x pull-left"></span><p>{{$lang=="en" ? "Email" : "ایمیل"}}</p><p class="solo">{{$var["email"]["title"]}}</p></div>
             </div>
             <div class="socials">
                 <a class="fb" href="{{$var["facebook"]["title"]}}"><span class="fa fa-facebook fa-2x"></span></a>
@@ -334,7 +364,6 @@
     </section>
     <div id="service-modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -344,7 +373,19 @@
 
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="field-item-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
 
+                </div>
+            </div>
         </div>
     </div>
 

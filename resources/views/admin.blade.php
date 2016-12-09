@@ -131,9 +131,8 @@
             $('#insert-modal').modal();
             $('#insert-modal').modal("show");
             @endif
-
                $("body").on("click",".add-img-input",function(){
-                        $form = '<input type="file" name="img[]"><input type="text" class="small" placeholder="Title" name="imgtitle[]">';
+                        $form = '<input type="file" name="img[]"><input type="text" class="small" placeholder="Title" name="imgtitle[]"><select name="highlight[]"><option value="false">Normal</option><option value="true">Highlight</option></select>';
                         $(".form-group.img").append($form);
                 });
               var recnum = 0;
@@ -166,7 +165,7 @@
                 <li><a data-toggle="pill" href="#tab3">Blogs</a></li>
                 <li><a data-toggle="pill" href="#tab4">News</a></li>
                 <li><a data-toggle="pill" href="#tab5">Events</a></li>
-                <li><a data-toggle="pill" href="#tab6">Papers(other's)</a></li>
+                <li><a data-toggle="pill" href="#tab6">Didactics</a></li>
                 <li><a data-toggle="pill" href="#tab7">Resources</a></li>
                 <li><a data-toggle="pill" href="#tab8">Researches</a></li>
                 <li><a data-toggle="pill" href="#tab9">Tools</a></li>
@@ -221,7 +220,7 @@
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>
-                <div id="tab6" class="tab-pane fade" data-entity="contents" data-type="papers">
+                <div id="tab6" class="tab-pane fade" data-entity="contents" data-type="didactics">
                     <h3>Menu 1</h3>
                     <p>Some content in menu 1.</p>
                 </div>

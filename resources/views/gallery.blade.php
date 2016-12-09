@@ -31,6 +31,7 @@
 //            $("#image-modal").modal();
             $(".grid").on('click','.img.item',function(e){
                 $("#image-modal #the-image").attr("src",$(this).find("img").attr("src"));
+                $("#image-modal #modal-title").text($(this).find("h4").text());
                 $("#image-modal").modal("show");
             });
         });
@@ -39,63 +40,49 @@
 @endsection
 
 @section('menu')
-    @include('nav',["page"=>"home"])
+    @include('nav',["preurl"=>route("home"),"lang"=>$lang])
 @endsection
 
 @section('content')
     <section id="gallery-header" class="page-header">
-        <img src="images/header-logo-raw.png" class="header-logo">
-        <h1 class="page-title">Gallery</h1>
-        <h2 class="page-subtitle">Test gallery no. 1</h2>
+        <img src="{{$vars["logo"]["body"]}}" class="header-logo">
+        @if($lang == "en")
+            <h1 class="page-title">Gallery</h1>
+        @else
+            <h1 class="page-title">گالری</h1>
+        @endif
+        <h2 class="page-subtitle">{{$gallery->title}}</h2>
+        <div class="share-socials">
+            <a class="fb" target="_blank" href="http://www.facebook.com/share.php?u=www.ticksoft.sbu.ac.ir/gallery?id={{$gallery->title}}&title={{$gallery->title}}"><span class="fa fa-facebook fa-2x"></span></a>
+            <a class="tw" target="_blank" href="http://twitter.com/intent/tweet?status={{$gallery->title}}+www.ticksoft.sbu.ac.ir/gallery?id={{$gallery->title}}"><span class="fa fa-twitter fa-2x"></span></a>
+            <a class="gp" target="_blank" href="https://plus.google.com/share?url=www.ticksoft.sbu.ac.ir/gallery?id={{$gallery->title}}"><span class="fa fa-google-plus fa-2x"></span></a>
+            <a class="ld" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=www.ticksoft.sbu.ac.ir/gallery?id={{$gallery->title}}&title={{$gallery->title}}&source=www.ticksoft.sbu.ac.ir"><span class="fa fa-linkedin fa-2x"></span></a>
+        </div>
     </section>
     <section id="gallery-body" class="body-section">
         <a href="#gallery-body" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
-        <p>This is the decription for the test gallery.<br>It's not making any sense!</p>
+        <div>
+            {!!$gallery->body!!}
+        </div>
     </section>
     <section id="gallery-section">
         <div class="grid">
-            @for($i =0; $i<13; $i++)
-                <div class="img item @if(!($i%4)) {{"highlight"}} @endif">
+            @foreach($gallery->photos as $photo )
+                <div class="img item @if($photo->highlight == true){{"highlight"}} @endif">
                     <div class="img-body">
                         <h4>
-                            @if($i%2) Image one title @else The other image title  @endif
+                            {{$photo->title}}
                         </h4>
                         <p>
                             <span class="fa fa-search-plus fa-2x"></span>
                         </p>
-                        @if($i%2)
-                            <img src="images/gallery1.jpg">
-                        @else
-                            <img src="images/gallery2.jpg">
-                        @endif
+                        <img src="{{$photo->path}}">
                     </div>
-
                 </div>
-            @endfor
+            @endforeach
         </div>
     </section>
-    <section id="global-footer" class="footer-section">
-        <a href="#gallery-body" class="section-down-btn"><span class="fa fa-angle-up fa-4x"></span></a>
-        <div class="pull-left">
-            <div class="footer-info"><span class="fa fa-clock-o fa-2x pull-left"></span><p>Office Hours</p><p>Saturday to Thursday 8:00-21:00</p></div>
-            <div class="footer-info"><span class="fa fa-phone fa-2x pull-left"></span><p class="solo">+9821-22 90 4196</p></div>
-        </div>
-        <div class="pull-right">
-            <div class="footer-info"><span class="fa fa-map-marker fa-2x pull-left"></span><P>Shahid Beheshti University, Daneshjou Boulevard</P><p>Velenjak, Tehran, Iran</p></div>
-            <div class="footer-info"><span class="fa fa-envelope fa-2x pull-left"></span><p class="solo">info@ticksoft.sbu.ac.ir</p></div>
-        </div>
-        <div class="footer-center">
-            <div class="footer-socials">
-                <a class="fb" href="#"><span class="fa fa-facebook fa-2x"></span></a>
-                <a class="tw" href="#"><span class="fa fa-twitter fa-2x"></span></a>
-                <a class="gp" href="#"><span class="fa fa-google-plus fa-2x"></span></a>
-                <a class="ld" href="#"><span class="fa fa-linkedin fa-2x"></span></a>
-            </div>
-            <div class="footer-text">
-                <p>Shahid Beheshti University of Tehran<br>Software Testing Laboratory<br>copyright 2015</p>
-            </div>
-        </div>
-    </section>
+    @include('footer',['top' => 'blogs-section',"vars" => $vars])
 
     <div class="modal-dialog">
         <div id="image-modal" class="modal fade" role="dialog">
@@ -103,7 +90,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h3 class="modal-title">Image description</h3>
+                    <h3 class="modal-title" id="modal-title"></h3>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
