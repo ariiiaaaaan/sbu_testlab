@@ -1,0 +1,48 @@
+#main{
+    direction:rtl;
+    width:100%;
+    background-color: #373737;
+    text-align: center;
+    padding-top: 20px;
+    font-family: 'Microsoft Sans Serif', Tahoma, Arial, Verdana, Sans-Serif;
+}
+
+#main tr:nth-child(odd){
+    background-color: #0098bf;
+    color:#373737;
+}
+
+#main tr:nth-child(even){
+    background-color: #373737;
+    color:white;
+}
+
+#footer-main{
+    width: 100%;
+}
+
+#footer-main td{
+    width:33%;
+}
+
+table.footer-part{
+    font-size: 12px;
+    margin: 20px 0;
+}
+
+table.footer-part td.icon{
+    width: 40%;
+    text-align: left;
+}
+
+table.footer-part img{
+    width: 32px;
+    height: auto;
+}
+
+table.footer-part td.info{
+    text-align: right;
+    color: white;
+}
+
+

@@ -19,11 +19,11 @@
         </div>
         <div class="form-group">
             <label>Tags:</label>
-            @include('tags',['tags'=>$tags])
+            @include('tags',['tags'=>$tags,"selected"=> empty($old) ? [] : $old->tags->lists('id')->toArray()])
         </div>
         <div class="form-group">
             <label>Category: </label>
-            @include('categorysimple',['nodes'=>$cats,'level'=>0,'lang'=>"en"])
+            @include('categorysimple',['nodes'=>$cats,'level'=>0,'lang'=>"en","default"=> empty($old->categories) ? null : ["id" => $old->categories->first()->id ,"title" => $old->categories->first()->title]])
         </div>
         @if($type ==  "galleries")
             @if($mode == 0)
@@ -62,8 +62,6 @@
             </div>
         @endif
 
-
-
     @elseif($type == 'events' )
         <div class="form-group">
             <label for="title">Title:</label>
@@ -96,11 +94,11 @@
         </div>
         <div class="form-group">
             <label>Tags: </label>
-            @include('tags',['tags'=>$tags])
+            @include('tags',['tags'=>$tags,"selected"=> empty($old) ? [] : $old->tags->lists('id')->toArray()])
         </div>
         <div class="form-group">
             <label>Category: </label>
-            @include('categorysimple',['nodes'=>$cats,'level'=>0,'lang'=>"en"])
+            @include('categorysimple',['nodes'=>$cats,'level'=>0,'lang'=>"en","default"=>empty($old->categories) ? null : ["id" => $old->categories->first()->id ,"title" => $old->categories->first()->title]])
         </div>
     @elseif($type == 'researches' )
         <div class="form-group">
@@ -145,11 +143,11 @@
         </div>
         <div class="form-group">
             <label>Tags: </label>
-            @include('tags',['tags'=>$tags])
+            @include('tags',['tags'=>$tags,"selected"=> empty($old) ? [] : $old->tags->lists('id')->toArray()])
         </div>
         <div class="form-group">
             <label>Category: </label>
-            @include('categorysimple',['nodes'=>$cats,'level'=>0,'lang'=>"en"])
+            @include('categorysimple',['nodes'=>$cats,'level'=>0,'lang'=>"en","default"=>empty($old->categories) ? null : ["id" => $old->categories->first()->id ,"title" => $old->categories->first()->title]])
         </div>
     @elseif($type == 'members' )
         <div class="form-group">

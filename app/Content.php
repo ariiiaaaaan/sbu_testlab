@@ -26,7 +26,6 @@ class Content extends Model {
     }
 
     public function categories() {
-
         return $this->belongsToMany('App\Category','category_content','content_id','category_id');
     }
 

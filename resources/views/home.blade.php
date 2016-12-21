@@ -288,7 +288,7 @@
                 @endif
                 @foreach($content["companies"] as $comp)
                     <div class="company">
-                        <img src={{$comp->photo->path or "images/qmark.png"}}>
+                        <img src={{$comp->photos->first()->path or "images/qmark.png"}}>
                         <h4>{{$comp->title}}</h4>
                         <p>
                             {!!$comp->body!!}

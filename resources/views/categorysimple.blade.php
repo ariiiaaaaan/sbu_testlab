@@ -17,4 +17,4 @@
 
 @endsection
 
-@include("category",["lang"=>$lang])
+@include("category",["lang"=>$lang,"default"=> empty($default) ? null : $default])

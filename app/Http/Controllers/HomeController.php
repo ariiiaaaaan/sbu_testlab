@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
     use App\Research;
     use Illuminate\Http\Request;
     use App\Member;
-    use App\User;
     use App\Content;
     use App\Variable;
     use App\Event;
@@ -27,7 +26,6 @@ class HomeController extends Controller {
     }
 
     public function showHomePage(Request $r) {
-
         $var = $this->getVars();
         $content = array();
         $content["services"] = Content::where('type','=','services')->get();

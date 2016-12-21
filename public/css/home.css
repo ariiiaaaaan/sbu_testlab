@@ -226,6 +226,7 @@ position: absolute;
     margin-bottom: 2vh;
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
+    border-radius: 1000px;
 }
 
 #member-wrapper .member img{
@@ -564,7 +565,8 @@ position: absolute;
 }
 
 .form-wrapper{
-    width: 50%;
+    width: 45%;
+    margin-right: 5%;
     position: relative;
     margin-top: 6vh;
 }
@@ -636,14 +638,14 @@ position: absolute;
 
 #contact .footer-info{
     clear: both;
-    width: 22vw;
+    width: 24vw;
     height: 8vh;
-    margin: 2vh 2vw 2vh 2vw;
+    margin: 2vh 2vw 2vh 4vw;
     overflow: hidden;
 }
 
 #contact .footer-info p{
-    font-size: .8em;
+    font-size: .85em;
     text-align: left;
     margin: 0px 5px 5px 0px ;
 }
@@ -660,7 +662,7 @@ position: absolute;
 
 #contact .socials{
     text-align: left;
-    padding-left: 3vh;
+    padding-left: 5.5vw;
 }
 
 #contact .socials a{

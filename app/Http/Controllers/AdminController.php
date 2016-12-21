@@ -133,13 +133,13 @@ class AdminController extends Controller {
             $index->delete();
             return redirect('admin');
         } else if($type == 'researches') {
-            $index = Content::find($id)->researches;
+            $index = Content::find($id)->research;
             $index->delete();
             $index = Content::find($id);
             $index->delete();
             return redirect('admin');
         } else if($type == 'events') {
-            $index = Content::find($id)->events;
+            $index = Content::find($id)->event;
             $index->delete();
             $index = Content::find($id);
             $index->delete();
@@ -268,8 +268,8 @@ class AdminController extends Controller {
                             $content->tags()->save($row);
                         }
                     }
-                    //$cat = Category::where('title', '=', $request->input('category'))->first();
-                    //$content->categories()->save($cat);
+                    $cat = Category::where('title', '=', $request->input('category'))->first();
+                    if($cat != null ) $content->categories()->attach($cat->id);
 
                     $content->event()->save($event);
                     return redirect('admin');
@@ -328,7 +328,6 @@ class AdminController extends Controller {
                         $destination = 'upload';
                         $file->move($destination, $name);
                         $member->cv = $destination . "/" . $name;
-//                        $member->photo()->save($photo);
                     }
                 }
                 $member->save();
@@ -391,7 +390,7 @@ class AdminController extends Controller {
                 if (!empty($path) && $path->isValid()) {
                     $tempName = $path->getClientOriginalName();
                     $extension = explode(".",$tempName);
-                    $name = $extension[0].time().$extension[count($extension)-1];
+                    $name = $extension[0].time().".".$extension[count($extension)-1];
                     $destination = 'upload';
                     $path->move($destination, $name);
                     $research->path = $destination . "/" .$name;
@@ -403,10 +402,10 @@ class AdminController extends Controller {
                         $content->tags()->save($row);
                     }
                 }
-                //$cat = Category::where('title', '=', $request->input('category'))->first();
-                //$content->categories()->save($cat);
                 $research->content()->associate($content);
                 $research->save();
+                $cat = Category::where('title', '=', $request->input('category'))->first();
+                if($cat != null ) $content->categories()->attach($cat->id);
                 return redirect('admin');
             }
         } elseif ($type == 'galleries') {
@@ -468,8 +467,8 @@ class AdminController extends Controller {
                         $content->tags()->save($row);
                     }
                 }
-                //$cat = Category::where('title', '=', $request->input('category'))->first();
-                //$content->categories()->save($cat);
+                $cat = Category::where('title', '=', $request->input('category'))->first();
+                if($cat != null )$content->categories()->attach($cat->id);
                 return redirect('admin');
             }
         } elseif ($type == 'tags') {
@@ -487,6 +486,8 @@ class AdminController extends Controller {
             $cat = new Category();
             $cat->title = $request->input("title");
             $cat->parent = $request->input("cat-id");
+            if($cat->parent == 0)
+                $cat->parent = null;
             $cat->save();
             return redirect('admin');
         } elseif($type == "variables"){
@@ -499,7 +500,7 @@ class AdminController extends Controller {
                 if ($file->isValid()) {
                     $tempName = $file->getClientOriginalName();
                     $extension = explode(".", $tempName);
-                    $name = $extension[0] . "-" . time() . "." . $extension[1];
+                    $name = $extension[0] . "-" . time() . "." . $extension[count($extension)-1];
                     $destination = 'upload';
                     $file->move($destination, $name);
                     //$photo->title = $request->input('photoTitle');
@@ -542,7 +543,7 @@ class AdminController extends Controller {
                             $photo = new Photo;
                             $tempName = $file->getClientOriginalName();
                             $extension = explode(".",$tempName);
-                            $name = $extension[0]."-".time().".".$extension[1];
+                            $name = $extension[0]."-".time().".".$extension[count($extension)-1];
                             $destination = 'upload';
                             $file->move($destination, $name);
                             //$photo->title = $request->input('photoTitle');
@@ -557,6 +558,8 @@ class AdminController extends Controller {
                         $news->tags()->save($row);
                     }
                 }
+                $cat = Category::find($request->input('cat-id'));
+                if ($cat != null) $news->categories()->attach($cat->id);
                 return redirect('admin');
             }
         }
