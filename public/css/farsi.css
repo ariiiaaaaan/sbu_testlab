@@ -101,8 +101,8 @@ body{
     margin-left: auto;
 }
 
-#service-wrapper .service,#company-wrapper .company,#members-wrapper .member,#event-wrapper .event,#field-wrapper .field{
-    float: right;
+#service-wrapper .service,#company-wrapper .company,#member-wrapper .member,#event-wrapper .event,#field-wrapper .field{
+    float: right !important;
 }
 
 .card .card-date .fa{
@@ -213,6 +213,7 @@ body{
 
 .custom-scroll-content {
     text-align: right !important;
+    direction: rtl;
 }
 
 .custom-scroll-content > a{

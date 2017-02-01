@@ -11,7 +11,9 @@
 |
 */
 
-use App\Http\Controllers\HomeController;
+//use App\Http\Controllers\HomeController;
+
+//include("Controllers/simple-php-captcha-master/simple-php-captcha.php");
 
 Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@showHomePage'
 ]);
@@ -36,7 +38,7 @@ Route::post('/adminfilter', ['as' => 'adminfilter', 'uses' => 'AdminController@a
 
 Route::get('/',array('uses' => 'HomeController@showHomePage'));
 
-Route::get('/test', ['as' => 'adminfilter', 'uses' => 'CategoryController@jsonTree'
+Route::get('/test', ['as' => 'adminfilter', 'uses' => 'AdminController@thumb'
 ]);
 
 Route::get('/blogs', ['as' => 'blogs', 'uses' => 'BlogController@showBlogs'
@@ -80,6 +82,14 @@ Route::get('/content', ['uses' => 'ContentController@showContent']);
 Route::get('/lang', ['uses' => 'HomeController@setLang']);
 
 Route::get('/search', ['uses' => 'HomeController@search']);
+
+Route::get('/getcaptcha', ['uses' => 'HomeController@getCaptcha']);
+
+//Route::get('/tp', simple_php_captcha());
+
+Route::get('/contact', ['uses' => 'HomeController@contact']);
+
+Route::get('/date', ['uses' => 'HomeController@datetest']);
 
 Route::get('sendemail', function () {
 

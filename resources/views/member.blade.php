@@ -56,7 +56,7 @@
         <div class="member-on-header">
             <div class="img-wrapper"><img src="{{$member->photo->path}}"></div>
             <h1>{{$member->firstname}} {{$member->lastname}}</h1>
-            <h2>{{$member->position}}</h2>
+            <h2>{{$member->position or "سلام"}}</h2>
             <h2>{{$member->email}}</h2>
         </div>
     </section>
@@ -150,19 +150,19 @@
             <a class="social ld" href="{{$member->linkedin}}"><span class="fa fa-linkedin"></span></a>
         </div>
     </section>
-    @if(count($member->papers > 0))
     <section id="papers" class="member-section">
         <a href="#papers" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2 class="section-header">{{$vars["memberPaper"]["title"]}}</h2>
         <div class="section-text">
             <div class="custom-scroll-wrapper">
                 <div class="custom-scroll-content">
-                    {{$member->papers}}
+                    @foreach(explode("#",$member->papers) as $paper)
+                            <p>{{$paper}}</p>
+                    @endforeach
                 </div>
             </div>
         </div>
     </section>
-    @endif
     @include('footer',['top' => 'blogs-section',"vars" => $vars])
 @endsection
 

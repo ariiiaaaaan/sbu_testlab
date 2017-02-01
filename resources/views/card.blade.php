@@ -1,10 +1,10 @@
 <div class="card {{$class}} @if(empty($content->photo->path)) no-img @endif ">
     <a href="content?id={{$content->id}}">
-        <h4>{!! str_limit($content->title,40) !!}</h4>
+        <h4>{!! str_limit($content->title,35) !!}</h4>
         @if(isset($type) && $type == true)
             <div class="card-date"><span class="fa fa-tag fa-2 2x"></span>{{$lang == "en" ? $content->type : $content->farsiType()}}</div>
         @else
-            <div class="card-date"><span class="fa fa-calendar fa-2 2x"></span>{{date('F d, Y', strtotime($content->created_at))}}</div>
+            <div class="card-date"><span class="fa fa-calendar fa-2 2x"></span>{{$content->getDate()}}</div>
         @endif
         <div class="p">
             {!! str_replace("<p>&nbsp;</p>"," ",preg_replace('/[ \t]+/', ' ', preg_replace('/[\r\n]+/',' ',$content->body))) !!}

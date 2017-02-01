@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ContentController extends Controller {
 
     public function showContents(Request $r) {
-        $contents =  Content::where('type',$r->input("type"))->take(12)->get();
+        $contents =  Content::where('type',$r->input("type"))->take(6)->get();
         $lang = $r->session()->get("lang","fa");
         $cats = CategoryController::getTree();
         $hc =new HomeController();
@@ -29,9 +29,10 @@ class ContentController extends Controller {
     }
 
     public function moreContents(Request $r){
-        $offset = $r->input("page")*2;
-        $contents =  Content::where('type',$r->input("type"))->offset($offset)->take(2)->get();
-        return view("morecontent",["contents"=>$contents]);
+        $offset = $r->input("page")*4;
+        $lang = $r->session()->get("lang","fa");
+        $contents =  Content::where('type',$r->input("type"))->offset($offset)->take(4)->get();
+        return view("morecontent",["contents"=>$contents,"lang" => $lang]);
     }
 
     public function getRelatedBlog($id){

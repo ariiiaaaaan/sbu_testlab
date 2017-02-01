@@ -1,14 +1,12 @@
 <form id="new-content-form" action="insert" method="post" enctype="multipart/form-data" accept-charset="utf-8">
-    @if($type != 'events' && $type != 'researches' && $type != 'members' && $type != 'variables' && $type != 'tags' && $type != 'categories' && $type != 'newsletter-groups')
-        @if($type == "newsletters")
-            <a href="nlmaker" class="btn btn-primary" id="nl-maker-link" target="_blank">Open Newsletter-Maker in new tab</a>
-        @endif
+    @if($type != 'events' && $type != 'researches' && $type != 'members' && $type != 'variables' && $type != 'tags' && $type != 'categories' && $type != 'newsletter-groups' && $type != 'newsletters')
         <div class="form-group">
             <label for="title">title:</label>
             <input type="text" class="form-control" id="title" name="title" value="{{ empty($old->title) ? "" : $old->title }}">
         </div>
         <div class="form-group">
             <label for="body">body:</label>
+            @if( $type != "resources" && $type != "companies")
             <textarea class="form-control ckedit" id="body" name="body" rows="10" cols="50">{{ empty($old->body) ? "" : $old->body }}</textarea>
             <script>
                 // Replace the <textarea id="editor1"> with a CKEditor
@@ -16,10 +14,13 @@
                 CKEDITOR.replace( 'body',{extraPlugins: 'uploadimage'}
                    );
             </script>
+            @else
+                <textarea class="form-control" id="body" name="body" rows="10" cols="50">{{ empty($old->body) ? "" : $old->body }}</textarea>
+            @endif
         </div>
         <div class="form-group">
             <label>Tags:</label>
-            @include('tags',['tags'=>$tags,"selected"=> empty($old) ? [] : $old->tags->lists('id')->toArray()])
+            @include('tags',['tags'=>$tags,"selected"=> (empty($old) || true) ? [] : $old->tags->lists('id')->toArray()])
         </div>
         <div class="form-group">
             <label>Category: </label>
@@ -82,11 +83,11 @@
         </div>
         <div class="form-group">
             <label>Start:</label>
-            @include('dateinput',['prefix'=>"start",'date' => isset($old->start) ? $old->start : "0|0|0|0|0"])
+            @include('dateinput',['prefix'=>"start","lang" => $lang,'date' => isset($old->start) ? $old->start : "0|0|0|0|0"])
         </div>
         <div class="form-group">
             <label>End:</label>
-            @include('dateinput',['prefix'=>"end",'date' => isset($old->end) ? $old->end : "0|0|0|0|0"])
+            @include('dateinput',['prefix'=>"end","lang" => $lang,'date' => isset($old->end) ? $old->end : "0|0|0|0|0"])
         </div>
         <div class="form-group">
             <label>Select Images:</label>
@@ -94,7 +95,7 @@
         </div>
         <div class="form-group">
             <label>Tags: </label>
-            @include('tags',['tags'=>$tags,"selected"=> empty($old) ? [] : $old->tags->lists('id')->toArray()])
+            @include('tags',['tags'=>$tags,"selected"=> (empty($old) || true) ? [] : $old->tags->lists('id')->toArray()])
         </div>
         <div class="form-group">
             <label>Category: </label>
@@ -119,7 +120,7 @@
         </div>
         <div class="form-group">
             <label>Publish Date:</label>
-            @include('dateinput',['prefix'=>"date",'date' => isset($old->date) ? $old->date : "0|0|0|0|0"])
+            @include('dateinput',['prefix'=>"date","en" => $lang,'date' => isset($old->date) ? $old->date : "0|0|0|0|0"])
         </div>
         <div class="form-group">
             <label for="external">Is it ours? :</label>
@@ -140,10 +141,11 @@
         <div class="form-group">
             <label>Select File:</label>
             <input type="file" name="path">
+            @if(!empty($old->path)) <br><span>[{{$old->path}}]</span>@endif
         </div>
         <div class="form-group">
             <label>Tags: </label>
-            @include('tags',['tags'=>$tags,"selected"=> empty($old) ? [] : $old->tags->lists('id')->toArray()])
+            @include('tags',['tags'=>$tags,"selected"=> (empty($old) || true) ? [] : $old->tags->lists('id')->toArray()])
         </div>
         <div class="form-group">
             <label>Category: </label>
@@ -168,7 +170,11 @@
         </div>
         <div class="form-group">
             <label for="industry">Industrial Areas:</label>
-            <textarea class="form-control" id="industry" name="industry">{{ empty($old->industry) ? "" : $old->industry }}</textarea>
+            <textarea class="form-control" id="industry" name="industrailareas">{{ empty($old->industrialareas) ? "" : $old->industrialareas }}</textarea>
+        </div>
+         <div class="form-group">
+            <label for="papers">Papers</label>
+            <textarea class="form-control" id="papers" name="papers">{{ empty($old->papers) ? "" : $old->papers }}</textarea>
         </div>
         <div class="form-group">
             <label for="mobile">Mobile:</label>
@@ -205,6 +211,7 @@
         <div class="form-group">
             <label>Select C.V. file:</label>
             <input type="file" name="cv">
+            <span style="color:#777;font-size: 12px">{{empty($old->cv) ? "no file" : $old->cv}}</span>
         </div>
     @if($mode == 0)
         <div class="form-group">
@@ -317,6 +324,37 @@
             <label for="title">title:</label>
             <input type="text" class="form-control" id="title" name="title" value="{{ empty($old->title) ? "" : $old->title }}">
         </div>
+    @elseif($type == "newsletters")
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ empty($old->title) ? "" : $old->title }}">
+        </div>
+        <div class="form-group">
+            <label for="body">Header:</label>
+            <textarea class="form-control" id="body" name="header" rows="10" cols="50">{{ empty($old->body) ? "" : $old->header }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="body">Description one:</label>
+            <textarea class="form-control" id="body" name="desc1" rows="10" cols="50">{{ empty($old->body) ? "" : $old->desc1 }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="body">Description two:</label>
+            <textarea class="form-control" id="body" name="desc2" rows="10" cols="50">{{ empty($old->body) ? "" : $old->desc2 }}</textarea>
+        </div>
+        <div class="checkbox form-group">
+            <label for="active">Active:</label>
+            <input type="checkbox" name="active" {{ (!empty($old->external) && $old->external ) ? "" : "checked='checked'" }}>
+        </div>
+        <div class="form-group">
+            <span>Cycle:</span> <select name="cycle">
+                <option value="1" @if($rec->cycle == '1') selected @endif>one-month</option>
+                <option value="3" @if($rec->cycle == '3') selected @endif>three-month</option>
+            </select>
+        </div>
+        @if($mode == 0)
+
+        @endif
+
     @elseif($type == 'newsletter-groups')
         <div class="text-center text-success"> enter NAME:EMAIL separated with '#' and no space</div>
         <div class="form-group">

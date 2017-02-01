@@ -83,7 +83,7 @@
             </div>
         </div>
     </section>
-    <section id="papers" class="onepage-section">
+    <section id="papers" class="onepage-section two-view">
         <a href="#papers" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$var["papers"]["title"]}}</h2>
         <h3>{{$var["papers"]["subtitle"]}}</h3>
@@ -122,7 +122,7 @@
         <span class="fa fa-angle-right fa-4x" id="members-next"></span>
         <span class="fa fa-angle-left fa-4x" id="members-prev"></span>
     </section>
-    <section id="tools" class="onepage-section">
+    <section id="tools" class="onepage-section tree-view">
         <a href="#tools" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$var["tools"]["title"]}}</h2>
         <h3>{{$var["tools"]["subtitle"]}}</h3>
@@ -137,7 +137,7 @@
             <a href="contents?type=tools" class="section-btn-all">مشاهده‌ی تمام مطالب</a>
         @endif
     </section>
-    <section id="contact" class="onepage-section">
+    <section id="contact" class="onepage-section two-view">
         <a href="#contact" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$var["contact"]["title"]}}</h2>
         <h3>{{$var["contact"]["subtitle"]}}</h3>
@@ -159,7 +159,7 @@
             <div class="socials">
                 <a class="fb" href="{{$var["facebook"]["title"]}}"><span class="fa fa-facebook fa-2x"></span></a>
                 <a class="tw" href="{{$var["twitter"]["title"]}}"><span class="fa fa-twitter fa-2x"></span></a>
-                <a class="gp" href="{{$var["googleplus"]["title"]}}"><span class="fa fa-google-plus fa-2x"></span></a>
+                <a class="tg" href="{{$var["telegram"]["title"]}}"><span class="fa fa-telegram fa-2x"></span></a>
                 <a class="ld" href="{{$var["linkedin"]["title"]}}"><span class="fa fa-linkedin fa-2x"></span></a>
             </div>
         </div>

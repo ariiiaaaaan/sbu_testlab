@@ -1,0 +1,13 @@
+<div>
+    <div>
+        <strong><label>Name:</label></strong><p>{{$name}}</p>
+    </div>
+    <hr>
+    <div>
+        <strong><label>Email:</label></strong><p>{{$email}}</p>
+    </div>
+    <hr>
+    <div>
+        <strong><label>Message:</label></strong><p>{{$body}}</p>
+    </div>
+</div>

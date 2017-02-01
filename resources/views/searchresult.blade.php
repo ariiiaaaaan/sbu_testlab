@@ -76,6 +76,13 @@
                     @endif
                 </div>
             @endforeach
+            @if(count($result) == 0)
+                @if($lang == 'en')
+                    <p style="text-align: center">No Result</p>
+                @else
+                    <p style="text-align: center">نتیجه ای یافت نشد</p>
+                @endif
+            @endif
         </div>
     </section>
     @include('footer',['top' => 'results-section',"vars" => $vars])

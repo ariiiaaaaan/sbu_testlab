@@ -28,6 +28,53 @@
                 $('#service-modal').modal("show");
             });
 
+            var getcaptcha = function(){
+                $.ajax(
+                        {
+                            url : "getcaptcha",
+                            type: "GET",
+                            data : null,
+                            success:function(data)
+                            {
+                                $('#captcha-modal img').attr("src",data)
+                            },
+                            error: function(jqXHR, textStatus, errorThrown)
+                            {
+                                alert("failed to get captcha");
+                            }
+                        });
+            };
+
+            $("#contact-form .send").click(function(){
+//                getcaptcha();
+                $('#captcha-modal').modal();
+                $('#captcha-modal').modal("show");
+            });
+
+            $("#captcha-reload").click(getcaptcha);
+
+            $("#captcha-submit").click(function(){
+                $("#captcha-hidden").attr("value",$("#captcha-visible").val());
+                var postData = $("#contact-form").serializeArray();
+                $.ajax(
+                        {
+                            url : "contact",
+                            type: "GET",
+                            data : postData,
+                            success:function(data)
+                            {
+                                alert(data);
+                                $('#captcha-modal').modal("hide");
+                                alert("{{$lang == "en" ? "Your message is sent for admin" : "پیغام شما برای مدیر ارسال شد"}}");
+                            },
+                            error: function(jqXHR, textStatus, errorThrown)
+                            {
+                                alert("{{$lang == "en" ? "There was a problem while sending your message. Check the captcha code. You can send an email to the admin via the address mentioned in contact information." : "خطا در ارسال پیغام. لطفا کد امنیتی را درست وارد کنید. اگر همچنان با خطا مواجه میشوید، میتوانید پیغام خود را به آدرس ایمیل که در اطلاعات تماس نوشته شده بفرستید."}}");
+                                getcaptcha();
+                            }
+                        });
+            });
+
             $(document).keydown(function(e){
                 if(e.keyCode == 40){
                     var next = $("li.onepage.active").next();
@@ -60,7 +107,7 @@
 @endsection
 
 @section('content')
-    <section id="home" class="onepage-section">
+    <section id="home" class="onepage-section one-view">
         <img src="{{$var["logo"]["body"]}}" class="header-logo">
         <p class="logo-caption">{{$var["logo"]["title"]}}</p>
     </section>
@@ -86,7 +133,7 @@
             <a href="about" class="section-btn-all">مشاهده‌ی صفحه‌ی معرفی</a>
         @endif
     </section>
-    <section id="industry" class="onepage-section tab-section">
+    <section id="industry" class="onepage-section tab-section one-view">
         <a href="#industry" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$var["industry"]["title"]}}</h2>
         <div class="section-nav-container">
@@ -135,7 +182,7 @@
         </div>
 
     </section>
-    <section id="events" class="onepage-section">
+    <section id="events" class="onepage-section one-view">
         <a href="#events" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$var["events"]["title"]}}</h2>
         <h3>{{$var["events"]["subtitle"]}}</h3>
@@ -160,7 +207,7 @@
         <span class="fa fa-angle-right fa-4x" id="events-next"></span>
         <span class="fa fa-angle-left fa-4x" id="events-prev"></span>
     </section>
-    <section id="blogs" class="onepage-section">
+    <section id="blogs" class="onepage-section tree-view">
         <a href="#blogs" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$var["blogs"]["title"]}}</h2>
         <h3>{{$var["blogs"]["subtitle"]}}</h3>
@@ -176,7 +223,7 @@
         @endif
 
     </section>
-    <section id="members" class="onepage-section">
+    <section id="members" class="onepage-section one-view">
         <a href="#members" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$var["members"]["title"]}}</h2>
         <h3>{{$var["members"]["subtitle"]}}</h3>
@@ -194,7 +241,7 @@
         <span class="fa fa-angle-right fa-4x" id="members-next"></span>
         <span class="fa fa-angle-left fa-4x" id="members-prev"></span>
     </section>
-    <section id="didactics" class="onepage-section">
+    <section id="didactics" class="onepage-section tree-view">
         <a href="#didactics" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$var["didactics"]["title"]}}</h2>
         <h3>{{$var["didactics"]["subtitle"]}}</h3>
@@ -209,7 +256,7 @@
             <a href="contents?type=didactics" class="section-btn-all">مشاهده‌ی تمام مطالب</a>
         @endif
     </section>
-    <section id="resources" class="onepage-section tab-section">
+    <section id="resources" class="onepage-section tab-section one-view">
         <a href="#resources" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$var["resources"]["title"]}}</h2>
         <h3>{{$var["resources"]["subtitle"]}}</h3>
@@ -227,7 +274,7 @@
         </div>
         </div>
     </section>
-    <section id="researches" class="onepage-section tab-section">
+    <section id="researches" class="onepage-section tab-section two-view">
         <a href="#researches" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$lang == "en" ? "Papers":"مقالات" }}</h2>
         <div class="section-nav-container">
@@ -277,7 +324,7 @@
             </div>
         </div>
     </section>
-    <section id="companies" class="onepage-section">
+    <section id="companies" class="onepage-section one-view">
         <a href="#companies" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$var["companies"]["title"]}}</h2>
         <h3>{{$var["companies"]["subtitle"]}}</h3>
@@ -300,7 +347,7 @@
         <span class="fa fa-angle-right fa-4x" id="company-next"></span>
         <span class="fa fa-angle-left fa-4x" id="company-prev"></span>
     </section>
-    <section id="gallery" class="onepage-section">
+    <section id="gallery" class="onepage-section tree-view">
         <a href="#gallery" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$var["galleries"]["title"]}}</h2>
         <h3>{{$var["galleries"]["subtitle"]}}</h3>
@@ -330,16 +377,17 @@
             <a href="galleries" class="section-btn-all">مشاهده تمام آلبوم ها </a>
         @endif
     </section>
-    <section id="contact" class="onepage-section">
+    <section id="contact" class="onepage-section two-view">
         <a href="#contact" class="section-down-btn"><span class="fa fa-angle-down fa-4x"></span></a>
         <h2>{{$var["contact"]["title"]}}</h2>
         <h3>{{$var["contact"]["subtitle"]}}</h3>
         <div class="form-wrapper pull-right">
             <form id="contact-form">
-                <input type="text" class="name" {{$lang=="en" ? "placeholder=Name" : "placeholder=نام"}}>
-                <input type="email" class="email" {{$lang=="en" ? "placeholder=Email" : "placeholder=ایمیل"}}>
-                <textarea class="body" {{$lang=="en" ? "placeholder=Messagث" : "placeholder=پیغام"}}></textarea>
-                <input type="submit" class="send pull-left" {{$lang=="en" ? "value=SEND" : "value=ارسال"}}>
+                <input type="text" class="name" name="name" {{$lang=="en" ? "placeholder=Name" : "placeholder=نام"}}>
+                <input type="email" class="email" name="email" {{$lang=="en" ? "placeholder=Email" : "placeholder=ایمیل"}}>
+                <textarea class="body" name="body" {{$lang=="en" ? "placeholder=Messagث" : "placeholder=پیغام"}}></textarea>
+                <input type="hidden" name="captcha" id="captcha-hidden">
+                <input type="button" class="send pull-left" {{$lang=="en" ? "value=SEND" : "value=ارسال"}}>
             </form>
         </div>
         <div class="links-wrapper pull-left">
@@ -352,7 +400,7 @@
             <div class="socials">
                 <a class="fb" href="{{$var["facebook"]["title"]}}"><span class="fa fa-facebook fa-2x"></span></a>
                 <a class="tw" href="{{$var["twitter"]["title"]}}"><span class="fa fa-twitter fa-2x"></span></a>
-                <a class="gp" href="{{$var["googleplus"]["title"]}}"><span class="fa fa-google-plus fa-2x"></span></a>
+                <a class="tg" href="{{$var["telegram"]["title"]}}"><span class="fa fa-telegram fa-2x"></span></a>
                 <a class="ld" href="{{$var["linkedin"]["title"]}}"><span class="fa fa-linkedin fa-2x"></span></a>
             </div>
         </div>
@@ -384,6 +432,22 @@
                 </div>
                 <div class="modal-body">
 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="captcha-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{$captcha}}">
+                    <input type="text" id="captcha-visible">
+                    <span id="captcha-reload" class="fa fa-refresh"></span>
+                    <input type="button" {{$lang=="en" ? "value=SEND" : "value=ارسال"}} id="captcha-submit">
                 </div>
             </div>
         </div>

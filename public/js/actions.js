@@ -34,6 +34,11 @@ $(document).ready(function(){
   });
 
   var vw = $(window).width()/100;
+  var vh = $(window).height()/100;
+  var mobile = false;
+  if(vw <= vh)
+    mobile = true;
+
   var eng = $("body").hasClass("body-en");
 
   function setWrapperWidth(cls){
@@ -51,6 +56,10 @@ $(document).ready(function(){
     var current = eng ? parseInt( target.css("left"),10) : parseInt( target.css("right"),10);
     var min = -(item_num-3)*width;
     var animate_to = current + (eng ? -3*width : 3*width);
+    if(mobile) {
+      min = -(item_num-1)*width;
+      animate_to = current + (eng ? -width : width);
+    }
     if (animate_to < min) animate_to = min;
     if (animate_to > 0) animate_to = 0;
     if(eng)
@@ -67,6 +76,10 @@ $(document).ready(function(){
     var current = eng ? parseInt( target.css("left"),10) : parseInt( target.css("right"),10);
     var min = -(item_num-3)*width;
     var animate_to = current +(eng ? 3*width : -3*width);
+    if(mobile) {
+      min = -(item_num-1)*width;
+      animate_to = current + (eng ? width : -width);
+    }
     if (animate_to < min) animate_to = min;
     if (animate_to > 0) animate_to = 0;
     if(eng)
@@ -135,5 +148,9 @@ $(document).ready(function(){
     inside.clearQueue().stop();
     inside.animate({top: 0},500,"easeOutExpo");
   });
+
+  $("body").on("click",".navbar-collapse.in li a",function(){
+    $(".navbar-toggle").click();
+  })
 });
 

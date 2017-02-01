@@ -69,7 +69,7 @@ a, a:hover,a:focus{
     text-decoration: none;
 }
 .navbar-brand .logo-icon{
-    width: 2vw;
+    width: 6vh;
     transition: all 0.3s;
 }
 
@@ -106,12 +106,18 @@ a, a:hover,a:focus{
     /*background-color: white;*/
 }
 
+ .navbar-main.navbar-collapse{
+     display: inline-block !important;
+ }
+
 .navbar-form{
     float: right;
     margin: 0;
     line-height: 40px;
     position: relative;
     padding: 0;
+    border: none;
+    box-shadow: none;
 }
 
 .navbar-search-wrapper{
@@ -203,6 +209,11 @@ a, a:hover,a:focus{
     opacity: 0.9;
 }
 
+.navbar-form .fa-telegram:hover{
+    color: #2ba5df;
+    opacity: 0.9;
+}
+
 .navbar-form .fa-google-plus:hover{
     color:#ed5b49;
     opacity: 0.9;
@@ -226,7 +237,7 @@ a, a:hover,a:focus{
 }
 
 .tab-section .hider{
-    margin: 3vh auto 0;
+    margin: 2% auto 0;
 }
 
 .tab-section .section-nav-container{
@@ -238,6 +249,7 @@ a, a:hover,a:focus{
 .tab-section .section-nav-container ul{
     display: inline-block;
     margin: 0 auto;
+    padding: 0;
 }
 
 .tab-section .nav-pills li{
@@ -353,7 +365,7 @@ a, a:hover,a:focus{
     text-align: center;
     position: relative;
     background-color: #373737;
-    height: 20vh;
+    height: auto;
     min-height: 32vh;
     color: #ffffff;
     padding: 7vh 0 2vh;
@@ -444,6 +456,10 @@ a, a:hover,a:focus{
 
 .footer-socials .gp,.share-socials .gp{
     background-color:#ed5b49;
+}
+
+.footer-socials .tg{
+    background-color: #2ba5df;
 }
 
 .footer-socials .ld,.share-socials .ld{
@@ -566,6 +582,7 @@ a, a:hover,a:focus{
     text-decoration: none!important;
     transition: all .5s;
     text-align: center !important;
+    overflow: hidden;
 }
 
 .field-item .full,.link-item.full{
@@ -642,7 +659,7 @@ a, a:hover,a:focus{
 
 .research div.p ,.result div.p{
     font-size: 1em;
-    height: 6.9em;
+    height: 5.9em;
     text-align: justify;
     line-height: 1.2em;
     margin-top: 1.8em;
@@ -750,16 +767,21 @@ a, a:hover,a:focus{
     position: relative;
 }
 
-.card div.p::after{
+ .card div.p,.research div.p,.result div.p{
+     position: relative;
+ }
+
+.card div.p::after,.research div.p::after,.result div.p::after{
     content: "";
     display: block;
     position: absolute;
-    bottom: -50px;
-    width: 100%;
+    top: 10vh ;
+    width: 110%;
     height: 100px;
     margin-right: -20px;
     background-image: url(../images/fader.png);
-    background-repeat: no-repeat;
+     background-repeat-y: no-repeat;
+     background-repeat-x: repeat ;
     background-position: left bottom;
 }
 
@@ -812,5 +834,57 @@ div.no-content{
 
 .tab-pane.active{
     min-height: 40vh;
+}
+
+#cat-container.dl-menuwrapper {
+    margin: 2vh auto;
+}
+
+#captcha-modal .modal-dialog{
+    width: 14em !important;
+}
+
+#captcha-modal .modal-content{
+    min-height: 15em!important;
+    height:15em!important;
+}
+
+#captcha-modal img{
+    float: right;
+    height: 4em;
+    width: 10em;
+    margin: 1em 10px 1px;
+}
+
+#captcha-visible{
+    height: 2em;
+    float: right;
+    margin: 1px 10px;
+    line-height: 2em;
+    font-size: 1em;
+    width: 10em;
+    color: #373737;
+}
+
+#captcha-reload{
+    float: right;
+    background-color: #0098bf;
+    margin: 1px 8px 1px 1px;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    border-right: solid 2px #000000 ;
+    text-align: center;
+}
+
+#captcha-submit{
+    float: right;
+    background-color: #0098bf;
+    margin: 1px 1px 1px 10px;
+    width: 8em;
+    height: 2em;
+    line-height: 2em;
+    border: none !important;
+    outline: none !important;
 }
 

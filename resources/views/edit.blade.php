@@ -15,7 +15,8 @@
                 $form = '<input type="file" name="img[]"><input type="text" class="small" placeholder="Title" name="imgtitle[]"><select name="highlight[]"><option value="false">Normal</option><option value="true">Highlight</option></select>';
                 $(".form-group.img").append($form);
             });
-            var recnum = 0;
+            var recnum = $(".record-form").length;
+            alert(recnum);
             $("body").on("click",".add-record-input",function(){
                 var form = '<div class="form-group"><label>Record:</label><div class="record-form"><div class="form-group"><span>institute:</span><input type="text" class="small" name="rec[0][institute]"></div><div class="form-group"><span>position:</span><input type="text" class="small" name="rec[0][position]"></div><div class="form-group"><span>start:</span><input type="text" class="small" name="rec[0][start]"></div><div class="form-group"><span>end:</span><input type="text" class="small" name="rec[0][end]"></div><div class="form-group"><span>type:</span> <select name="rec[0][type]"><option value="academic">academic</option><option value="industrial">industrial</option><option value="teaching">teaching</option></select></div></div></div>';
                 recnum = recnum + 1;

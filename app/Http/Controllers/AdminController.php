@@ -21,6 +21,30 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller {
 
+    public function thumb(){
+        $this->make_thumb("upload/DSC_4234-14823026370.jpg","thumbnails/upload/DSC_4234-14823026370-14845614490.jpg",500);
+    }
+
+
+    public function make_thumb($src, $dest, $desired_width) {
+
+        /* read the source image */
+        $source_image = imagecreatefromjpeg($src);
+        $width = imagesx($source_image);
+        $height = imagesy($source_image);
+
+        /* find the "desired height" of this thumbnail, relative to the desired width  */
+        $desired_height = floor($height * ($desired_width / $width));
+
+        /* create a new, "virtual" image */
+        $virtual_image = imagecreatetruecolor($desired_width, $desired_height);
+
+        /* copy source image at a resized size */
+        imagecopyresampled($virtual_image, $source_image, 0, 0, 0, 0, $desired_width, $desired_height, $width, $height);
+
+        /* create the physical thumbnail image to its destination */
+        imagejpeg($virtual_image, $dest);
+    }
 
     public function selectFrom($table, $type, $tag = NULL, $offset = NULL, $limit = NULL) {
 
@@ -94,7 +118,8 @@ class AdminController extends Controller {
         $tags = Tag::all();
         $catcon = new CategoryController();
         $cats = $catcon->getTree();
-        return view('newcontentmodal',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'mode' => 1 ,'tags'=>$tags,'cats'=>$cats]);
+        $lang = $r->session()->get("lang","fa");
+        return view('newcontentmodal',['entity'=>$r->input('entity'),'type'=>$r->input('type'),'mode' => 1 ,'tags'=>$tags,'cats'=>$cats,"lang" => $lang]);
     }
 
     public function showEditForm(Request $r){
@@ -294,7 +319,8 @@ class AdminController extends Controller {
                 $member->email = $request->input('email');
                 //$member->password = $request->input('password');
                 $member->researchareas = $request->input('researchareas') == NULL ? NULL : $request->input('researchareas');
-                $member->industrialareas = $request->input('intery') == NULL ? NULL : $request->input('industry');
+                $member->industrialareas = $request->input('industry') == NULL ? NULL : $request->input('industry');
+                $member->papers = $request->input('papers') == NULL ? NULL : $request->input('papers');
                 $member->tel = $request->input('telephone') == NULL ? NULL : $request->input('telephone');
                 $member->mobile = $request->input('mobile') == NULL ? NULL : $request->input('mobile');
                 $member->position = $request->input('position') == NULL ? NULL : $request->input('position');
@@ -441,6 +467,7 @@ class AdminController extends Controller {
                                 $photo->path = $destination . "/" . $name;
                                 $photo->highlight = $request->input("highlight")[$i] == "true" ? 1 : 0;
                                 $content->photos()->save($photo);
+                                $this->make_thumb($photo->path,"thumbnails/upload/".$name,500);
                             }
                         }
                     }

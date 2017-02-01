@@ -39,7 +39,7 @@
         <div class="content-wrapper {{$content->type}}">
         @if($content->type != "events" && $content->type != "researches")
             <h2>{{$content->title}}</h2>
-            <p class="content-date">{{explode(' ',$content->date_created)[0].",".$content->category}}</p>
+            <p class="content-date">{{$content->getDate()." - ".$content->category}}</p>
             @if(!empty($content->photos->first()->path))
             <img src="{{$content->photos->first()->path}}">
             @endif

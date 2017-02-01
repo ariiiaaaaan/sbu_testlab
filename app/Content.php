@@ -2,6 +2,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Session;
 
 class Content extends Model {
     public $timestamps = false;
@@ -77,4 +78,15 @@ class Content extends Model {
         return $ret;
     }
 
+    public function getDate(){
+        if(Session::get("lang","fa") == "en"){
+            return date('F d, Y', strtotime($this->created_at));
+        }
+        else{
+            return jdate("j,F,Y",strtotime($this->date_created));
+        }
+    }
+
 }
+
+include("/Functions/jdf.php");

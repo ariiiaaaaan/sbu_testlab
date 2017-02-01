@@ -152,7 +152,7 @@
     position: relative;
     z-index: 2;
     background-color: #0098bf;
-    height: 6vw;
+    height: auto;
     box-shadow: 0 0 8px #000;
 }
 
@@ -168,6 +168,7 @@
     color:white;
     font-size: 1.2em;
     padding: 2vh 0;
+    margin: 0;
 }
 
 #gallery-section{
@@ -188,7 +189,7 @@
     display: inline-block;
     background-color: #373737;
     width: 25vw;
-    height: 12vw;
+    height: 16vw;
     margin: 1vw;
     box-shadow: 0 0 5px black;
     cursor: pointer;
@@ -197,7 +198,7 @@
 
 .img.item.highlight{
     width: 52vw;
-    height: 26vw;
+    height: 34vw;
 }
 
 .img .img-body{
@@ -225,6 +226,7 @@
     z-index: 5;
     opacity: 1;
     transition: all 1s;
+    object-fit: cover;
 }
 
 .img:hover img{
@@ -271,7 +273,8 @@
 }
 
 #image-modal #the-image{
-    max-width: 80vw;
+    display: block;
+    max-width: 100%;
     margin: auto;
     height: auto;
 }
@@ -281,8 +284,20 @@
     color: white;
 }
 
+.footer-section{
+    background-color: #0098bf;
+}
+
+.footer-section .section-down-btn:hover {
+    color: #373737;
+}
+
+.footer-section .section-down-btn {
+    background-color: #0098bf;
+}
+
 #image-modal .modal-header .close {
-    margin-top: -30px;
+    margin-top: -10px;
     color: white;
     opacity: 1;
 }

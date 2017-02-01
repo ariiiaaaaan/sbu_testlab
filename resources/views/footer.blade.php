@@ -13,7 +13,7 @@
         <div class="footer-socials">
             <a class="fb" href="{{$vars["facebook"]["title"]}}"><span class="fa fa-facebook fa-2x"></span></a>
             <a class="tw" href="{{$vars["twitter"]["title"]}}"><span class="fa fa-twitter fa-2x"></span></a>
-            <a class="gp" href="{{$vars["googleplus"]["title"]}}"><span class="fa fa-google-plus fa-2x"></span></a>
+            <a class="tg" href="{{$vars["telegram"]["title"]}}"><span class="fa fa-telegram fa-2x"></span></a>
             <a class="ld" href="{{$vars["linkedin"]["title"]}}"><span class="fa fa-linkedin fa-2x"></span></a>
         </div>
         <div class="footer-text">

@@ -30,7 +30,7 @@
             });
 //            $("#image-modal").modal();
             $(".grid").on('click','.img.item',function(e){
-                $("#image-modal #the-image").attr("src",$(this).find("img").attr("src"));
+                $("#image-modal #the-image").attr("src",$(this).find("img").attr("original"));
                 $("#image-modal #modal-title").text($(this).find("h4").text());
                 $("#image-modal").modal("show");
             });
@@ -76,30 +76,31 @@
                         <p>
                             <span class="fa fa-search-plus fa-2x"></span>
                         </p>
-                        <img src="{{$photo->path}}">
+                        <img src="thumbnails/{{$photo->path}}" original="{{$photo->path}}">
                     </div>
                 </div>
             @endforeach
         </div>
-    </section>
-    @include('footer',['top' => 'blogs-section',"vars" => $vars])
+        <div class="modal-dialog">
+            <div id="image-modal" class="modal fade" role="dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
 
-    <div class="modal-dialog">
-        <div id="image-modal" class="modal fade" role="dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title" id="modal-title"></h3>
+                    </div>
+                    <div class="modal-body">
 
-                <div class="modal-header">
-                    <h3 class="modal-title" id="modal-title"></h3>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <img id="the-image"  src="">
+
+                    </div>
                 </div>
-                <div class="modal-body">
 
-                            <img id="the-image"  src="">
-
-                </div>
             </div>
-
         </div>
-    </div>
+    </section>
+    @include('footer',['top' => 'gallery-body',"vars" => $vars])
+
+
 @endsection

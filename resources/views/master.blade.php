@@ -27,6 +27,7 @@
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @yield('outsource')
+        <link rel="stylesheet" type="text/css" href="{{asset('css/mobile.css')}}"/>
 </head>
 <body data-spy="scroll" data-target=".navbar-main" data-offset="60" class="body-{{$lang or "fa"}}">
 <div class="container-fluid">
@@ -37,9 +38,14 @@
             <nav class="navbar navbar-inverse "  id="main-menu">
                 <div class="container-fluid">
                     <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
                         <a class="navbar-brand" href="#"><img class="logo-icon" src="images/logo-icon.png" ></a>
                     </div>
-                    <div class="navbar-main">
+                    <div class="navbar-main collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
                             @yield('menu')
                         </ul>
@@ -53,7 +59,7 @@
                         </div>
                         <a href="#home" class="social"><span class="fa fa-facebook fa-2x"></span></a>
                         <a href="#home" class="social"><span class="fa fa-twitter fa-2x"></span></a>
-                        <a href="lang" class="social"><span class="fa fa-google-plus fa-2x"></span></a>
+                        <a href="#home" class="social"><span class="fa fa-telegram fa-2x"></span></a>
                         <a href="lang?lang={{$lang == "en" ? "fa":"en"}}" class="lang"><span class="fa fa-2x">{{$lang == "en" ? "FA":"EN"}}</span></a>
 
                     </div>

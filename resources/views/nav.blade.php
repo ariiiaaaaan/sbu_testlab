@@ -9,6 +9,7 @@
     <li class="{{$class or ''}}"><a href="{{$preurl}}#resources">Resources</a></li>
     <li class="{{$class or ''}}"><a href="{{$preurl}}#researches">papers</a></li>
     <li class="{{$class or ''}}"><a href="{{$preurl}}#companies">Partners</a></li>
+    {{--<li class="{{$class or ''}}"><a href="{{$preurl}}#galleries">Gallery</a></li>--}}
     <li class="{{$class or ''}}"><a href="{{$preurl}}#contact">Contact</a></li>
 @else
     <li class="{{$class or ''}}"><a href="{{$preurl}}#home">خانه</a></li>
@@ -21,5 +22,6 @@
     <li class="{{$class or ''}}"><a href="{{$preurl}}#resources">منابع</a></li>
     <li class="{{$class or ''}}"><a href="{{$preurl}}#researches">مقالات</a></li>
     <li class="{{$class or ''}}"><a href="{{$preurl}}#companies">همکاران</a></li>
+    {{--<li class="{{$class or ''}}"><a href="{{$preurl}}#galleries">گالری</a></li>--}}
     <li class="{{$class or ''}}"><a href="{{$preurl}}#contact">تماس با ما</a></li>
 @endif

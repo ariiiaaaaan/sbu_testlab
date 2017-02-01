@@ -65,7 +65,7 @@
                 $.ajax({
                     type: 'GET',
                     url: 'morecontents',
-                    data: {page: page,type : "services" },
+                    data: {page: page,type : "{{$type}}" },
                     cache: false,
                     success: function (returndata) {
                         var $items = $(returndata);
@@ -102,7 +102,7 @@
     <section id="blogs-section">
         <div class="grid">
             @foreach($contents as $content)
-                @include("cardflex",["class"=>"item","content"=>$content])
+                @include("cardflex",["class"=>"item","content"=>$content, "lang" => $lang])
             @endforeach
         </div>
         @if($lang == "en")
